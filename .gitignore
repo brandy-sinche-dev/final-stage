@@ -1,0 +1,25 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# --- Binarios y Ejecutables (Solo se generan al exportar) ---
+*.exe
+*.zip
+*.apk
+*.ipa
+*.app
+android/
+
+# --- Archivos de Sistema y Editores ---
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# --- ASSETS PESADOS ---
+*.wav
+*.mp3
+*.ogg
+*.png
+*.jpg
