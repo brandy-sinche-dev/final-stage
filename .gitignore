@@ -16,10 +16,3 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
-
-# --- ASSETS PESADOS ---
-*.wav
-*.mp3
-*.ogg
-*.png
-*.jpg

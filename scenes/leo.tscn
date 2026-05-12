@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://cbwdosul4nbbs"]
+
+[ext_resource type="Texture2D" uid="uid://cfrfnkl8dgsk3" path="res://assets/sprites/individual_sheets/male_hero-idle.png" id="1_p7vge"]
+[ext_resource type="Script" uid="uid://blboces11v1v2" path="res://scripts/leo.gd" id="1_sjlio"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjlio"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhdmn"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcscl"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkwne"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo04w"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lhpi"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc5c8"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irqp3"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ioir"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqw2t"]
+atlas = ExtResource("1_p7vge")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tditb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjlio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhdmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcscl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkwne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo04w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lhpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc5c8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irqp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ioir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqw2t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 13.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qiwc"]
+height = 38.0
+
+[node name="Leo" type="CharacterBody2D" unique_id=492757546]
+scale = Vector2(0.6623258, 0.5008899)
+script = ExtResource("1_sjlio")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=768733877]
+texture_filter = 1
+position = Vector2(2.000001, -1)
+scale = Vector2(1.2238317, 1.3263892)
+sprite_frames = SubResource("SpriteFrames_tditb")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.21009675
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=23434911]
+position = Vector2(1, -2)
+scale = Vector2(1.0377771, 1.1665535)
+shape = SubResource("CapsuleShape2D_4qiwc")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2142480274]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
