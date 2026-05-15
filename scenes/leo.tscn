@@ -84,7 +84,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qiwc"]
 height = 38.0
 
-[node name="Leo" type="CharacterBody2D" unique_id=492757546]
+[node name="Leo" type="CharacterBody2D" unique_id=492757546 groups=["player"]]
 scale = Vector2(0.6623258, 0.5008899)
 script = ExtResource("1_sjlio")
 
