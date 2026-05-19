@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://chpq7aguud85y"]
+
+[ext_resource type="Texture2D" uid="uid://b54ypvieroinv" path="res://assets/textures/Nivel1/Tiles.png" id="1_2fwmh"]
+[ext_resource type="Script" uid="uid://smotyohcdp4l" path="res://scripts/nivel1/trampa_1.gd" id="1_evi50"]
+[ext_resource type="PackedScene" uid="uid://hhxnxmj85ob8" path="res://scenes/nivel1/bullet_trampa_1.tscn" id="2_654ox"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evi50"]
+atlas = ExtResource("1_2fwmh")
+region = Rect2(368, 300, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_654ox"]
+atlas = ExtResource("1_2fwmh")
+region = Rect2(368, 320, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wxjym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evi50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_654ox")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Trampa1" type="Node2D" unique_id=1767417645]
+script = ExtResource("1_evi50")
+bullet_scene = ExtResource("2_654ox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1661174285]
+texture_filter = 1
+rotation = 1.5940431
+sprite_frames = SubResource("SpriteFrames_wxjym")
+autoplay = "default"
+frame_progress = 0.4244936
+
+[node name="ShootPoint" type="Marker2D" parent="." unique_id=1565657234]
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1780773680]
+wait_time = 1.4929999999999999
+autostart = true

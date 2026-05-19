@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://caop0pvjy6tuu"]
+
+[ext_resource type="Script" uid="uid://bufkt8gcuolnl" path="res://scripts/hud.gd" id="1_1etfg"]
+[ext_resource type="Texture2D" uid="uid://dj36b0sh1x43w" path="res://assets/textures/HUD/HealthBar-Sheet.png" id="2_7hsmw"]
+[ext_resource type="Texture2D" uid="uid://c4lpw4ddcktum" path="res://assets/sprites/individual_sheets/male_hero-combo_1.png" id="3_7hsmw"]
+[ext_resource type="Texture2D" uid="uid://b54ypvieroinv" path="res://assets/textures/Nivel1/Tiles.png" id="4_nysna"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0ch2"]
+atlas = ExtResource("2_7hsmw")
+region = Rect2(28.64441, 56.59914, 95.35559, 15.40086)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1etfg"]
+atlas = ExtResource("2_7hsmw")
+region = Rect2(29, 98, 95, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d68ha"]
+atlas = ExtResource("2_7hsmw")
+region = Rect2(0, 129.4968, 37.23884, 34.503204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i532v"]
+atlas = ExtResource("2_7hsmw")
+region = Rect2(30.229862, 0, 37.077053, 20.752617)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6qnu"]
+atlas = ExtResource("3_7hsmw")
+region = Rect2(26, 0, 106, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4w17"]
+atlas = ExtResource("4_nysna")
+region = Rect2(159, 239, 18, 17)
+
+[sub_resource type="LabelSettings" id="LabelSettings_twldb"]
+font_size = 5
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=710190410 groups=["hud"]]
+script = ExtResource("1_1etfg")
+
+[node name="HUD" type="Control" parent="." unique_id=699982284 groups=["hud"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContenedorVida" type="Control" parent="HUD" unique_id=196327013]
+layout_mode = 1
+anchors_preset = 0
+offset_top = 6.0
+offset_right = 40.0
+offset_bottom = 46.0
+
+[node name="BarraVida" type="TextureProgressBar" parent="HUD/ContenedorVida" unique_id=1068881026]
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 113.0
+offset_bottom = 57.0
+value = 100.0
+texture_under = SubResource("AtlasTexture_o0ch2")
+texture_progress = SubResource("AtlasTexture_1etfg")
+
+[node name="CorazonIcono" type="TextureRect" parent="HUD/ContenedorVida" unique_id=1140480722]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 47.0
+offset_bottom = 49.0
+scale = Vector2(0.5850925, 0.54799056)
+texture = SubResource("AtlasTexture_d68ha")
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/ContenedorVida" unique_id=1699404421]
+texture_filter = 1
+layout_mode = 0
+offset_left = 28.0
+offset_top = 7.0
+offset_right = 68.0
+offset_bottom = 47.0
+scale = Vector2(0.4106062, 0.36636153)
+texture = SubResource("AtlasTexture_i532v")
+
+[node name="ContenedorAtaques" type="Control" parent="HUD" unique_id=413228238]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/ContenedorAtaques" unique_id=506948843]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 214.0
+offset_right = 46.0
+offset_bottom = 257.0
+texture = SubResource("AtlasTexture_f6qnu")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/ContenedorAtaques" unique_id=624137728]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 243.0
+offset_right = 29.0
+offset_bottom = 251.0
+texture = SubResource("AtlasTexture_k4w17")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUD/ContenedorAtaques/TextureRect2" unique_id=1939441644]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "C"
+label_settings = SubResource("LabelSettings_twldb")
