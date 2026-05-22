@@ -521,9 +521,7 @@ texture_filter = 1
 position = Vector2(2.25, 1.25)
 scale = Vector2(1.0116279, 1.0135136)
 sprite_frames = SubResource("SpriteFrames_61122")
-animation = &"death"
-frame = 14
-frame_progress = 1.0
+animation = &"attack"
 
 [node name="Hitbox" type="Area2D" parent="Visuals" unique_id=938691237]
 position = Vector2(6, -5)

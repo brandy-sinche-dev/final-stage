@@ -3653,7 +3653,7 @@ scale = Vector2(0.37291855, 0.390625)
 sprite_frames = SubResource("SpriteFrames_0ftl8")
 
 [node name="Leo" parent="." unique_id=492757546 instance=ExtResource("6_3elcd")]
-position = Vector2(1319, 207)
+position = Vector2(1716.9999, 168)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1825335947]
 position = Vector2(2286, 182)

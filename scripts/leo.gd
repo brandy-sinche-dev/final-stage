@@ -160,3 +160,19 @@ func _on_sword_area_body_entered(body: Node2D) -> void:
 			body.recibir_danio(dano_espada, global_position.x)
 		else:
 			print("Golpe ignorado para ", body.name, " porque la espada ya impactó a un enemigo antes.")
+
+
+
+# ==========================================
+# SEÑAL DE REINICIO EN NIVEL 2 (ZONA DE MUERTE / VACÍO)
+# ==========================================
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	# Como este script corre en Leo, si el Area2D detecta un cuerpo,
+	# ejecutamos la función morir() para que haga su animación y luego reinicie.
+	if not esta_muerto:
+		morir()
+
+
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

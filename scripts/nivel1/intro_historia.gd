@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var camara: Camera2D = $SubViewportContainer/SubViewport/CamaraCinematica
 @onready var texto_narrador: RichTextLabel = $CajaTexto/TextoNarrador
 @onready var fondo_negro: ColorRect = $FondoNegro # Nuestra pantalla de transición
+@onready var boton_skip: Button = $BotonSkip # <- NUEVA REFERENCIA
 
 # Imágenes
 @onready var v1_torre: Sprite2D = $SubViewportContainer/SubViewport/TorreSuelo
@@ -28,12 +29,25 @@ var texto_terminado: bool = false
 var transicionando: bool = false # Nueva variable para bloquear el Enter durante el fundido
 var tween_texto: Tween
 
+# CONFIGURACIÓN DEL SKIP (En segundos)
+@export var tiempo_espera_skip: float = 3.0      # Cuánto tarda en empezar a aparecer desde el segundo 0
+@export var duracion_fade_skip: float = 1.5      # Cuánto tarda en volverse visible el botón
+
 func _ready() -> void:
-	print("--- INTRO: Sistema con Fundido a Negro ---")
+	print("--- INTRO: Sistema con Fundido a Negro y Botón Skip ---")
 	v1_torre.visible = true
 	v2_caballeros.visible = false
 	v3_leo.visible = false
 	fondo_negro.modulate.a = 0.0 # Aseguramos que inicie invisible
+	
+	# === CONFIGURACIÓN INICIAL DEL BOTÓN SKIP ===
+	if has_node("BotonSkip"):
+		boton_skip.modulate.a = 0.0 # Lo hacemos transparente al inicio
+		boton_skip.pressed.connect(_on_boton_skip_pressed) # Conectamos el clic por código
+		_aparecer_boton_skip()
+	else:
+		push_error("¡Alerta! No encontré ningún nodo llamado 'BotonSkip' como hijo de IntroHistoria")
+	# ============================================
 	
 	ejecutar_escena_actual(true)
 
@@ -63,7 +77,6 @@ func ejecutar_escena_actual(con_terremoto: bool) -> void:
 	tween_texto.tween_callback(func(): texto_terminado = true)
 
 func _input(event: InputEvent) -> void:
-	# Si estamos en medio de un desvanecimiento, ignoramos los botones del jugador
 	if transicionando:
 		return
 		
@@ -77,15 +90,13 @@ func _input(event: InputEvent) -> void:
 			avanzar_viñeta()
 
 func avanzar_viñeta() -> void:
-	transicionando = true # Bloqueamos interacciones
+	transicionando = true 
 	
-	# FASE A: Desvanecer a negro (La pantalla se oscurece en 0.5 segundos)
 	var tween_fade_in = create_tween()
-	texto_narrador.text = "" # Limpiamos el texto viejo antes del fundido
+	texto_narrador.text = "" 
 	tween_fade_in.tween_property(fondo_negro, "modulate:a", 1.0, 0.5)
 	await tween_fade_in.finished
 	
-	# FASE B: El cambio secreto (Ocurre mientras todo está en negro)
 	viñetas[indice_actual].visible = false
 	indice_actual += 1
 	
@@ -94,19 +105,42 @@ func avanzar_viñeta() -> void:
 		return
 		
 	viñetas[indice_actual].visible = true
-	await get_tree().create_timer(0.2).timeout # Pequeña pausa dramática a oscuras
+	await get_tree().get_timer(0.2).timeout 
 	
-	# FASE C: Desvanecer el negro (Se revela la nueva viñeta en 0.5 segundos)
 	var tween_fade_out = create_tween()
 	tween_fade_out.tween_property(fondo_negro, "modulate:a", 0.0, 0.5)
 	await tween_fade_out.finished
 	
-	transicionando = false # Desbloqueamos el control
+	transicionando = false 
 	ejecutar_escena_actual(false)
 
 func terminar_introduccion() -> void:
-	# Un último fundido lento antes de iniciar el mapa
+	# Oculta el botón de skip al cambiar de escena por si acaso
+	if boton_skip: boton_skip.visible = false
+	
 	var tween_final = create_tween()
 	tween_final.tween_property(fondo_negro, "modulate:a", 1.0, 1.0)
 	await tween_final.finished
 	get_tree().change_scene_to_file("res://scenes/nivel1/nivel_1.tscn")
+
+
+# === NUEVAS FUNCIONES PARA EL BOTÓN SKIP ===
+
+func _aparecer_boton_skip() -> void:
+	# Espera los segundos asignados
+	await get_tree().create_timer(tiempo_espera_skip).timeout
+	
+	# Crea el desvanecido fluido cambiando el Alpha de 0.0 a 1.0
+	var tween_skip = create_tween()
+	tween_skip.tween_property(boton_skip, "modulate:a", 1.0, duracion_fade_skip)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+
+func _on_boton_skip_pressed() -> void:
+	# Bloquea el input normal para evitar conflictos
+	transicionando = true
+	if tween_texto and tween_texto.is_running():
+		tween_texto.kill()
+		
+	print("Intro saltada por el jugador.")
+	terminar_introduccion() # Reutiliza la función de cierre para ir al nivel 1 de forma fluida
