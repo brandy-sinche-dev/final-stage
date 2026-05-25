@@ -104,3 +104,11 @@ scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1789072655]
 libraries/ = SubResource("AnimationLibrary_8smmk")
+
+[node name="BotonSkip" type="Button" parent="." unique_id=898228749]
+modulate = Color(1, 1, 1, 0)
+offset_left = 421.0
+offset_top = 8.0
+offset_right = 468.0
+offset_bottom = 39.0
+text = "Skip"
