@@ -5,6 +5,10 @@ const SPEED_WALK = 90.0
 const SPEED_RUN = 170.0   
 const JUMP_VELOCITY = -350.0
 
+# Array para almacenar los IDs de las llaves que tenemos
+var llaves_recolectadas: Array[String] = []
+
+
 # Estadísticas de Vida y Combate
 @export var max_vida: int = 100
 var vida_actual: int = max_vida
@@ -161,7 +165,17 @@ func _on_sword_area_body_entered(body: Node2D) -> void:
 		else:
 			print("Golpe ignorado para ", body.name, " porque la espada ya impactó a un enemigo antes.")
 
+func agregar_llave(id_llave: String) -> void:
+	if not llaves_recolectadas.has(id_llave):
+		llaves_recolectadas.append(id_llave)
 
+func tiene_llave(id_llave: String) -> bool:
+	# Devuelve true si Leo tiene la llave en su inventario
+	return llaves_recolectadas.has(id_llave)
+
+func gastar_llave(id_llave: String) -> void:
+	# Si la llave es de un solo uso, la borramos tras abrir la puerta
+	llaves_recolectadas.erase(id_llave)
 
 # ==========================================
 # SEÑAL DE REINICIO EN NIVEL 2 (ZONA DE MUERTE / VACÍO)

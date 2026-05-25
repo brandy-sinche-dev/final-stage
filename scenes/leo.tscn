@@ -812,6 +812,7 @@ size = Vector2(57.089165, 51.916496)
 [node name="Leo" type="CharacterBody2D" unique_id=492757546 groups=["player"]]
 scale = Vector2(0.6623258, 0.5008899)
 collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_sjlio")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=768733877]

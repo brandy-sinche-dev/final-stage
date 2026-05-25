@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Final Stage"
-run/main_scene="uid://dljnpmm22wv61"
+run/main_scene="uid://jnts6o62mgtg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -55,6 +55,7 @@ salir_tutorial={
 2d_physics/layer_1="Suelo(Mapas / TileMaps)"
 2d_physics/layer_2="Jugador (Leo)"
 2d_physics/layer_3="Enemigos"
+2d_physics/layer_4="Llaves"
 
 [physics]
 

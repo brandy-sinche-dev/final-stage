@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://drqxcqvqxkims" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://b4aibrfio4oy2" path="res://assets/textures/HUD/menu.png" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://kxffgmtpitl5" path="res://assets/sprites/individual_sheets/male_hero-design.png" id="3_con2f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhnvy"]
+atlas = ExtResource("3_con2f")
+region = Rect2(45, 41, 35, 46)
 
 [node name="Menu" type="Control" unique_id=30599817]
 layout_mode = 3
@@ -24,25 +29,72 @@ offset_bottom = 270.0
 texture = ExtResource("1_yqeox")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=683721167]
+[node name="ContenedorPrincipal" type="VBoxContainer" parent="." unique_id=683721167]
+visible = false
 layout_mode = 0
 offset_left = 175.0
 offset_top = 81.0
 offset_right = 317.0
 offset_bottom = 188.0
 
-[node name="play" type="Button" parent="VBoxContainer" unique_id=1976361688]
+[node name="play" type="Button" parent="ContenedorPrincipal" unique_id=1976361688]
 layout_mode = 2
 text = "JUGAR"
 
-[node name="niveles" type="Button" parent="VBoxContainer" unique_id=1676773830]
+[node name="niveles" type="Button" parent="ContenedorPrincipal" unique_id=1676773830]
 layout_mode = 2
 text = "NIVELES"
 
-[node name="exit" type="Button" parent="VBoxContainer" unique_id=823136693]
+[node name="exit" type="Button" parent="ContenedorPrincipal" unique_id=823136693]
 layout_mode = 2
 text = "EXIT"
 
-[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/niveles" to="." method="_on_niveles_pressed"]
-[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]
+[node name="ContenedorNiveles" type="VBoxContainer" parent="." unique_id=1377971896]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 64.0
+offset_right = 317.0
+offset_bottom = 186.0
+
+[node name="nivel1" type="Button" parent="ContenedorNiveles" unique_id=1254856493]
+layout_mode = 2
+text = "Nivel 1"
+
+[node name="nivel2" type="Button" parent="ContenedorNiveles" unique_id=711113572]
+layout_mode = 2
+text = "Nivel 2"
+
+[node name="nivel3" type="Button" parent="ContenedorNiveles" unique_id=1036699613]
+layout_mode = 2
+text = "Nivel 3"
+
+[node name="nivel4" type="Button" parent="ContenedorNiveles" unique_id=1623894392]
+layout_mode = 2
+text = "Nivel 4"
+
+[node name="Regresar" type="Button" parent="ContenedorNiveles" unique_id=1628139409]
+layout_mode = 2
+text = "< Regresar al menu"
+
+[node name="ContenedorTutorial" type="VBoxContainer" parent="." unique_id=938956422]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 233.00002
+offset_right = 123.0
+offset_bottom = 287.0
+scale = Vector2(0.6049949, 0.57227796)
+
+[node name="tutorial" type="Button" parent="ContenedorTutorial" unique_id=355022841]
+layout_mode = 2
+text = "Tutorial"
+icon = SubResource("AtlasTexture_mhnvy")
+
+[connection signal="pressed" from="ContenedorPrincipal/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ContenedorPrincipal/niveles" to="." method="_on_niveles_pressed"]
+[connection signal="pressed" from="ContenedorPrincipal/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/nivel1" to="." method="_on_nivel_1_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/nivel2" to="." method="_on_nivel_2_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/nivel3" to="." method="_on_nivel_3_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/nivel4" to="." method="_on_nivel_4_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/Regresar" to="." method="_on_regresar_pressed"]
+[connection signal="pressed" from="ContenedorTutorial/tutorial" to="." method="_on_tutorial_pressed"]

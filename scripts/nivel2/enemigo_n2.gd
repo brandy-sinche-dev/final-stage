@@ -83,7 +83,7 @@ func _iniciar_ataque() -> void:
 	estado_actual = Estados.ATACANDO
 	velocity.x = 0
 	sprite.play("attack")
-	hitbox_espada.disabled = false 
+	hitbox_espada.set_deferred("disabled", false)
 
 
 func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
@@ -98,7 +98,7 @@ func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
 		return
 		
 	estado_actual = Estados.HERIDO
-	hitbox_espada.disabled = true 
+	hitbox_espada.set_deferred("disabled", true)
 	
 	var dir_retroceso = 1.0 if global_position.x > origen_danio_x else -1.0
 	velocity = Vector2(dir_retroceso * knockback_fuerza, -100.0)
@@ -116,7 +116,7 @@ func _morir() -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "attack":
-		hitbox_espada.disabled = true
+		hitbox_espada.set_deferred("disabled", true)
 		estado_actual = Estados.PATRULLA 
 	elif sprite.animation == "danio":
 		estado_actual = Estados.PATRULLA 

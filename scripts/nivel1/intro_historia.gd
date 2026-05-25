@@ -105,7 +105,7 @@ func avanzar_viñeta() -> void:
 		return
 		
 	viñetas[indice_actual].visible = true
-	await get_tree().get_timer(0.2).timeout 
+	await get_tree().create_timer(0.2).timeout
 	
 	var tween_fade_out = create_tween()
 	tween_fade_out.tween_property(fondo_negro, "modulate:a", 0.0, 0.5)

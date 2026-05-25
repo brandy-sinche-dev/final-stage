@@ -4,12 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bh2lnqy5jv3b6" path="res://assets/textures/Nivel1/Background/mk_16_16_nature_tileset.png" id="2_fuatb"]
 [ext_resource type="Texture2D" uid="uid://b54ypvieroinv" path="res://assets/textures/Nivel1/Tiles.png" id="3_3xnle"]
 [ext_resource type="Texture2D" uid="uid://qb2e0o68uxfy" path="res://assets/textures/Nivel1/Props-Rocks.png" id="4_lmo5k"]
-[ext_resource type="Texture2D" uid="uid://bsdpm4ukv6ss" path="res://assets/sprites/!Demon Door.png" id="5_ychu3"]
 [ext_resource type="PackedScene" uid="uid://cbwdosul4nbbs" path="res://scenes/leo.tscn" id="6_3elcd"]
 [ext_resource type="PackedScene" uid="uid://76kvfub1h0e1" path="res://scenes/nivel1/centinela_oseo.tscn" id="7_xltc0"]
 [ext_resource type="PackedScene" uid="uid://chpq7aguud85y" path="res://scenes/nivel1/trampa_1.tscn" id="8_fuatb"]
 [ext_resource type="PackedScene" uid="uid://caop0pvjy6tuu" path="res://scenes/HUD.tscn" id="9_3xnle"]
 [ext_resource type="PackedScene" uid="uid://da502adkwnafg" path="res://scenes/killzone.tscn" id="10_lmo5k"]
+[ext_resource type="PackedScene" uid="uid://bdlqtvcln4m1a" path="res://scenes/nivel1/key.tscn" id="10_ychu3"]
+[ext_resource type="PackedScene" uid="uid://ckb8ofdnx4efj" path="res://scenes/nivel1/puerta.tscn" id="11_ychu3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lkhdl"]
 texture = ExtResource("2_fuatb")
@@ -3517,98 +3518,6 @@ texture = ExtResource("3_3xnle")
 sources/0 = SubResource("TileSetAtlasSource_0emmd")
 sources/2 = SubResource("TileSetAtlasSource_aln8s")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xbfyf"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(720, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cbbpc"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(960, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0emmd"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(1200, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tkxpl"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(720, 240, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8csu8"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(960, 240, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_40yc8"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(1200, 240, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t3w4j"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(720, 480, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dqsm"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(960, 480, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hdoya"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(1200, 480, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ic1d4"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(720, 720, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c3grl"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(960, 720, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bb7bi"]
-atlas = ExtResource("5_ychu3")
-region = Rect2(1200, 720, 240, 240)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0ftl8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xbfyf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cbbpc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0emmd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tkxpl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8csu8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_40yc8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t3w4j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0dqsm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hdoya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ic1d4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c3grl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bb7bi")
-}],
-"loop": false,
-"name": &"default",
-"speed": 6.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ychu3"]
 size = Vector2(807.1426, 81)
 
@@ -3617,6 +3526,9 @@ size = Vector2(4788, 217)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3elcd"]
 size = Vector2(730, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xltc0"]
+size = Vector2(164, 273)
 
 [node name="Nivel1" type="Node2D" unique_id=1179163039]
 
@@ -3647,13 +3559,16 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAqAQsAAAABAAoAAAAqAQwAAAABAAsAAAAqAQ0AAAABAAwAAAAqAQ4AAAABAA0AAAAqAQ8AAAABAA4AAAAqARAAAAABAA8AAAArAQsAAAACAAoAAAArAQwAAAACAAsAAAArAQ0AAAACAAwAAAArAQ4AAAACAA0AAAArAQ8AAAACAA4AAAArARAAAAACAA8AAAAsAQwAAAADAAsAAAAsAQ0AAAADAAwAAAAsAQ4AAAADAA0AAAAsAQ8AAAADAA4AAAAsARAAAAADAA8AAAAtAQoAAAAAAAsAAAAtAQsAAAAAAAwAAAAtAQwAAAAAAA0AAAAtAQ0AAAAAAA4AAAAtAQ4AAAAAAA8AAAAuAQoAAAABAAsAAAAuAQsAAAABAAwAAAAuAQwAAAABAA0AAAAuAQ0AAAABAA4AAAAuAQ4AAAABAA8AAAAvAQoAAAAAAA0AAAAvAQsAAAAAAA4AAAAvAQwAAAAAAA8AAAAvAQ0AAAACAA4AAAAvAQ4AAAACAA8AAAAwAQoAAAABAA0AAAAwAQsAAAABAA4AAAAwAQwAAAABAA8AAAAwAQ0AAAADAA4AAAAwAQ4AAAADAA8AAAAvAQgAAAACAA4AAAAvAQkAAAACAA8AAAAwAQgAAAADAA4AAAAwAQkAAAADAA8AAAAxAQgAAAACAAsAAAAxAQkAAAACAAwAAAAxAQoAAAACAA0AAAAxAQsAAAACAA4AAAAxAQwAAAACAA8AAAAyAQgAAAADAAsAAAAyAQkAAAADAAwAAAAyAQoAAAADAA0AAAAyAQsAAAADAA4AAAAyAQwAAAADAA8AAAAsAQUAAAAKAAsAAAAsAQYAAAAKAAwAAAAsAQcAAAAJAA0AAAAsAQgAAAAJAA4AAAAsAQkAAAAJAA8AAAAtAQUAAAALAAsAAAAtAQYAAAALAAwAAAAtAQcAAAAAAA0AAAAtAQgAAAABAA4AAAAtAQkAAAABAA8AAAAuAQUAAAAMAAsAAAAuAQYAAAAMAAwAAAAuAQcAAAABAA0AAAAuAQgAAAABAA4AAAAuAQkAAAABAA8AAAAvAQUAAAACAAsAAAAvAQYAAAACAAwAAAAvAQcAAAACAA0AAAAwAQUAAAADAAsAAAAwAQYAAAADAAwAAAAwAQcAAAADAA0AAAArAQYAAAAIAAwAAAArAQcAAAAIAA0AAAArAQgAAAAIAA4AAAArAQkAAAAIAA8AAAAsAQQAAAAKAAoAAAAtAQQAAAALAAoAAAAuAQQAAAAKAA8AAAAuAQEAAAAKAA8AAAAvAQEAAAALAA8AAAAwAQEAAAAMAA8AAAAxAQEAAAANAA8AAAAuAQIAAAAKAA0AAAAuAQMAAAAKAA4AAAAvAQIAAAALAA0AAAAvAQMAAAALAA4AAAAvAQQAAAALAA8AAAAwAQIAAAAMAA0AAAAwAQMAAAAMAA4AAAAwAQQAAAAMAA8AAAAxAQIAAAANAA0AAAAxAQMAAAANAA4AAAAxAQQAAAANAA8AAAAtAQAAAAAJAAYAAAAdABAAAgAQABQAAAAdABEAAgAQABUAAAAgABAAAgAQABQAAAAgABEAAgAQABUAAAAmABAAAgAUABYAAAAmABEAAgAUABcAAAAnABAAAgAVABYAAAAnABEAAgAVABcAAABdAAsAAgAUABYAAABdAAwAAgAUABcAAABeAAsAAgAVABYAAABeAAwAAgAVABcAAAAIASwAAgAQABUAAAAIAS0AAgAQABUAAAAIASsAAgAQABQAAAA=")
 tile_set = SubResource("TileSet_tkxpl")
 
-[node name="Puerta" type="AnimatedSprite2D" parent="." unique_id=621301890]
-position = Vector2(6667.0005, 515)
-scale = Vector2(0.37291855, 0.390625)
-sprite_frames = SubResource("SpriteFrames_0ftl8")
+[node name="key" parent="." unique_id=1996432130 instance=ExtResource("10_ychu3")]
+position = Vector2(4729, 213)
+
+[node name="puerta" parent="." unique_id=1275712376 instance=ExtResource("11_ychu3")]
+position = Vector2(6658, 496)
+scale = Vector2(1.3919332, 1.2133738)
+siguiente_nivel_ruta = "uid://cbbprrknkxgkn"
 
 [node name="Leo" parent="." unique_id=492757546 instance=ExtResource("6_3elcd")]
-position = Vector2(1716.9999, 168)
+position = Vector2(95, 169)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1825335947]
 position = Vector2(2286, 182)
@@ -3711,6 +3626,13 @@ shape = SubResource("RectangleShape2D_lmo5k")
 [node name="CollisionShape2D" parent="KillsZones/Killzone3" index="0" unique_id=2021899850]
 position = Vector2(3759, 514)
 shape = SubResource("RectangleShape2D_3elcd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=634981015]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1974492170]
+position = Vector2(4846, 134.5)
+shape = SubResource("RectangleShape2D_xltc0")
 
 [editable path="Trampas/Trampa5"]
 [editable path="KillsZones/Killzone"]
