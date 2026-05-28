@@ -1,6 +1,6 @@
-extends CanvasLayer # 🚨 CORREGIDO: Ahora coincide con tu nodo raíz CanvasLayer
+extends CanvasLayer 
 
-# 🚨 CORRECCIÓN DE RUTA: 
+
 # Desde el CanvasLayer entramos a HUD -> ContenedorVida -> barravida
 # (Asegúrate de escribir las mayúsculas/minúsculas exactamente como las tienes en el editor)
 @onready var barra_vida = $"HUD/ContenedorVida/BarraVida"

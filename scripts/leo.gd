@@ -24,6 +24,12 @@ var esta_atacando = false
 var esta_herido = false
 var esta_muerto = false
 
+# Efectos de sonidos
+@onready var sonido_saltar: AudioStreamPlayer2D = $EffectsSounds/sound_jump
+@onready var sonido_ataque1: AudioStreamPlayer2D = $EffectsSounds/sound_ataque1
+@onready var sonido_dano: AudioStreamPlayer2D = $EffectsSounds/sound_hurt
+
+
 func _physics_process(delta: float) -> void:
 	# 1. CONTROL DE MUERTE
 	if esta_muerto:
@@ -53,6 +59,7 @@ func _physics_process(delta: float) -> void:
 		# PROCESAR ACCIONES
 		if quiere_saltar:
 			velocity.y = JUMP_VELOCITY
+			sonido_saltar.play() 
 		elif quiere_atacar and not esta_atacando:
 			esta_atacando = true
 			CombateManager.iniciar_nuevo_ataque_leo()
@@ -93,12 +100,14 @@ func _maquina_visual() -> void:
 
 	if esta_atacando:
 		if sprite.animation != "attack":
+			sonido_ataque1.play()
 			sprite.play("attack")
 			sprite.frame = 0 
 		return 
 
 	if not is_on_floor():
-		if sprite.animation != "jump": sprite.play("jump")
+		if sprite.animation != "jump":
+			sprite.play("jump")
 	else:
 		if velocity.x != 0:
 			if abs(velocity.x) > SPEED_WALK:
@@ -122,6 +131,7 @@ func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
 		return
 		
 	vida_actual -= cantidad
+	sonido_dano.play()
 	print("Vida de Leo: ", vida_actual)
 	
 	# === ENLACE CON EL HUD ===

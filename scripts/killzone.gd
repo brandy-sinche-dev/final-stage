@@ -6,7 +6,6 @@ func _ready():
 
 func _on_body_entered(body: Node2D):
 	# Comprobamos si lo que cayó es el jugador Leo
-	if body.name == "Player" or body.is_in_group("player"):
+	if body.name == "Player" or body.is_in_group("player"):	
+		body.morir()
 		print("Leo ha caído al vacío.")
-		# Reinicia el nivel actual instantáneamente
-		get_tree().call_deferred("reload_current_scene")

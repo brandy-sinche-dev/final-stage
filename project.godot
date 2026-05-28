@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Final Stage"
-run/main_scene="uid://jnts6o62mgtg"
+run/main_scene="uid://dtaovruticpth"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

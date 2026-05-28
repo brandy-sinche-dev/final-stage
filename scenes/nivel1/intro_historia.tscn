@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dnbxdf7p5bt8y" path="res://scripts/nivel1/intro_historia.gd" id="1_xmo51"]
 [ext_resource type="Texture2D" uid="uid://lrlm8rb7jy8f" path="res://assets/textures/Nivel1/Escena 2.png" id="3_6ndoh"]
 [ext_resource type="Texture2D" uid="uid://dqwyxt0x10hee" path="res://assets/textures/Nivel1/Escena 3.png" id="4_8smmk"]
+[ext_resource type="AudioStream" uid="uid://dbfo87uhbvj0y" path="res://ost/nivel1/intro_background.mp3" id="5_76qw0"]
 
 [sub_resource type="Animation" id="Animation_xmo51"]
 length = 0.001
@@ -46,23 +47,22 @@ _data = {
 script = ExtResource("1_xmo51")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=167597168]
-offset_top = 3.0
 offset_right = 480.0
-offset_bottom = 273.0
+offset_bottom = 272.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1167624343]
 handle_input_locally = false
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="TorreSuelo" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=184398169]
-position = Vector2(240, 131)
-scale = Vector2(0.34883723, 0.3515625)
-texture = ExtResource("1_fp557")
-
 [node name="CamaraCinematica" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=1587407402]
 position = Vector2(240, 130)
 scale = Vector2(0.547, 0.7)
+
+[node name="TorreSuelo" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=184398169]
+position = Vector2(234.5, 129.99998)
+scale = Vector2(0.39026162, 0.4140625)
+texture = ExtResource("1_fp557")
 
 [node name="CaballerosCaidos" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=661227494]
 texture_filter = 2
@@ -112,3 +112,7 @@ offset_top = 8.0
 offset_right = 468.0
 offset_bottom = 39.0
 text = "Skip"
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=1544687254]
+stream = ExtResource("5_76qw0")
+autoplay = true

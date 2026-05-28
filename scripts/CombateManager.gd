@@ -11,7 +11,7 @@ func solicitar_permiso_danio() -> bool:
 		return true
 	return false
 
-# --- 🚨 NUEVO: Control de Leo hacia Enemigos 🚨 ---
+# ---  Control de Leo hacia Enemigos ---
 # Esta variable nos dirá si el ataque actual de Leo ya golpeó a un monstruo
 var leo_ya_golpeo_en_este_ataque: bool = false
 

@@ -24,6 +24,13 @@ var esta_muerto = false
 var esta_atacando = false
 var en_cooldown = false
 
+#efectos de sonido
+@onready var sonido_atacado: AudioStreamPlayer2D = $EffectsSounds/sound_atacado
+@onready var sonido_ataque: AudioStreamPlayer2D = $EffectsSounds/sound_ataque
+
+
+
+
 func _physics_process(delta):
 	# 1. CONTROL DE MUERTE
 	if esta_muerto:
@@ -89,6 +96,7 @@ func _quedarse_quieto():
 
 
 func _iniciar_ataque():
+	sonido_ataque.play()
 	esta_atacando = true
 	velocity.x = 0
 	sprite.play("attack")
@@ -99,6 +107,7 @@ func recibir_danio(cantidad: int, origen_golpe_x: float) -> void:
 		return
 		
 	vida_actual -= cantidad
+	sonido_atacado.play()
 	print("Vida del Centinela: ", vida_actual)
 	
 	if vida_actual <= 0:
