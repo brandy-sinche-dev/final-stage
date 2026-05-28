@@ -141,6 +141,7 @@ shape = SubResource("RectangleShape2D_hxfpd")
 [node name="SalidaNivel3" type="Area2D" parent="." unique_id=89463566]
 position = Vector2(1700, 250)
 script = ExtResource("6_wit8e")
+siguiente_escena = "uid://bg856w3hbqf4w"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SalidaNivel3" unique_id=22808681]
 position = Vector2(322.75, -46.25)
