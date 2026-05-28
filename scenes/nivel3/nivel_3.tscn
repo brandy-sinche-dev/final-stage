@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://eyus1w21vtkn" path="res://assets/textures/Nivel3/crystals/cristal_negro_barrera (1).png" id="15_oykkt"]
 [ext_resource type="Script" uid="uid://dhvm1thqbihl2" path="res://scripts/nivel3/portal_cristal_animado.gd.gd" id="18_k7i5o"]
 [ext_resource type="Texture2D" uid="uid://dssfrogol3vct" path="res://assets/textures/Nivel3/portal/portal_cristal (1).png" id="18_qyfnm"]
+[ext_resource type="Script" uid="uid://c48d6gjw8s82f" path="res://scripts/nivel3/camara_nivel3.gd" id="20_8taec"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waicc"]
 size = Vector2(2380.125, 35)
@@ -654,5 +655,14 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaPlataformaEco" unique_id=871471633]
 position = Vector2(1799.5, 240.25)
 shape = SubResource("RectangleShape2D_yltux")
+
+[node name="CamaraNivel3" type="Camera2D" parent="." unique_id=1703855434]
+position = Vector2(240, 300)
+script = ExtResource("20_8taec")
+jugador_path = NodePath("../Leo")
+limite_derecha = 2111
+limite_arriba = 0
+limite_abajo = 600
+offset_camara = Vector2(0, 0)
 
 [connection signal="body_entered" from="Area2D" to="Leo" method="_on_area_2d_body_entered"]
