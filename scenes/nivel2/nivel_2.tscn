@@ -27,13 +27,13 @@ size = Vector2(53, 55)
 position = Vector2(-10, -4)
 
 [node name="Gusano" parent="." unique_id=1913021993 instance=ExtResource("2_t0uoq")]
-position = Vector2(498, 489)
+position = Vector2(490, 487)
 
 [node name="Leo" parent="." unique_id=492757546 instance=ExtResource("3_t0uoq")]
 position = Vector2(64, 311)
 
 [node name="Gusano2" parent="." unique_id=1382503529 instance=ExtResource("2_t0uoq")]
-position = Vector2(625, 441)
+position = Vector2(617, 441)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1173916664]
 stream = ExtResource("4_3bx76")
@@ -55,11 +55,11 @@ position = Vector2(-79.125, -7)
 shape = SubResource("RectangleShape2D_waicc")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=79571799]
-position = Vector2(-439, -316)
+position = Vector2(-444, -316)
 shape = SubResource("CircleShape2D_dninf")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" unique_id=751975472]
-position = Vector2(-567, -268)
+position = Vector2(-572, -267)
 shape = SubResource("CircleShape2D_waicc")
 
 [node name="CharacterBody2D" parent="." unique_id=447287643 instance=ExtResource("7_dninf")]
