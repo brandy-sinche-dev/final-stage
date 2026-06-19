@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bexcaibom0y7" path="res://assets/sprites/nivel2/NightBorne.png" id="1_anpo7"]
 [ext_resource type="Script" uid="uid://dbogrr5idkey" path="res://scripts/nivel2/enemigo_n2.gd" id="1_um7ae"]
+[ext_resource type="AudioStream" uid="uid://c06xd37fv8jft" path="res://ost/nivel2/daño_enemigo_nv2.mp3" id="3_240p7"]
+[ext_resource type="AudioStream" uid="uid://d0crrb2f4wvvp" path="res://ost/nivel2/ataque_enemigo_nv2.mp3" id="4_7q7m2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_um7ae"]
 atlas = ExtResource("1_anpo7")
@@ -443,6 +445,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=291001458]
 position = Vector2(-4, -28)
 shape = SubResource("RectangleShape2D_um7ae")
+
+[node name="Daño" type="AudioStreamPlayer2D" parent="." unique_id=614748156]
+stream = ExtResource("3_240p7")
+
+[node name="Ataque" type="AudioStreamPlayer2D" parent="." unique_id=552175787]
+stream = ExtResource("4_7q7m2")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

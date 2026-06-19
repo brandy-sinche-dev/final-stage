@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cy0wb35knhij3" path="res://assets/sprites/nivel2/lava/_0001_Layer-2.png" id="7_t7032"]
 [ext_resource type="Texture2D" uid="uid://bsdpm4ukv6ss" path="res://assets/sprites/!Demon Door.png" id="8_5efe1"]
 [ext_resource type="Texture2D" uid="uid://c7et7ofmbnvev" path="res://assets/sprites/nivel2/Metal Torch.png" id="9_3f8or"]
-[ext_resource type="Script" uid="uid://d1oeg2w7t2llk" path="res://scripts/nivel2/antorcha.gd" id="10_e3lds"]
+[ext_resource type="Script" uid="uid://dcbm1gf66a318" path="res://scenes/nivel2/antorcha.gd" id="10_hfphq"]
 [ext_resource type="Texture2D" uid="uid://cm4fufr66plho" path="res://assets/sprites/nivel2/Red Panda Sprite Sheet.png" id="11_hfphq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x6ial"]
@@ -2714,29 +2714,29 @@ sprite_frames = SubResource("SpriteFrames_0ftl8")
 position = Vector2(131, 252)
 sprite_frames = SubResource("SpriteFrames_pojhv")
 animation = &"idle"
-script = ExtResource("10_e3lds")
+script = ExtResource("10_hfphq")
 
 [node name="Antorcha2" type="AnimatedSprite2D" parent="." unique_id=99423914]
 position = Vector2(408, 253)
 sprite_frames = SubResource("SpriteFrames_pojhv")
 animation = &"idle"
-script = ExtResource("10_e3lds")
+script = ExtResource("10_hfphq")
 
 [node name="Antorcha3" type="AnimatedSprite2D" parent="." unique_id=632044130]
 position = Vector2(1058, 261)
 sprite_frames = SubResource("SpriteFrames_pojhv")
 animation = &"idle"
-script = ExtResource("10_e3lds")
+script = ExtResource("10_hfphq")
 
 [node name="Antorcha4" type="AnimatedSprite2D" parent="." unique_id=1649932670]
 position = Vector2(1514, 129)
 sprite_frames = SubResource("SpriteFrames_pojhv")
 animation = &"idle"
-script = ExtResource("10_e3lds")
+script = ExtResource("10_hfphq")
 
 [node name="Mapache" type="AnimatedSprite2D" parent="." unique_id=1859809273]
 position = Vector2(897, 337)
 sprite_frames = SubResource("SpriteFrames_pdp4g")
 animation = &"idle"
 frame_progress = 0.58200365
-script = ExtResource("10_e3lds")
+script = ExtResource("10_hfphq")
