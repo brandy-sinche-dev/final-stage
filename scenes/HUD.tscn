@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c4lpw4ddcktum" path="res://assets/sprites/individual_sheets/male_hero-combo_1.png" id="3_7hsmw"]
 [ext_resource type="Texture2D" uid="uid://b54ypvieroinv" path="res://assets/textures/Nivel1/Tiles.png" id="4_nysna"]
 [ext_resource type="Texture2D" uid="uid://bui7enrux41gs" path="res://assets/sprites/individual_sheets/male_hero-run.png" id="5_nysna"]
+[ext_resource type="Texture2D" uid="uid://b4p8ur6woixkm" path="res://assets/sprites/individual_sheets/male_hero-jump.png" id="6_f6qnu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0ch2"]
 atlas = ExtResource("2_7hsmw")
@@ -39,6 +40,10 @@ region = Rect2(39, 29, 54, 67)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8cuoo"]
 font_size = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cuoo"]
+atlas = ExtResource("6_f6qnu")
+region = Rect2(297, 30, 36, 49)
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=710190410 groups=["hud"]]
 script = ExtResource("1_1etfg")
@@ -153,4 +158,41 @@ offset_right = 13.361097
 offset_bottom = 8.932327
 scale = Vector2(0.6451443, 0.7586713)
 text = "Shift"
+label_settings = SubResource("LabelSettings_8cuoo")
+
+[node name="ContenedorSpace" type="Control" parent="HUD" unique_id=971949364]
+anchors_preset = 0
+offset_left = 1.0
+offset_top = -63.0
+offset_right = 41.0
+offset_bottom = -23.0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/ContenedorSpace" unique_id=1992796002]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 213.00002
+offset_right = 47.0
+offset_bottom = 256.0
+scale = Vector2(0.58747506, 0.60330766)
+texture = SubResource("AtlasTexture_8cuoo")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/ContenedorSpace" unique_id=33358381]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 240.99998
+offset_right = 25.0
+offset_bottom = 248.99998
+scale = Vector2(1.6755571, 1.0725871)
+texture = SubResource("AtlasTexture_k4w17")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUD/ContenedorSpace/TextureRect2" unique_id=410680920]
+layout_mode = 0
+offset_left = 0.59681606
+offset_top = 0.9323273
+offset_right = 15.596816
+offset_bottom = 8.932327
+scale = Vector2(0.5257814, 0.7586713)
+text = "Space"
 label_settings = SubResource("LabelSettings_8cuoo")
