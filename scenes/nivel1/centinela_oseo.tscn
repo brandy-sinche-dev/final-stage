@@ -9,6 +9,11 @@
 [ext_resource type="AudioStream" uid="uid://c6yf57tfyaea4" path="res://ost/Leo/dano_enemigo.mp3" id="7_ye0id"]
 [ext_resource type="AudioStream" uid="uid://bpcne7wooj2bx" path="res://ost/nivel1/enemy_ataque.mp3" id="8_2lgsq"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2lgsq"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fy4u8"]
 size = Vector2(19.22874, 31.288681)
 
@@ -502,6 +507,9 @@ size = Vector2(18.262154, 22.5)
 scale = Vector2(1.3493398, 1.1535448)
 collision_layer = 4
 script = ExtResource("1_unofj")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1702502194]
+replication_config = SubResource("SceneReplicationConfig_2lgsq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=50679815]
 position = Vector2(-2.2384088, 5.201357)

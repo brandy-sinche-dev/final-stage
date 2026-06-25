@@ -21,6 +21,7 @@ var vida_actual: int = max_vida
 @onready var label_flotante = $LabelFlotante
 
 # Estados del personaje
+var esta_en_el_suelo: bool = true
 var esta_atacando = false
 var esta_herido = false
 var esta_muerto = false
@@ -37,10 +38,14 @@ func _enter_tree() -> void:
 		var id_del_dueno = name.to_int()
 		if id_del_dueno > 0:
 			set_multiplayer_authority(id_del_dueno)
+			
+			# 🌟 EL CAMBIO CLAVE: Si este nodo es el clon de la otra PC,
+			# le decimos al Sincronizador que la autoridad de estos datos es el dueño original.
+			if has_node("MultiplayerSynchronizer"):
+				$MultiplayerSynchronizer.set_multiplayer_authority(id_del_dueno)
 
 
 func _ready() -> void:
-	# 🌟 CONFIGURACIÓN DE FÍSICAS EXTRUCTURALES
 	floor_constant_speed = true
 	floor_snap_length = 4.0
 	floor_max_angle = deg_to_rad(46.0)
@@ -51,13 +56,10 @@ func _ready() -> void:
 		else:
 			if has_node("Camera2D"):
 				$Camera2D.enabled = false
-				
-		# 🌟 SOLUCIÓN RED: Asignamos el nombre de jugador según quién sea el dueño de este nodo
 		_configurar_texto_jugador_dinamico()
 	else:
 		if has_node("Camera2D"):
 			$Camera2D.enabled = true
-		# Modo Historia (Un solo jugador)
 		if label_flotante:
 			label_flotante.text = "Player 1"
 
@@ -65,6 +67,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if multiplayer.multiplayer_peer != null:
 		if not is_multiplayer_authority():
+			# 🌟 CLAVE: El clon no procesa movimientos, pero SÍ necesita 
+			# actualizar sus animaciones según lo que recibe de la red
+			_maquina_visual()
 			return
 
 	# 1. CONTROL DE MUERTE

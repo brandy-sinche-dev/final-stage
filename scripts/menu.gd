@@ -7,7 +7,7 @@ extends Control
 
 # Configuracion para multijugador
 const PORT = 1024
-const DEFAULT_IP = "192.168.137.158" # CREAR UN HOTSPOT CON LA PC DE LA UNI Y USAR LA IP DE LA OTRA PC
+const DEFAULT_IP = "192.168.18.30" # CREAR UN HOTSPOT CON LA PC DE LA UNI Y USAR LA IP DE LA OTRA PC
 
 func _ready() -> void:
 	# Nos aseguramos de que al arrancar el juego, los niveles estén ocultos

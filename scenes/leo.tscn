@@ -40,6 +40,9 @@ properties/5/replication_mode = 1
 properties/6/path = NodePath("Visuals:scale")
 properties/6/spawn = true
 properties/6/replication_mode = 1
+properties/7/path = NodePath(".:position")
+properties/7/spawn = true
+properties/7/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7pab"]
 atlas = ExtResource("2_4qiwc")

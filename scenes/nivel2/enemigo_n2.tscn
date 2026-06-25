@@ -5,6 +5,11 @@
 [ext_resource type="AudioStream" uid="uid://c06xd37fv8jft" path="res://ost/nivel2/daño_enemigo_nv2.mp3" id="3_240p7"]
 [ext_resource type="AudioStream" uid="uid://d0crrb2f4wvvp" path="res://ost/nivel2/ataque_enemigo_nv2.mp3" id="4_7q7m2"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q7m2"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_um7ae"]
 atlas = ExtResource("1_anpo7")
 region = Rect2(0, 160, 80, 80)
@@ -427,6 +432,9 @@ size = Vector2(32.5, 27)
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=447287643]
 collision_layer = 4
 script = ExtResource("1_um7ae")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2046403744]
+replication_config = SubResource("SceneReplicationConfig_7q7m2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1558587829]
 position = Vector2(-1, -12)

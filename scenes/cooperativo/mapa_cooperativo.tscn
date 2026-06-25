@@ -912,7 +912,12 @@ load_path = "res://.godot/imported/BG_Bush.png-d7a8aeaa33e7b2492ff09d8c3955a50d.
 script = ExtResource("1_fmtqe")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=673837153]
-spawn_path = NodePath("..")
+_spawnable_scenes = PackedStringArray("uid://cbwdosul4nbbs")
+spawn_path = NodePath("../Jugadores")
+
+[node name="SpawnerEnemigos" type="MultiplayerSpawner" parent="." unique_id=1658683631]
+_spawnable_scenes = PackedStringArray("uid://76kvfub1h0e1", "uid://lnqtw0660j80", "uid://cge38x8f73vui")
+spawn_path = NodePath("../EnemiesContainer")
 
 [node name="EnemiesContainer" type="Node2D" parent="." unique_id=933413785]
 position = Vector2(2286, 182)
@@ -943,6 +948,9 @@ motion_scale = Vector2(0.5, 0.5)
 position = Vector2(253.49997, 167)
 scale = Vector2(1.584375, 1.8555557)
 texture = SubResource("CompressedTexture2D_mms3o")
+
+[node name="Jugadores" type="Node2D" parent="." unique_id=1617560656]
+position = Vector2(65, 201)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=59841015]
 position = Vector2(2286, 182)

@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://b43mospyrdtf3" path="res://assets/sprites/nivel3/death (1).png" id="4_amdfi"]
 [ext_resource type="Texture2D" uid="uid://dqealouh52djl" path="res://assets/sprites/nivel3/walk.png" id="5_qpvpa"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dyrfn"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wlmh0"]
 atlas = ExtResource("2_dyrfn")
 region = Rect2(15, 3, 269, 721)
@@ -262,6 +267,9 @@ size = Vector2(30.953125, 45.5625)
 [node name="EcoSombra" type="CharacterBody2D" unique_id=447287643]
 collision_layer = 8
 script = ExtResource("1_mhala")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2126066396]
+replication_config = SubResource("SceneReplicationConfig_dyrfn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1558587829]
 position = Vector2(6.1565905, -16.311247)
