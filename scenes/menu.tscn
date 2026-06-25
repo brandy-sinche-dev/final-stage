@@ -30,7 +30,6 @@ texture = ExtResource("1_yqeox")
 expand_mode = 1
 
 [node name="ContenedorPrincipal" type="VBoxContainer" parent="." unique_id=683721167]
-visible = false
 layout_mode = 0
 offset_left = 175.0
 offset_top = 81.0
@@ -45,11 +44,16 @@ text = "JUGAR"
 layout_mode = 2
 text = "NIVELES"
 
+[node name="cooperativo" type="Button" parent="ContenedorPrincipal" unique_id=792399969]
+layout_mode = 2
+text = "COOPERATIVO"
+
 [node name="exit" type="Button" parent="ContenedorPrincipal" unique_id=823136693]
 layout_mode = 2
 text = "EXIT"
 
 [node name="ContenedorNiveles" type="VBoxContainer" parent="." unique_id=1377971896]
+visible = false
 layout_mode = 0
 offset_left = 175.0
 offset_top = 64.0
@@ -76,6 +80,26 @@ text = "Nivel 4"
 layout_mode = 2
 text = "< Regresar al menu"
 
+[node name="ContenedorCooperativo" type="VBoxContainer" parent="." unique_id=290158250]
+visible = false
+layout_mode = 0
+offset_left = 175.0
+offset_top = 64.0
+offset_right = 317.0
+offset_bottom = 186.0
+
+[node name="crear Servidor" type="Button" parent="ContenedorCooperativo" unique_id=1737148316]
+layout_mode = 2
+text = "Crear Servidor"
+
+[node name="buscar Servidor" type="Button" parent="ContenedorCooperativo" unique_id=1319713641]
+layout_mode = 2
+text = "Buscar Servidor"
+
+[node name="Regresar" type="Button" parent="ContenedorCooperativo" unique_id=1288466487]
+layout_mode = 2
+text = "< Regresar al menu"
+
 [node name="ContenedorTutorial" type="VBoxContainer" parent="." unique_id=938956422]
 layout_mode = 0
 offset_left = 15.0
@@ -91,10 +115,14 @@ icon = SubResource("AtlasTexture_mhnvy")
 
 [connection signal="pressed" from="ContenedorPrincipal/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ContenedorPrincipal/niveles" to="." method="_on_niveles_pressed"]
+[connection signal="pressed" from="ContenedorPrincipal/cooperativo" to="." method="_on_cooperativo_pressed"]
 [connection signal="pressed" from="ContenedorPrincipal/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/nivel1" to="." method="_on_nivel_1_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/nivel2" to="." method="_on_nivel_2_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/nivel3" to="." method="_on_nivel_3_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/nivel4" to="." method="_on_nivel_4_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/Regresar" to="." method="_on_regresar_pressed"]
+[connection signal="pressed" from="ContenedorCooperativo/crear Servidor" to="." method="_on_crear_servidor_pressed"]
+[connection signal="pressed" from="ContenedorCooperativo/buscar Servidor" to="." method="_on_buscar_servidor_pressed"]
+[connection signal="pressed" from="ContenedorCooperativo/Regresar" to="." method="_on_regresar_pressed"]
 [connection signal="pressed" from="ContenedorTutorial/tutorial" to="." method="_on_tutorial_pressed"]

@@ -16,6 +16,30 @@
 [ext_resource type="Texture2D" uid="uid://chi8oblgeiv6g" path="res://assets/sprites/individual_sheets/male_hero-walk.png" id="13_jkwej"]
 [ext_resource type="AudioStream" uid="uid://bct3nildj4jwi" path="res://ost/Leo/jump_leo.mp3" id="15_vk4bp"]
 [ext_resource type="AudioStream" uid="uid://2bujb31k8jsj" path="res://ost/Leo/espada_leo.mp3" id="16_vvihb"]
+[ext_resource type="AudioStream" uid="uid://dljtcg7c8tvi8" path="res://ost/Leo/death_leo.mp3" id="17_fswkg"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vvihb"]
+properties/0/path = NodePath("AnimatedSprite2D:flip_h")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:vida_actual")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:esta_atacando")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:esta_herido")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:esta_muerto")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Visuals:scale")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7pab"]
 atlas = ExtResource("2_4qiwc")
@@ -820,6 +844,11 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_sjlio")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=30167166]
+replication_interval = 0.01
+delta_interval = 0.02
+replication_config = SubResource("SceneReplicationConfig_vvihb")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=768733877]
 texture_filter = 1
 position = Vector2(2.000001, -1)
@@ -860,6 +889,20 @@ stream = ExtResource("16_vvihb")
 
 [node name="sound_hurt" type="AudioStreamPlayer2D" parent="EffectsSounds" unique_id=78817982]
 stream = SubResource("AudioStreamMP3_vvihb")
+
+[node name="sound_death" type="AudioStreamPlayer2D" parent="EffectsSounds" unique_id=190949609]
+stream = ExtResource("17_fswkg")
+volume_db = 2.916
+
+[node name="LabelFlotante" type="Label" parent="." unique_id=2104370790]
+offset_left = -7.5491548
+offset_top = -37.932487
+offset_right = 41.450844
+offset_bottom = -14.9324875
+scale = Vector2(0.37058777, 0.46070805)
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Visuals/SwordArea" to="." method="_on_sword_area_body_entered"]
