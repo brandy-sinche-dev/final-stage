@@ -4,6 +4,7 @@ extends Control
 @onready var contenedor_principal: VBoxContainer = $ContenedorPrincipal
 @onready var contenedor_niveles: VBoxContainer = $ContenedorNiveles
 @onready var contenedor_cooperativo: VBoxContainer = $ContenedorCooperativo
+@onready var click_sound: AudioStreamPlayer = $ClickSound
 
 # Configuracion para multijugador
 const PORT = 1024
@@ -18,9 +19,17 @@ func _ready() -> void:
 	# Conectamos las señales nativas de red de Godot
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
+	
+	_conectar_botones(self)
 
-
-
+func _reproducir_click() -> void:
+	click_sound.play()
+	
+func _conectar_botones(nodo: Node) -> void:
+	for hijo in nodo.get_children():
+		if hijo is Button:
+			hijo.pressed.connect(_reproducir_click)
+		_conectar_botones(hijo)
 
 #-----------CONFIGURACION DE BOTONES-----------------
 func _on_play_pressed():
@@ -114,3 +123,5 @@ func _on_player_disconnected(id: int) -> void:
 func _cambiar_a_mapa_multijugador() -> void:
 	# Asegúrate de que esta ruta sea exactamente la de tu mapa de pruebas actual
 	get_tree().change_scene_to_file("res://scenes/cooperativo/mapa_cooperativo.tscn")
+	
+	

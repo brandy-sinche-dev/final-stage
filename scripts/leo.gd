@@ -30,7 +30,7 @@ var esta_muerto = false
 @onready var sonido_saltar: AudioStreamPlayer2D = $EffectsSounds/sound_jump
 @onready var sonido_ataque1: AudioStreamPlayer2D = $EffectsSounds/sound_ataque1
 @onready var sonido_dano: AudioStreamPlayer2D = $EffectsSounds/sound_hurt
-@onready var sonido_muerte: AudioStreamPlayer2D = $EffectsSounds/sound_death
+@onready var sonido_muerte: AudioStreamPlayer2D = $death
 
 
 func _enter_tree() -> void:
@@ -127,8 +127,12 @@ func _physics_process(delta: float) -> void:
 # MÁQUINA VISUAL: Control estricto de prioridades de animación
 func _maquina_visual() -> void:
 	if esta_muerto:
-		if sprite.animation != "death": sprite.play("death")
+		# SOLO reproduce si no se está reproduciendo ya. 
+		# Esto evita el bucle infinito que rompe las señales.
+		if sprite.animation != "death": 
+			sprite.play("death")
 		return
+
 
 	if esta_herido:
 		if sprite.animation != "hurt": 
@@ -201,10 +205,12 @@ func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
 
 
 func morir() -> void:
+	if esta_muerto: return # Evita que se ejecute más de una vez si cae en dos trampas juntas
+	
 	esta_muerto = true
 	velocity = Vector2.ZERO
 	sprite.play("death")
-	sonido_muerte.play()
+	sonido_muerte.play() # <--- Aquí se dispara el sonido con éxito
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -214,8 +220,15 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		esta_herido = false
 	elif sprite.animation == "death":
 		set_physics_process(false) 
+		
+		# 🌟 Detiene visualmente el sprite en el último frame para que no desaparezca
+		sprite.stop() 
+		
+		# 🌟 Esperamos pacientemente en segundo plano a que el audio termine de sonar
 		if sonido_muerte.playing:
 			await sonido_muerte.finished
+			
+		# Una vez terminado el sonido, reiniciamos la partida de forma segura
 		if multiplayer.multiplayer_peer != null:
 			solicitar_reinicio_global.rpc()
 		else:
