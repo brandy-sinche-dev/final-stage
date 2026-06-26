@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://bct3nildj4jwi" path="res://ost/Leo/jump_leo.mp3" id="15_vk4bp"]
 [ext_resource type="AudioStream" uid="uid://2bujb31k8jsj" path="res://ost/Leo/espada_leo.mp3" id="16_vvihb"]
 [ext_resource type="AudioStream" uid="uid://dljtcg7c8tvi8" path="res://ost/Leo/death_leo.mp3" id="17_fswkg"]
+[ext_resource type="AudioStream" uid="uid://cqv1ns8ce27ym" path="res://ost/Leo/male.mp3" id="18_0yh4m"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vvihb"]
 properties/0/path = NodePath("AnimatedSprite2D:flip_h")
@@ -906,6 +907,9 @@ scale = Vector2(0.37058777, 0.46070805)
 text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="death" type="AudioStreamPlayer2D" parent="." unique_id=53015839]
+stream = ExtResource("18_0yh4m")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Visuals/SwordArea" to="." method="_on_sword_area_body_entered"]
