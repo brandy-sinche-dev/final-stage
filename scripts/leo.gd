@@ -198,29 +198,34 @@ func _controlar_hitbox_espada() -> void:
 
 
 func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
-	# 1. CONTROL DE RED CENTRALIZADO
-	if multiplayer.multiplayer_peer != null and multiplayer.is_server():
-		var id_del_jugador = name.to_int()
-		
-		# 🌟 TRUCO DE CONTROL: 
-		# Si el daño es para el Cliente (ej: ID 2), se lo enviamos por internet y el Servidor frena aquí.
-		# Si el daño es para el Host (ID 1), NO enviamos RPC (para no generar recursión) y dejamos que corra abajo de forma local.
-		if id_del_jugador != 1:
-			sincronizar_danio_jugador.rpc_id(id_del_jugador, cantidad, origen_danio_x)
-			return
+	# 1. FRENO DE SEGURIDAD PARA RED
+	var carpeta_jugadores = get_tree().current_scene.get_node_or_null("Jugadores")
+	if carpeta_jugadores != null and multiplayer.multiplayer_peer != null:
+		if multiplayer.is_server():
+			var id_del_jugador = name.to_int()
+			if id_del_jugador != 1 and id_del_jugador != 0:
+				sincronizar_danio_jugador.rpc_id(id_del_jugador, cantidad, origen_danio_x)
+				return
 
-	# 2. LÓGICA LOCAL DEL PERSONAJE (Solo corre en el Host localmente, o en el Cliente vía el RPC)
+	# 2. LÓGICA LOCAL DE DAÑO
+	# Si ya estamos heridos o muertos, NO hacemos nada (esto evita el bucle)
 	if esta_herido or esta_muerto:
 		return
 		
-	vida_actual -= cantidad  # Esto llamará al nuevo 'set(valor)' seguro una sola vez
+	# Al restar aquí, el setter de 'vida_actual' se disparará automáticamente.
+	# ¡NO llames al HUD manualmente aquí! Deja que el setter lo haga por ti.
+	vida_actual -= cantidad  
+	
 	if sonido_dano:
 		sonido_dano.play()
 	
+	# 3. COMPROBACIÓN DE MUERTE
 	if vida_actual <= 0:
+		vida_actual = 0 # Aseguramos el valor
 		morir()
 		return
 		
+	# 4. ACTIVAR ESTADO DE HERIDO
 	esta_herido = true
 	esta_atacando = false
 	

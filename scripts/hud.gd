@@ -21,23 +21,36 @@ func _ready() -> void:
 
 
 func _vincular_jugador_local() -> void:
-	# 1. Si estás jugando solo offline
-	if multiplayer.multiplayer_peer == null:
+	# 🌟 LA CLAVE: Buscamos si existe la carpeta de red en la escena actual
+	var carpeta_jugadores = get_node_or_null("../Jugadores")
+
+	# 1. MODO SOLITARIO (Si la carpeta "Jugadores" NO existe en el mapa)
+	if carpeta_jugadores == null:
+		# Intento A: Buscar por grupo "player"
 		var leo = get_tree().get_first_node_in_group("player")
+		
+		# Intento B: Buscar cualquier CharacterBody2D en la escena
+		if leo == null:
+			var todos_los_cb2d = get_tree().get_root().find_children("*", "CharacterBody2D", true, false)
+			if todos_los_cb2d.size() > 0:
+				leo = todos_los_cb2d[0]
+		
 		if leo:
 			mi_personaje = leo
 			barra_vida.max_value = mi_personaje.max_vida
 			barra_vida.value = mi_personaje.vida_actual
-			print("HUD (Offline): Conectado a Leo. Vida: ", barra_vida.value)
-		return
+			print("HUD (Solitario Forzado): Conectado con éxito a: ", mi_personaje.name)
+		else:
+			print("HUD ERROR (Solitario): No se encontró ningún CharacterBody2D.")
+		return # 🛑 CORTA AQUÍ. Impide por completo que entre al bucle del jugador '1'
 
-	# 2. MODO MULTIJUGADOR COOPERATIVO
-	# Obtenemos el ID de red único de ESTA computadora local
+	# =========================================================================
+	# 2. MODO MULTIJUGADOR COOPERATIVO (100% ORIGINAL - INTACTO)
+	# =========================================================================
 	var mi_id = multiplayer.get_unique_id()
 	
-	# Buscamos en el contenedor "Jugadores" al personaje que se llame igual a nuestro ID
-	# (Recuerda que en tu script de mapa los instancias como: nuevo_leo.name = str(id))
-	mi_personaje = get_node_or_null("../Jugadores/" + str(mi_id))
+	# Usamos la variable que ya encontramos arriba de forma segura
+	mi_personaje = carpeta_jugadores.get_node_or_null(str(mi_id))
 	
 	if mi_personaje:
 		barra_vida.max_value = mi_personaje.max_vida
@@ -45,12 +58,12 @@ func _vincular_jugador_local() -> void:
 		print("HUD (Online): Conectado con éxito al personaje local con ID de red: ", mi_id)
 	else:
 		print("HUD ADVERTENCIA: Aún no encuentro al jugador local '", mi_id, "'. Reintentando...")
-		# Si por el lag de red aún no ha nacido, esperamos un frame y volvemos a buscar
 		await get_tree().physics_frame
-		_vincular_jugador_local()
+		_vincular_jugador_local()	
 
 
 func actualizar_vida(vida_nueva: int) -> void:
 	if barra_vida:
-		print("HUD: Actualizando barra visual a: ", vida_nueva)
+		# Esto te dirá exactamente desde dónde viene la llamada
+		print_debug("HUD: Actualizando a ", vida_nueva, " desde: ", get_stack()[1].function)
 		barra_vida.value = vida_nueva
