@@ -43,6 +43,12 @@ properties/6/replication_mode = 1
 properties/7/path = NodePath(".:position")
 properties/7/spawn = true
 properties/7/replication_mode = 1
+properties/8/path = NodePath(".:esta_en_el_suelo")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Visuals/SwordArea/CollisionShape2D:disabled")
+properties/9/spawn = true
+properties/9/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7pab"]
 atlas = ExtResource("2_4qiwc")

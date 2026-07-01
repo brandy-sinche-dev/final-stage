@@ -13,8 +13,7 @@ extends CharacterBody2D
 @export var duracion_danio_segura: float = 0.45
 @export var tolerancia_inicio: float = 10.0
 
-# Esta zona define la plataforma/arena del Eco.
-# Si Leo sale de esta zona, el Eco vuelve a su punto de origen.
+# Zona de la plataforma
 @export var zona_plataforma_path: NodePath
 @export var regresar_si_leo_sale_zona: bool = true
 
@@ -38,21 +37,19 @@ var tiempo_estela: float = 0.0
 var puede_atacar: bool = true
 var area_ataque_x_base: float = 45.0
 
+# Variable para recordar a quién estamos imitando actualmente
+var jugador_objetivo: CharacterBody2D = null
+
 func _ready() -> void:
 	vida_actual = max_vida
 	posicion_inicio = global_position
 	
-	# Capa 4: permite que la espada de Leo detecte al enemigo.
 	collision_layer = 4
-	
-	# Máscara 1: permite que el enemigo choque con plataformas/suelo.
 	collision_mask = 1
 	
-	# El área de ataque detecta a Leo, que está en capa 2.
 	if area_ataque:
 		area_ataque.collision_layer = 0
 		area_ataque.collision_mask = 2
-		
 		if abs(area_ataque.position.x) > 0:
 			area_ataque_x_base = abs(area_ataque.position.x)
 		else:
@@ -61,13 +58,11 @@ func _ready() -> void:
 	if hitbox_ataque:
 		hitbox_ataque.disabled = true
 	
-	# Detector de borde para que el Eco no camine hacia el vacío.
 	if detector_suelo:
 		detector_suelo.enabled = true
 		detector_suelo.collision_mask = 1
 		detector_suelo.target_position = Vector2(45, 90)
 	
-	# Zona fija de la plataforma del Eco.
 	if zona_plataforma_path != NodePath(""):
 		zona_plataforma = get_node_or_null(zona_plataforma_path) as Area2D
 	
@@ -81,7 +76,6 @@ func _ready() -> void:
 		zona_plataforma.body_exited.connect(_on_zona_plataforma_body_exited)
 		call_deferred("_actualizar_estado_inicial_zona")
 	else:
-		# Si no asignas zona, el enemigo funciona como antes.
 		leo_en_zona_plataforma = true
 	
 	sprite.modulate = Color(1, 1, 1, 1)
@@ -90,15 +84,20 @@ func _ready() -> void:
 func _actualizar_estado_inicial_zona() -> void:
 	if zona_plataforma == null:
 		return
-	
 	leo_en_zona_plataforma = false
-	
 	for body in zona_plataforma.get_overlapping_bodies():
 		if body.is_in_group("player"):
 			leo_en_zona_plataforma = true
 			return
 
 func _physics_process(delta: float) -> void:
+	# 🌟 GENERAR ESTELA: Esto es un efecto visual local, corre en todas las PCs
+	_crear_estela(delta)
+
+	# 🌟 REGLA DE RED: La física y las decisiones del Eco SOLO corren en el Servidor
+	if multiplayer.multiplayer_peer != null and not multiplayer.is_server():
+		return
+
 	if estado_actual == Estados.MUERTO:
 		velocity.x = move_toward(velocity.x, 0, velocidad * delta)
 		move_and_slide()
@@ -117,21 +116,21 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
-	var leo = get_tree().get_first_node_in_group("player")
+	# 🌟 IA COOPERATIVA: Buscamos dinámicamente al jugador más cercano
+	jugador_objetivo = _obtener_jugador_mas_cercano()
 	
-	if leo == null:
+	if jugador_objetivo == null:
 		_regresar_a_inicio(delta)
 		move_and_slide()
 		return
 	
-	# Si Leo sale de la plataforma/arena del Eco, el enemigo vuelve a su origen.
 	if regresar_si_leo_sale_zona and zona_plataforma != null and not leo_en_zona_plataforma:
 		historial_posiciones.clear()
 		_regresar_a_inicio(delta)
 		move_and_slide()
 		return
 	
-	var distancia_total: float = global_position.distance_to(leo.global_position)
+	var distancia_total: float = global_position.distance_to(jugador_objetivo.global_position)
 	
 	if distancia_total > distancia_deteccion:
 		_regresar_a_inicio(delta)
@@ -140,25 +139,24 @@ func _physics_process(delta: float) -> void:
 	
 	estado_actual = Estados.IMITANDO
 	
-	_guardar_posicion_de_leo(leo)
-	var posicion_objetivo: Vector2 = _obtener_posicion_retrasada(leo.global_position)
+	# Guardamos y seguimos el rastro del jugador objetivo actual
+	_guardar_posicion_de_leo(jugador_objetivo)
+	var posicion_objetivo: Vector2 = _obtener_posicion_retrasada(jugador_objetivo.global_position)
 	
 	var diferencia_x: float = posicion_objetivo.x - global_position.x
-	var distancia_x: float = abs(leo.global_position.x - global_position.x)
-	var distancia_y: float = abs(leo.global_position.y - global_position.y)
+	var distancia_x: float = abs(jugador_objetivo.global_position.x - global_position.x)
+	var distancia_y: float = abs(jugador_objetivo.global_position.y - global_position.y)
 	
 	if distancia_x <= distancia_ataque and distancia_y <= 60 and puede_atacar:
 		_iniciar_ataque()
 	else:
 		if abs(diferencia_x) > 8:
 			var direccion: float = sign(diferencia_x)
-			
 			_actualizar_direccion_visual(direccion)
 			
 			if _hay_suelo_adelante(direccion):
 				velocity.x = direccion * velocidad
 			else:
-				# Si Leo está al otro lado del vacío, el Eco vuelve a su origen.
 				_regresar_a_inicio(delta)
 			
 			_reproducir("walk")
@@ -167,11 +165,22 @@ func _physics_process(delta: float) -> void:
 			_reproducir("walk")
 	
 	move_and_slide()
-	_crear_estela(delta)
+
+# 🌟 FUNCIÓN AUXILIAR COOPERATIVA
+func _obtener_jugador_mas_cercano() -> CharacterBody2D:
+	var jugadores = get_tree().get_nodes_in_group("player")
+	var cercano: CharacterBody2D = null
+	var menor_dist: float = 999999.0
+	for j in jugadores:
+		if j and not j.esta_muerto:
+			var dist = global_position.distance_to(j.global_position)
+			if dist < menor_dist:
+				menor_dist = dist
+				cercano = j
+	return cercano
 
 func _regresar_a_inicio(delta: float) -> void:
 	estado_actual = Estados.REGRESANDO
-	
 	var diferencia_inicio: float = posicion_inicio.x - global_position.x
 	
 	if abs(diferencia_inicio) <= tolerancia_inicio:
@@ -193,39 +202,31 @@ func _regresar_a_inicio(delta: float) -> void:
 func _actualizar_direccion_visual(direccion: float) -> void:
 	if direccion == 0:
 		return
-	
 	sprite.flip_h = direccion < 0
-	
 	if area_ataque:
 		area_ataque.position.x = area_ataque_x_base * direccion
 
 func _hay_suelo_adelante(direccion: float) -> bool:
 	if detector_suelo == null:
 		return true
-	
 	detector_suelo.target_position = Vector2(45 * direccion, 90)
 	detector_suelo.force_raycast_update()
-	
 	return detector_suelo.is_colliding()
 
-func _guardar_posicion_de_leo(leo: Node2D) -> void:
+func _guardar_posicion_de_leo(target: Node2D) -> void:
 	var tiempo_actual: float = Time.get_ticks_msec() / 1000.0
-	
 	historial_posiciones.append({
 		"tiempo": tiempo_actual,
-		"posicion": leo.global_position
+		"posicion": target.global_position
 	})
-	
 	while historial_posiciones.size() > 100:
 		historial_posiciones.pop_front()
 
 func _obtener_posicion_retrasada(posicion_actual: Vector2) -> Vector2:
 	var tiempo_objetivo: float = Time.get_ticks_msec() / 1000.0 - retardo_imitacion
-	
 	for dato in historial_posiciones:
 		if dato["tiempo"] >= tiempo_objetivo:
 			return dato["posicion"]
-	
 	return posicion_actual
 
 func _iniciar_ataque() -> void:
@@ -241,7 +242,6 @@ func _iniciar_ataque() -> void:
 	
 	_reproducir("attack")
 	
-	# Protección: si animation_finished no se dispara, no se congela.
 	await get_tree().create_timer(duracion_ataque_segura).timeout
 	
 	if estado_actual == Estados.ATACANDO:
@@ -250,11 +250,16 @@ func _iniciar_ataque() -> void:
 		estado_actual = Estados.IMITANDO
 	
 	await get_tree().create_timer(cooldown_ataque).timeout
-	
 	if estado_actual != Estados.MUERTO:
 		puede_atacar = true
 
 func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
+	# 🌟 RED RPC: Si el Cliente golpea al Eco, redirige el daño al Servidor maestro
+	if multiplayer.multiplayer_peer != null:
+		if not multiplayer.is_server():
+			sincronizar_danio_eco.rpc_id(1, cantidad, origen_danio_x)
+			return
+
 	if estado_actual == Estados.HERIDO or estado_actual == Estados.MUERTO:
 		return
 	
@@ -266,80 +271,96 @@ func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
 		return
 	
 	estado_actual = Estados.HERIDO
-	
 	if hitbox_ataque:
 		hitbox_ataque.set_deferred("disabled", true)
 	
 	var direccion_retroceso: float = 1.0 if global_position.x > origen_danio_x else -1.0
 	velocity = Vector2(direccion_retroceso * knockback_fuerza, -120.0)
-	
 	_reproducir("danio")
 	
-	# Protección: evita quedarse congelado en estado HERIDO.
 	await get_tree().create_timer(duracion_danio_segura).timeout
-	
 	if estado_actual == Estados.HERIDO:
 		estado_actual = Estados.IMITANDO
+
+# 🌟 RPC EXCLUSIVO PARA EL DAÑO DEL ECO
+@rpc("any_peer", "call_local", "reliable")
+func sincronizar_danio_eco(cantidad: int, origen_x: float) -> void:
+	if multiplayer.is_server():
+		recibir_danio(cantidad, origen_x)
 
 func _morir() -> void:
 	if estado_actual == Estados.MUERTO:
 		return
-	
 	estado_actual = Estados.MUERTO
-	
 	if hitbox_ataque:
 		hitbox_ataque.set_deferred("disabled", true)
-	
 	velocity = Vector2.ZERO
 	_reproducir("death")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if estado_actual == Estados.MUERTO and sprite.animation == "death":
-		queue_free()
+		_borrar_enemigo_red()
 		return
 	
 	if sprite.animation == "attack":
 		if hitbox_ataque:
 			hitbox_ataque.set_deferred("disabled", true)
-		
 		if estado_actual == Estados.ATACANDO:
 			estado_actual = Estados.IMITANDO
-	
 	elif sprite.animation == "danio":
 		if estado_actual == Estados.HERIDO:
 			estado_actual = Estados.IMITANDO
+
+# 🌟 ELIMINACIÓN CENTRALIZADA EN RED
+func _borrar_enemigo_red() -> void:
+	if multiplayer.multiplayer_peer != null:
+		if multiplayer.is_server():
+			queue_free()
+	else:
+		queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if estado_actual != Estados.ATACANDO:
 		return
 	
 	if body.is_in_group("player") and body.has_method("recibir_danio"):
-		if CombateManager.solicitar_permiso_danio():
-			print("El Eco de Sombra golpeó a Leo")
-			body.recibir_danio(dano_contacto, global_position.x)
+		# 🌟 CONTROL DE DAÑO CENTRALIZADO: Solo el Host dictamina el golpe al jugador
+		if multiplayer.multiplayer_peer == null or multiplayer.is_server():
+			if CombateManager.solicitar_permiso_danio():
+				print("El Eco de Sombra golpeó a un jugador")
+				body.recibir_danio(dano_contacto, global_position.x)
 
 func _on_zona_plataforma_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		# En multijugador, si CUALQUIER jugador entra a la zona, el Eco se activa
 		leo_en_zona_plataforma = true
 
 func _on_zona_plataforma_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		leo_en_zona_plataforma = false
-		historial_posiciones.clear()
+		# Verificamos si aún queda el OTRO jugador dentro de la zona antes de apagarla
+		await get_tree().process_frame
+		if zona_plataforma:
+			var quedan_jugadores = false
+			for b in zona_plataforma.get_overlapping_bodies():
+				if b.is_in_group("player") and not b.esta_muerto:
+					quedan_jugadores = true
+					break
+			leo_en_zona_plataforma = quedan_jugadores
+		else:
+			leo_en_zona_plataforma = false
+		
+		if not leo_en_zona_plataforma:
+			historial_posiciones.clear()
 
 func _crear_estela(delta: float) -> void:
 	tiempo_estela -= delta
-	
 	if tiempo_estela > 0:
 		return
-	
 	tiempo_estela = 0.15
-	
 	if sprite.sprite_frames == null:
 		return
 	
 	var textura: Texture2D = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
-	
 	if textura == null:
 		return
 	

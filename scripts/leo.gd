@@ -10,7 +10,21 @@ var llaves_recolectadas: Array[String] = []
 
 # Estadísticas de Vida y Combate
 @export var max_vida: int = 100
-var vida_actual: int = max_vida
+var vida_actual: int = max_vida:
+	set(valor):
+		# 🌟 Usamos el operador directo para guardar el valor sin activar el 'set' otra vez
+		vida_actual = valor 
+		
+		# Evitamos procesar el HUD si la red aún no se inicializa
+		if not is_inside_tree(): 
+			return
+			
+		# Cada vez que la red actualice esta variable, le avisamos al HUD local
+		if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
+			var interfaz = get_tree().get_first_node_in_group("hud")
+			if interfaz and interfaz.has_method("actualizar_vida"):
+				interfaz.actualizar_vida(vida_actual)
+
 @export var knockback_fuerza: float = 200.0
 @export var dano_espada = 15
 
@@ -50,19 +64,23 @@ func _ready() -> void:
 	floor_snap_length = 4.0
 	floor_max_angle = deg_to_rad(46.0)
 
+	await get_tree().process_frame
+
 	if multiplayer.multiplayer_peer != null:
 		if is_multiplayer_authority():
-			$Camera2D.enabled = true
+			if has_node("Camera2D"):
+				$Camera2D.enabled = true
+				$Camera2D.make_current()
+			_configurar_texto_jugador_dinamico()
 		else:
 			if has_node("Camera2D"):
 				$Camera2D.enabled = false
-		_configurar_texto_jugador_dinamico()
 	else:
 		if has_node("Camera2D"):
 			$Camera2D.enabled = true
+			$Camera2D.make_current()
 		if label_flotante:
 			label_flotante.text = "Player 1"
-
 
 func _physics_process(delta: float) -> void:
 	if multiplayer.multiplayer_peer != null:
@@ -116,9 +134,11 @@ func _physics_process(delta: float) -> void:
 					$Visuals.scale.x = direction
 			else:
 				velocity.x = 0 
-
+				
+	
 
 	# 4. EJECUTAR FÍSICA Y ACTUALIZAR MÁQUINAS
+	esta_en_el_suelo = is_on_floor() #Guardamos el suelo antes de movernos
 	move_and_slide()
 	_controlar_hitbox_espada() 
 	_maquina_visual()
@@ -142,7 +162,7 @@ func _maquina_visual() -> void:
 			sprite.frame = 0 
 		return 
 
-	if not is_on_floor():
+	if not esta_en_el_suelo:
 		if sprite.animation != "jump":
 			sprite.play("jump")
 	else:
@@ -155,7 +175,7 @@ func _maquina_visual() -> void:
 			if sprite.animation != "idle": sprite.play("idle")
 
 
-# 🌟 NUEVA FUNCIÓN INTERNA: Calcula el ID de red asignado a la instancia
+# Calcula el ID de red asignado a la instancia
 func _configurar_texto_jugador_dinamico() -> void:
 	if label_flotante == null:
 		return
@@ -178,15 +198,24 @@ func _controlar_hitbox_espada() -> void:
 
 
 func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
+	# 1. CONTROL DE RED CENTRALIZADO
+	if multiplayer.multiplayer_peer != null and multiplayer.is_server():
+		var id_del_jugador = name.to_int()
+		
+		# 🌟 TRUCO DE CONTROL: 
+		# Si el daño es para el Cliente (ej: ID 2), se lo enviamos por internet y el Servidor frena aquí.
+		# Si el daño es para el Host (ID 1), NO enviamos RPC (para no generar recursión) y dejamos que corra abajo de forma local.
+		if id_del_jugador != 1:
+			sincronizar_danio_jugador.rpc_id(id_del_jugador, cantidad, origen_danio_x)
+			return
+
+	# 2. LÓGICA LOCAL DEL PERSONAJE (Solo corre en el Host localmente, o en el Cliente vía el RPC)
 	if esta_herido or esta_muerto:
 		return
 		
-	vida_actual -= cantidad
-	sonido_dano.play()
-	
-	var interfaz = get_tree().get_first_node_in_group("hud")
-	if interfaz and interfaz.has_method("actualizar_vida"):
-		interfaz.actualizar_vida(vida_actual)
+	vida_actual -= cantidad  # Esto llamará al nuevo 'set(valor)' seguro una sola vez
+	if sonido_dano:
+		sonido_dano.play()
 	
 	if vida_actual <= 0:
 		morir()
@@ -197,15 +226,34 @@ func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
 	
 	var dir_retroceso = 1.0 if global_position.x > origen_danio_x else -1.0
 	velocity = Vector2(dir_retroceso * knockback_fuerza, -150.0) 
-	sprite.play("hurt")
+	if sprite:
+		sprite.play("hurt")
 
 
 func morir() -> void:
 	esta_muerto = true
 	velocity = Vector2.ZERO
-	sprite.play("death")
-	sonido_muerte.play()
+	sprite.play("death") # Asegúrate de que no tenga loop
+	
+	activar_camara_espectador()
+	print("Jugador ", name, " ha muerto.")
+	
+	# Solicitamos la reaparición pasando nuestro ID único de red
+	var mi_id = name.to_int()
+	_solicitar_respawn_red(mi_id)
 
+
+func _solicitar_respawn_red(id: int) -> void:
+	if multiplayer.multiplayer_peer != null:
+		if multiplayer.is_server():
+			# Si el Host murió, el servidor procesa su propio respawn
+			_ejecutar_respawn_en_servidor(id)
+		else:
+			# Si el Cliente murió, le envía un RPC al Servidor para que lo reviva
+			sincronizar_respawn_jugador.rpc_id(1, id)
+	else:
+		# Modo solitario offline
+		_ejecutar_respawn_en_servidor(id)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "attack":
@@ -245,9 +293,57 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
 	pass
-
+# 🌟 NUEVO RPC: El Servidor obliga a la PC dueña del personaje a recibir el golpe
+@rpc("any_peer", "call_local", "reliable")
+func sincronizar_danio_jugador(cantidad: int, origen_x: float) -> void:
+	# Forzamos la ejecución de la lógica local en la PC correspondiente
+	recibir_danio(cantidad, origen_x)
 
 @rpc("any_peer", "call_local", "reliable")
 func solicitar_reinicio_global() -> void:
 	if multiplayer.is_server():
 		get_tree().reload_current_scene()
+
+# 🌟 RPC EXCLUSIVO: El Cliente le pide al Servidor volver a nacer
+@rpc("any_peer", "call_local", "reliable")
+func sincronizar_respawn_jugador(id_jugador: int) -> void:
+	if multiplayer.is_server():
+		_ejecutar_respawn_en_servidor(id_jugador)
+
+
+# 🌟 NUEVA FUNCIÓN: Si muero, mi cámara busca al compañero vivo
+func activar_camara_espectador() -> void:
+	if multiplayer.multiplayer_peer != null and not is_multiplayer_authority():
+		return # Solo la PC del jugador muerto ejecuta esto localmente
+	
+	print("Buscando compañero para espectar...")
+	var jugadores = get_tree().get_nodes_in_group("player")
+	for compañero in jugadores:
+		# Buscamos un personaje que NO sea este (el muerto) y que esté vivo
+		if compañero != self and not compañero.esta_muerto:
+			if compañero.has_node("Camera2D"):
+				# Encendemos la cámara del compañero en NUESTRA pantalla
+				compañero.get_node("Camera2D").enabled = true
+				compañero.get_node("Camera2D").make_current()
+				print("Espectando a: ", compañero.name)
+				break
+
+# 🌟 LÓGICA MAESTRA EN EL SERVIDOR
+func _ejecutar_respawn_en_servidor(id_jugador: int) -> void:
+	# 1. Buscamos el mapa o el nodo raíz que tiene el script del mapa (donde está _crear_jugador_en_servidor)
+	var mapa = get_tree().current_scene
+	
+	# 2. Primero eliminamos el cuerpo viejo/muerto del Servidor de forma segura.
+	# Como es un nodo controlado por MultiplayerSpawner, al borrarlo aquí, desaparecerá de todas las PCs.
+	var contenedor = mapa.get_node_or_null("Jugadores")
+	if contenedor and contenedor.has_node(str(id_jugador)):
+		var nodo_viejo = contenedor.get_node(str(id_jugador))
+		nodo_viejo.queue_free()
+	
+	# 3. Esperamos un frame para que el motor limpie el nodo viejo por completo antes de spawnear el nuevo
+	await get_tree().process_frame
+	
+	# 4. Llamamos a la función original de tu mapa para volverlo a crear con su ID correcto
+	if mapa.has_method("_crear_jugador_en_servidor"):
+		mapa._crear_jugador_en_servidor(id_jugador)
+		print("SERVIDOR: Respawn exitoso para el jugador ID: ", id_jugador)

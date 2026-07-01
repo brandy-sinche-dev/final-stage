@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cpsdhr2h8pcsl"]
+
+[ext_resource type="Script" uid="uid://drh545ps4defn" path="res://scripts/nivel 4/murcielago.gd" id="1_ioqap"]
+[ext_resource type="Texture2D" uid="uid://c2vwdn83sr4at" path="res://assets/sprites/nivel4/Bat/Bat/Bat.png" id="2_leeiy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w50ij"]
+atlas = ExtResource("2_leeiy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcu50"]
+atlas = ExtResource("2_leeiy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n5pt"]
+atlas = ExtResource("2_leeiy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky2t4"]
+atlas = ExtResource("2_leeiy")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ymwf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w50ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcu50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n5pt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky2t4")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[node name="Murcielago" type="Node2D" unique_id=1277977672]
+scale = Vector2(0.715397, 0.5347784)
+script = ExtResource("1_ioqap")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1948832149]
+sprite_frames = SubResource("SpriteFrames_0ymwf")
+animation = &"fly"

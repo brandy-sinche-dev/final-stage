@@ -9,7 +9,7 @@ const ENEMIGO_LVL3 = preload("res://scenes/nivel3/eco_sombra.tscn")
 @onready var enemies_container = $"../EnemiesContainer"
 @onready var wave_timer = $Timer
 
-# 🌟 Referencias de la interfaz en pantalla
+# Referencias de la interfaz en pantalla
 @onready var label_ola = $"../CanvasLayer_HUD/Control_Olas/Label_Ola"
 @onready var label_enemigos = $"../CanvasLayer_HUD/Control_Olas/Label_Enemigos"
 

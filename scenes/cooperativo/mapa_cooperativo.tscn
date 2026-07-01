@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dg1141e8bt2q2"]
 
 [ext_resource type="Script" uid="uid://b71mn16n5lkji" path="res://scripts/cooperativo/mapa_cooperativo.gd" id="1_fmtqe"]
+[ext_resource type="PackedScene" uid="uid://caop0pvjy6tuu" path="res://scenes/HUD.tscn" id="2_bos32"]
 [ext_resource type="Texture2D" uid="uid://b54ypvieroinv" path="res://assets/textures/Nivel1/Tiles.png" id="2_cyqtt"]
 [ext_resource type="Texture2D" uid="uid://qb2e0o68uxfy" path="res://assets/textures/Nivel1/Props-Rocks.png" id="3_mms3o"]
 [ext_resource type="Texture2D" uid="uid://cd2jrrwoauatc" path="res://assets/textures/Nivel2/fondo/Tiles 4.png" id="4_bos32"]
@@ -908,8 +909,15 @@ sources/2 = SubResource("TileSetAtlasSource_s7dgs")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mms3o"]
 load_path = "res://.godot/imported/BG_Bush.png-d7a8aeaa33e7b2492ff09d8c3955a50d.ctex"
 
+[sub_resource type="LabelSettings" id="LabelSettings_bos32"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ejji"]
+font_color = Color(0, 0, 0, 1)
+
 [node name="mapa_cooperativo" type="Node2D" unique_id=1233628577]
 script = ExtResource("1_fmtqe")
+escena_hud = ExtResource("2_bos32")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=673837153]
 _spawnable_scenes = PackedStringArray("uid://cbwdosul4nbbs")
@@ -949,6 +957,30 @@ position = Vector2(253.49997, 167)
 scale = Vector2(1.584375, 1.8555557)
 texture = SubResource("CompressedTexture2D_mms3o")
 
+[node name="CanvasLayer_HUD" type="CanvasLayer" parent="." unique_id=1260555271]
+
+[node name="Control_Olas" type="Control" parent="CanvasLayer_HUD" unique_id=416229641]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label_Ola" type="Label" parent="CanvasLayer_HUD/Control_Olas" unique_id=1235966808]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 54.0
+offset_right = 424.0
+offset_bottom = 77.0
+label_settings = SubResource("LabelSettings_bos32")
+
+[node name="Label_Enemigos" type="Label" parent="CanvasLayer_HUD/Control_Olas" unique_id=2071153793]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 10.0
+offset_right = 415.0
+offset_bottom = 33.0
+label_settings = SubResource("LabelSettings_2ejji")
+
 [node name="Jugadores" type="Node2D" parent="." unique_id=1617560656]
 position = Vector2(65, 201)
 
@@ -968,27 +1000,5 @@ position = Vector2(-1168, 77)
 script = ExtResource("6_bos32")
 
 [node name="Timer" type="Timer" parent="WaveManager" unique_id=1214771079]
-
-[node name="CanvasLayer_HUD" type="CanvasLayer" parent="." unique_id=1260555271]
-
-[node name="Control_Olas" type="Control" parent="CanvasLayer_HUD" unique_id=416229641]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label_Ola" type="Label" parent="CanvasLayer_HUD/Control_Olas" unique_id=1235966808]
-layout_mode = 0
-offset_left = 202.0
-offset_top = 33.0
-offset_right = 242.0
-offset_bottom = 56.0
-
-[node name="Label_Enemigos" type="Label" parent="CanvasLayer_HUD/Control_Olas" unique_id=2071153793]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 39.0
-offset_right = 59.0
-offset_bottom = 62.0
 
 [editable path="Parallax"]

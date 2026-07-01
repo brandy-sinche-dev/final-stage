@@ -29,6 +29,10 @@ func _ready():
 	hitbox_espada.disabled = true 
 
 func _physics_process(delta: float) -> void:
+	# 🌟 REGLA DE RED: IA y movimiento físico estricto SOLO en el Servidor
+	if multiplayer.multiplayer_peer != null and not multiplayer.is_server():
+		return
+
 	# 1. GRAVEDAD
 	if not is_on_floor():
 		velocity.y += gravedad * delta
@@ -46,8 +50,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		
 	else:
-		
-		var leo = get_tree().get_first_node_in_group("player")
+		# 🌟 IA COOPERATIVA: Buscamos dinámicamente al más cercano
+		var leo = _obtener_jugador_mas_cercano()
 		if leo:
 			var diff_x = leo.global_position.x - global_position.x
 			var direccion = sign(diff_x)
@@ -61,14 +65,11 @@ func _physics_process(delta: float) -> void:
 
 			# Decisiones
 			if distancia_total > DISTANCIA_DETECCION:
-				# Si Leo está lejos, patrulla o se queda quieto
 				velocity.x = 0
-				sprite.play("walk") # O puedes poner "idle" si prefieres
+				sprite.play("walk") 
 			elif distancia_x <= DISTANCIA_ATAQUE:
-				# ¡Si está lo suficientemente cerca, ATACA!
 				_iniciar_ataque()
 			else:
-				# Si lo detecta pero está lejos, camina hacia Leo
 				velocity.x = direccion * velocidad
 				if sprite.animation != "walk":
 					sprite.play("walk")
@@ -79,6 +80,22 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+# 🌟 FUNCIÓN AUXILIAR: Detecta cuál de todos los jugadores está más cerca
+func _obtener_jugador_mas_cercano() -> CharacterBody2D:
+	var jugadores = get_tree().get_nodes_in_group("player")
+	var jugador_cercano: CharacterBody2D = null
+	var menor_distancia: float = 999999.0
+
+	for j in jugadores:
+		if j and not j.esta_muerto:
+			var dist = global_position.distance_to(j.global_position)
+			if dist < menor_distancia:
+				menor_distancia = dist
+				jugador_cercano = j
+				
+	return jugador_cercano
+
+
 func _iniciar_ataque() -> void:
 	estado_actual = Estados.ATACANDO
 	velocity.x = 0
@@ -87,6 +104,12 @@ func _iniciar_ataque() -> void:
 
 
 func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
+	# 🌟 RED HÍBRIDA: Si el Cliente detecta el impacto de su espada, le avisa por RPC al Servidor
+	if multiplayer.multiplayer_peer != null:
+		if not multiplayer.is_server():
+			sincronizar_danio_enemigo_2.rpc_id(1, cantidad, origen_danio_x)
+			return
+
 	if estado_actual == Estados.HERIDO or estado_actual == Estados.MUERTO:
 		return
 		
@@ -105,6 +128,13 @@ func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
 	sprite.play("danio") 
 
 
+# 🌟 RPC EXCLUSIVO: Recibe los golpes del cliente y los aplica en el Servidor
+@rpc("any_peer", "call_local", "reliable")
+func sincronizar_danio_enemigo_2(cantidad: int, origen_x: float) -> void:
+	if multiplayer.is_server():
+		recibir_danio(cantidad, origen_x)
+
+
 func _morir() -> void:
 	estado_actual = Estados.MUERTO
 	hitbox_espada.set_deferred("disabled", true)
@@ -121,10 +151,21 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif sprite.animation == "danio":
 		estado_actual = Estados.PATRULLA 
 	elif sprite.animation == "death":
-		queue_free() 
+		_borrar_enemigo_red()
+
+
+# 🌟 ELIMINACIÓN CENTRALIZADA: Evita el bug del contador de oleadas desfasado
+func _borrar_enemigo_red() -> void:
+	if multiplayer.multiplayer_peer != null:
+		if multiplayer.is_server():
+			queue_free()
+	else:
+		queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if estado_actual == Estados.ATACANDO and body.has_method("recibir_danio") and body != self:
-		print("¡El enemigo acuchilló a Leo!")
-		body.recibir_danio(dano_espada, global_position.x)
+		# 🌟 CONTROL DE DAÑO SEGURO: El Servidor dictamina cuándo dañar a un jugador
+		if multiplayer.multiplayer_peer == null or multiplayer.is_server():
+			print("¡El enemigo acuchilló a un jugador!")
+			body.recibir_danio(dano_espada, global_position.x)

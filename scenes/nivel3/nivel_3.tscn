@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://52q3hoolvwis" path="res://assets/textures/Nivel3/crystals/cristal_cluster_grande (1).png" id="13_hxfpd"]
 [ext_resource type="Texture2D" uid="uid://207dp0dn4uwp" path="res://assets/textures/Nivel3/crystals/cristales_daninos (1).png" id="14_o822s"]
 [ext_resource type="Texture2D" uid="uid://eyus1w21vtkn" path="res://assets/textures/Nivel3/crystals/cristal_negro_barrera (1).png" id="15_oykkt"]
+[ext_resource type="PackedScene" uid="uid://4ooat20br51x" path="res://scenes/nivel3/rayo.tscn" id="18_botma"]
 [ext_resource type="Script" uid="uid://dhvm1thqbihl2" path="res://scripts/nivel3/portal_cristal_animado.gd.gd" id="18_k7i5o"]
 [ext_resource type="Texture2D" uid="uid://dssfrogol3vct" path="res://assets/textures/Nivel3/portal/portal_cristal (1).png" id="18_qyfnm"]
 [ext_resource type="Script" uid="uid://c48d6gjw8s82f" path="res://scripts/nivel3/camara_nivel3.gd" id="20_8taec"]
@@ -615,6 +616,24 @@ z_index = -100
 position = Vector2(1056, 303)
 scale = Vector2(1.2610646, 0.6437301)
 texture = ExtResource("9_m7mcd")
+
+[node name="Rayos" type="Node2D" parent="." unique_id=1008009178]
+position = Vector2(1700, 250)
+
+[node name="Rayo" parent="Rayos" unique_id=1654518566 instance=ExtResource("18_botma")]
+position = Vector2(-1097, -267)
+
+[node name="Rayo3" parent="Rayos" unique_id=819994923 instance=ExtResource("18_botma")]
+position = Vector2(-680, -247)
+
+[node name="Rayo4" parent="Rayos" unique_id=621166442 instance=ExtResource("18_botma")]
+position = Vector2(-946, -76)
+
+[node name="Rayo5" parent="Rayos" unique_id=1329692794 instance=ExtResource("18_botma")]
+position = Vector2(-212, -248)
+
+[node name="Rayo2" parent="Rayos" unique_id=858835053 instance=ExtResource("18_botma")]
+position = Vector2(-1449, -165)
 
 [node name="DecoracionCristales" type="Node2D" parent="." unique_id=1686624897]
 
