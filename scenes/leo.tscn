@@ -14,9 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://b4p8ur6woixkm" path="res://assets/sprites/individual_sheets/male_hero-jump.png" id="11_l3dgm"]
 [ext_resource type="Texture2D" uid="uid://bui7enrux41gs" path="res://assets/sprites/individual_sheets/male_hero-run.png" id="12_y572c"]
 [ext_resource type="Texture2D" uid="uid://chi8oblgeiv6g" path="res://assets/sprites/individual_sheets/male_hero-walk.png" id="13_jkwej"]
-[ext_resource type="AudioStream" uid="uid://bct3nildj4jwi" path="res://ost/Leo/jump_leo.mp3" id="15_vk4bp"]
 [ext_resource type="AudioStream" uid="uid://2bujb31k8jsj" path="res://ost/Leo/espada_leo.mp3" id="16_vvihb"]
 [ext_resource type="AudioStream" uid="uid://dljtcg7c8tvi8" path="res://ost/Leo/death_leo.mp3" id="17_fswkg"]
+[ext_resource type="AudioStream" uid="uid://bct3nildj4jwi" path="res://ost/Leo/jump_leo.mp3" id="18_0yh4m"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vvihb"]
 properties/0/path = NodePath("AnimatedSprite2D:flip_h")
@@ -891,7 +891,7 @@ debug_color = Color(0.8274276, 0.35577527, 0.46628934, 0.41960785)
 [node name="EffectsSounds" type="Node2D" parent="." unique_id=298750217]
 
 [node name="sound_jump" type="AudioStreamPlayer2D" parent="EffectsSounds" unique_id=398991917]
-stream = ExtResource("15_vk4bp")
+stream = ExtResource("18_0yh4m")
 
 [node name="sound_ataque1" type="AudioStreamPlayer2D" parent="EffectsSounds" unique_id=1134346302]
 stream = ExtResource("16_vvihb")
@@ -912,6 +912,9 @@ scale = Vector2(0.37058777, 0.46070805)
 text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="death" type="AudioStreamPlayer2D" parent="." unique_id=53015839]
+stream = ExtResource("17_fswkg")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Visuals/SwordArea" to="." method="_on_sword_area_body_entered"]

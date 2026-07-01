@@ -5,7 +5,7 @@ extends Control
 @onready var contenedor_niveles: VBoxContainer = $ContenedorNiveles
 @onready var contenedor_cooperativo: VBoxContainer = $ContenedorCooperativo
 @onready var click_sound: AudioStreamPlayer = $ClickSound
-@onready var music_fondo: AudioStreamPlayer = $MusicaFondo
+@onready var music_fondo: AudioStreamPlayer = $Musica_fondo # Ajustado a nombre correcto
 
 # El campo de texto para la IP
 @onready var input_ip: LineEdit = $ContenedorCooperativo/HBoxContainer/InputIP
@@ -24,19 +24,15 @@ func _ready() -> void:
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	_conectar_botones(self)
 
-# Detecta la IP real de tu máquina en la red local
+# Detecta la IP real de tu máquina en la red local (Mantenemos tu lógica maestra)
 func _obtener_ip_local_actual() -> String:
 	var direcciones = IP.get_local_addresses()
-	
 	for ip in direcciones:
-		# Filtramos: ignoramos IPv6 (las que tienen ':') y nos quedamos con las de red local comunes (192.168.x.x o 10.x.x.x)
 		if not ":" in ip and (ip.begins_with("192.168.") or ip.begins_with("10.") or ip.begins_with("172.")):
 			return ip
-			
-	# Si no encuentra ninguna de red local activa, devuelve la IP de bucle por defecto
 	return "127.0.0.1"
 
-#-----------SONIDO DE BOTONES-----------------
+#-----------SONIDO DE BOTONES (Estructura limpia)-----------------
 func _reproducir_click() -> void:
 	SoundManager.reproducir_click()
 	
@@ -138,3 +134,5 @@ func _on_player_disconnected(id: int) -> void:
 
 func _cambiar_a_mapa_multijugador() -> void:
 	get_tree().change_scene_to_file("res://scenes/cooperativo/mapa_cooperativo.tscn")
+	
+	

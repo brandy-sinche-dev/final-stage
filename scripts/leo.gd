@@ -44,7 +44,7 @@ var esta_muerto = false
 @onready var sonido_saltar: AudioStreamPlayer2D = $EffectsSounds/sound_jump
 @onready var sonido_ataque1: AudioStreamPlayer2D = $EffectsSounds/sound_ataque1
 @onready var sonido_dano: AudioStreamPlayer2D = $EffectsSounds/sound_hurt
-@onready var sonido_muerte: AudioStreamPlayer2D = $EffectsSounds/sound_death
+@onready var sonido_muerte: AudioStreamPlayer2D = $death
 
 
 func _enter_tree() -> void:
@@ -147,8 +147,12 @@ func _physics_process(delta: float) -> void:
 # MÁQUINA VISUAL: Control estricto de prioridades de animación
 func _maquina_visual() -> void:
 	if esta_muerto:
-		if sprite.animation != "death": sprite.play("death")
+		# SOLO reproduce si no se está reproduciendo ya. 
+		# Esto evita el bucle infinito que rompe las señales.
+		if sprite.animation != "death": 
+			sprite.play("death")
 		return
+
 
 	if esta_herido:
 		if sprite.animation != "hurt": 
@@ -236,18 +240,31 @@ func recibir_danio(cantidad: int, origen_danio_x: float) -> void:
 
 
 func morir() -> void:
+	if esta_muerto: return # Evita que se ejecute más de una vez si cae en dos trampas juntas
+	
 	esta_muerto = true
 	velocity = Vector2.ZERO
-	sprite.play("death") # Asegúrate de que no tenga loop
+	# 1. Efectos Visuales y Sonoros (Estética)
+	if sprite:
+		sprite.play("death")
+	if sonido_muerte:
+		sonido_muerte.play()
 	
+	# 2. Lógica Funcional (Lo que traía el HEAD)
 	activar_camara_espectador()
 	print("Jugador ", name, " ha muerto.")
 	
-	# Solicitamos la reaparición pasando nuestro ID único de red
+	# 3. Lógica de Red (Necesaria para que el juego continúe)
 	var mi_id = name.to_int()
-	_solicitar_respawn_red(mi_id)
+	if multiplayer.is_server():
+		# Si eres el servidor, procesas el respawn directamente
+		_solicitar_respawn_red(mi_id)
+	else:
+		# Si eres cliente, avisas al servidor
+		# Asegúrate de tener una función RPC para esto
+		rpc_id(1, "_solicitar_respawn_red", mi_id)
 
-
+@rpc("any_peer", "call_local")
 func _solicitar_respawn_red(id: int) -> void:
 	if multiplayer.multiplayer_peer != null:
 		if multiplayer.is_server():
@@ -267,8 +284,15 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		esta_herido = false
 	elif sprite.animation == "death":
 		set_physics_process(false) 
+		
+		# 🌟 Detiene visualmente el sprite en el último frame para que no desaparezca
+		sprite.stop() 
+		
+		# 🌟 Esperamos pacientemente en segundo plano a que el audio termine de sonar
 		if sonido_muerte.playing:
 			await sonido_muerte.finished
+			
+		# Una vez terminado el sonido, reiniciamos la partida de forma segura
 		if multiplayer.multiplayer_peer != null:
 			solicitar_reinicio_global.rpc()
 		else:
