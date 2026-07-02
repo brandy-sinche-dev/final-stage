@@ -1,0 +1,688 @@
+[gd_scene format=3 uid="uid://b44u1pdo1yp8w"]
+
+[ext_resource type="AudioStream" uid="uid://clhbtmxkyu8cx" path="res://ost/nivel3/nivel3_abismo_cristal.ogg" id="2_k7i5o"]
+[ext_resource type="PackedScene" uid="uid://cbwdosul4nbbs" path="res://scenes/leo.tscn" id="3_m7mcd"]
+[ext_resource type="Script" uid="uid://chi4y73s8rry7" path="res://scripts/nivel3/cristas_impulso.gd" id="5_2t0ee"]
+[ext_resource type="Script" uid="uid://e2wl6twohn8d" path="res://scripts/nivel3/plataforma_cristal.gd" id="5_854ck"]
+[ext_resource type="Script" uid="uid://lwyketb1sy3c" path="res://scripts/nivel3/plataforma_desaparece.gd" id="5_hxfpd"]
+[ext_resource type="PackedScene" uid="uid://caop0pvjy6tuu" path="res://scenes/HUD.tscn" id="6_3tw7r"]
+[ext_resource type="Script" uid="uid://cjpmfvrliw124" path="res://scripts/nivel3/salida_nivel3.gd" id="6_wit8e"]
+[ext_resource type="Script" uid="uid://bjr5vaaxav0o1" path="res://scripts/nivel3/cristal_muro_rompible.gd" id="7_hxfpd"]
+[ext_resource type="PackedScene" uid="uid://cge38x8f73vui" path="res://scenes/nivel3/eco_sombra.tscn" id="8_ravl0"]
+[ext_resource type="Texture2D" uid="uid://b88e00b8h86e4" path="res://assets/textures/Nivel3/platforms/plataforma_mediana (1).png" id="9_e1ois"]
+[ext_resource type="Texture2D" uid="uid://crn57h5piww6j" path="res://assets/textures/Nivel3/backgrounds/fondo_abismo_cristal.png" id="9_m7mcd"]
+[ext_resource type="Texture2D" uid="uid://b41tlqfmqe3rm" path="res://assets/textures/Nivel3/platforms/plataforma_pequena (1).png" id="10_mu7nq"]
+[ext_resource type="Texture2D" uid="uid://o1r4op6qoxgu" path="res://assets/textures/Nivel3/platforms/plataforma_arena_eco (1).png" id="11_o822s"]
+[ext_resource type="Texture2D" uid="uid://c54yadok12utv" path="res://assets/textures/Nivel3/platforms/plataforma_larga (1).png" id="12_oykkt"]
+[ext_resource type="Texture2D" uid="uid://52q3hoolvwis" path="res://assets/textures/Nivel3/crystals/cristal_cluster_grande (1).png" id="13_hxfpd"]
+[ext_resource type="Texture2D" uid="uid://207dp0dn4uwp" path="res://assets/textures/Nivel3/crystals/cristales_daninos (1).png" id="14_o822s"]
+[ext_resource type="Texture2D" uid="uid://eyus1w21vtkn" path="res://assets/textures/Nivel3/crystals/cristal_negro_barrera (1).png" id="15_oykkt"]
+[ext_resource type="PackedScene" uid="uid://4ooat20br51x" path="res://scenes/nivel3/rayo.tscn" id="18_botma"]
+[ext_resource type="Script" uid="uid://dhvm1thqbihl2" path="res://scripts/nivel3/portal_cristal_animado.gd.gd" id="18_k7i5o"]
+[ext_resource type="Texture2D" uid="uid://dssfrogol3vct" path="res://assets/textures/Nivel3/portal/portal_cristal (1).png" id="18_qyfnm"]
+[ext_resource type="Script" uid="uid://c48d6gjw8s82f" path="res://scripts/nivel3/camara_nivel3.gd" id="20_8taec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_waicc"]
+size = Vector2(2380.125, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oykkt"]
+size = Vector2(117.25, 57.375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxfpd"]
+size = Vector2(130, 56.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_854ck"]
+size = Vector2(44.5, 137.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6732b"]
+size = Vector2(220, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1ois"]
+size = Vector2(69, 23.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2b7w"]
+size = Vector2(72, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o65cg"]
+size = Vector2(119, 16.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbnhh"]
+size = Vector2(116.5, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tw7r"]
+size = Vector2(111, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_botma"]
+size = Vector2(64.875, 25.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ld1y"]
+size = Vector2(69.5, 26.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyfnm"]
+size = Vector2(70.4375, 14.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8ku5"]
+size = Vector2(69.5, 26.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xek8u"]
+size = Vector2(115.75, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iepkm"]
+size = Vector2(119.5, 26.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8dm0"]
+size = Vector2(71.5, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwarg"]
+size = Vector2(113.4375, 22.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7i5o"]
+size = Vector2(290.75, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8taec"]
+size = Vector2(583.25, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_351y8"]
+size = Vector2(71.40625, 12.375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxy44"]
+size = Vector2(71, 10.375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t0ee"]
+size = Vector2(57, 101)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wit8e"]
+radius = 25.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qyfnm"]
+load_path = "res://.godot/imported/cristal_flotante (1).png-817fb7aebda7f85154935e2d033ab79d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k7i5o"]
+load_path = "res://.godot/imported/cristal_flotante (1).png-817fb7aebda7f85154935e2d033ab79d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u2b7w"]
+load_path = "res://.godot/imported/cristal_flotante (1).png-817fb7aebda7f85154935e2d033ab79d.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yltux"]
+size = Vector2(585, 108.5)
+
+[node name="nivel3" type="Node2D" unique_id=1205736245]
+
+[node name="Leo" parent="." unique_id=492757546 instance=ExtResource("3_m7mcd")]
+position = Vector2(80, 300)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1173916664]
+stream = ExtResource("2_k7i5o")
+volume_db = -25.74
+autoplay = true
+
+[node name="CanvasLayer" parent="." unique_id=710190410 instance=ExtResource("6_3tw7r")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1387119042]
+position = Vector2(900, 650)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1262267601]
+position = Vector2(19, -62.5)
+shape = SubResource("RectangleShape2D_waicc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=79571799]
+position = Vector2(-15, -74)
+shape = SubResource("RectangleShape2D_oykkt")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D" unique_id=145464570]
+position = Vector2(286, -75)
+shape = SubResource("RectangleShape2D_oykkt")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" unique_id=751975472]
+position = Vector2(-371, -73)
+shape = SubResource("RectangleShape2D_hxfpd")
+
+[node name="SalidaNivel3" type="Area2D" parent="." unique_id=89463566]
+position = Vector2(1700, 250)
+script = ExtResource("6_wit8e")
+siguiente_escena = "uid://bg856w3hbqf4w"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SalidaNivel3" unique_id=22808681]
+position = Vector2(322.75, -46.25)
+shape = SubResource("RectangleShape2D_854ck")
+
+[node name="Plataformas" type="Node2D" parent="." unique_id=296697265]
+
+[node name="PlataformaInicio" type="StaticBody2D" parent="Plataformas" unique_id=49603041]
+position = Vector2(140, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/PlataformaInicio" unique_id=1404938765]
+position = Vector2(-21, -42)
+shape = SubResource("RectangleShape2D_6732b")
+
+[node name="Plataforma2" type="StaticBody2D" parent="Plataformas" unique_id=40497857]
+position = Vector2(420, 330)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma2" unique_id=1201648702]
+position = Vector2(-136, 73)
+shape = SubResource("RectangleShape2D_e1ois")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma2" unique_id=1391568978]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma2/DetectorJugador" unique_id=1236916631]
+position = Vector2(-135, 70)
+shape = SubResource("RectangleShape2D_u2b7w")
+
+[node name="Plataforma3" type="StaticBody2D" parent="Plataformas" unique_id=1176623108]
+position = Vector2(700, 300)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma3" unique_id=669422337]
+position = Vector2(-303, 28)
+shape = SubResource("RectangleShape2D_o65cg")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma3" unique_id=619739532]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma3/DetectorJugador" unique_id=1042615969]
+position = Vector2(-302.25, 25.5)
+shape = SubResource("RectangleShape2D_fbnhh")
+
+[node name="Plataforma4" type="StaticBody2D" parent="Plataformas" unique_id=388434023]
+position = Vector2(980, 260)
+script = ExtResource("5_854ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma4" unique_id=1490634925]
+position = Vector2(-358, -49)
+shape = SubResource("RectangleShape2D_3tw7r")
+
+[node name="Plataforma10" type="StaticBody2D" parent="Plataformas" unique_id=1795876801]
+position = Vector2(980, 260)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma10" unique_id=957478033]
+position = Vector2(-469, 9)
+shape = SubResource("RectangleShape2D_botma")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma10" unique_id=1438912821]
+position = Vector2(-38, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma10/DetectorJugador" unique_id=760954369]
+position = Vector2(-430, -36)
+shape = SubResource("RectangleShape2D_2ld1y")
+
+[node name="Plataforma12" type="StaticBody2D" parent="Plataformas" unique_id=1682204347]
+position = Vector2(980, 260)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma12" unique_id=880990008]
+position = Vector2(-390, 219)
+shape = SubResource("RectangleShape2D_qyfnm")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma12" unique_id=1328241855]
+position = Vector2(-38, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma12/DetectorJugador" unique_id=2104909254]
+position = Vector2(-352, 177)
+shape = SubResource("RectangleShape2D_g8ku5")
+
+[node name="Plataforma13" type="StaticBody2D" parent="Plataformas" unique_id=1502608676]
+position = Vector2(980, 260)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma13" unique_id=1786508982]
+position = Vector2(-249, 230)
+shape = SubResource("RectangleShape2D_botma")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma13" unique_id=1447652652]
+position = Vector2(-38, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma13/DetectorJugador" unique_id=1151921119]
+position = Vector2(-210, 182)
+shape = SubResource("RectangleShape2D_2ld1y")
+
+[node name="Plataforma14" type="StaticBody2D" parent="Plataformas" unique_id=1124084582]
+position = Vector2(980, 260)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma14" unique_id=1232132492]
+position = Vector2(-130, 173)
+shape = SubResource("RectangleShape2D_botma")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma14" unique_id=484534076]
+position = Vector2(-38, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma14/DetectorJugador" unique_id=919541041]
+position = Vector2(-92, 126)
+shape = SubResource("RectangleShape2D_2ld1y")
+
+[node name="Plataforma15" type="StaticBody2D" parent="Plataformas" unique_id=1548710174]
+position = Vector2(980, 260)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma15" unique_id=1535258437]
+position = Vector2(18, 220)
+shape = SubResource("RectangleShape2D_botma")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma15" unique_id=1320967970]
+position = Vector2(-38, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma15/DetectorJugador" unique_id=939174567]
+position = Vector2(58, 175)
+shape = SubResource("RectangleShape2D_2ld1y")
+
+[node name="Plataforma5" type="StaticBody2D" parent="Plataformas" unique_id=2114929816]
+position = Vector2(1260, 330)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma5" unique_id=148796708]
+position = Vector2(-850, 149)
+shape = SubResource("RectangleShape2D_xek8u")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma5" unique_id=1683453302]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma5/DetectorJugador" unique_id=265242664]
+position = Vector2(-850.75, 142.9375)
+shape = SubResource("RectangleShape2D_iepkm")
+
+[node name="Plataforma6" type="StaticBody2D" parent="Plataformas" unique_id=1210638392]
+position = Vector2(1260, 330)
+script = ExtResource("5_854ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma6" unique_id=2005026830]
+position = Vector2(-505, -10)
+shape = SubResource("RectangleShape2D_c8dm0")
+
+[node name="Plataforma7" type="StaticBody2D" parent="Plataformas" unique_id=1574901952]
+position = Vector2(1260, 330)
+script = ExtResource("5_854ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma7" unique_id=1614411435]
+position = Vector2(-391, -146)
+shape = SubResource("RectangleShape2D_c8dm0")
+
+[node name="Plataforma11" type="StaticBody2D" parent="Plataformas" unique_id=918535350]
+position = Vector2(1260, 330)
+script = ExtResource("5_854ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma11" unique_id=118635524]
+position = Vector2(-98.71875, 104.75)
+shape = SubResource("RectangleShape2D_hwarg")
+
+[node name="Plataforma8" type="StaticBody2D" parent="Plataformas" unique_id=1395583169]
+position = Vector2(1260, 330)
+script = ExtResource("5_854ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma8" unique_id=1341020306]
+position = Vector2(-311, -106)
+shape = SubResource("RectangleShape2D_c8dm0")
+
+[node name="Plataforma9" type="StaticBody2D" parent="Plataformas" unique_id=960513707]
+position = Vector2(1260, 330)
+script = ExtResource("5_854ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma9" unique_id=11014058]
+position = Vector2(-111.375, -71)
+shape = SubResource("RectangleShape2D_k7i5o")
+
+[node name="PlataformaFinal" type="StaticBody2D" parent="Plataformas" unique_id=1341121448]
+position = Vector2(1550, 300)
+script = ExtResource("5_854ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/PlataformaFinal" unique_id=1452646876]
+position = Vector2(248.375, -16)
+shape = SubResource("RectangleShape2D_8taec")
+
+[node name="Plataforma16" type="StaticBody2D" parent="Plataformas" unique_id=793353512]
+position = Vector2(1558, 300)
+script = ExtResource("5_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Visual_Plataforma10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma16" unique_id=640187447]
+position = Vector2(-154.70313, 12.8125)
+shape = SubResource("RectangleShape2D_351y8")
+
+[node name="DetectorJugador" type="Area2D" parent="Plataformas/Plataforma16" unique_id=1497200906]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataformas/Plataforma16/DetectorJugador" unique_id=1204225691]
+position = Vector2(-155.5, 7.8125)
+shape = SubResource("RectangleShape2D_uxy44")
+
+[node name="Mecanicas" type="Node2D" parent="." unique_id=1881098869]
+
+[node name="CristalNegro" type="StaticBody2D" parent="Mecanicas" unique_id=1760768538]
+position = Vector2(1180, 270)
+script = ExtResource("7_hxfpd")
+visual_node_path = NodePath("../../VisualesPlataformas/Muro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mecanicas/CristalNegro" unique_id=342843161]
+position = Vector2(5, -74)
+shape = SubResource("RectangleShape2D_2t0ee")
+
+[node name="CristalImpulso" type="Area2D" parent="Mecanicas" unique_id=68387077]
+position = Vector2(840, 250)
+script = ExtResource("5_2t0ee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mecanicas/CristalImpulso" unique_id=701349698]
+position = Vector2(-85, 38)
+shape = SubResource("CircleShape2D_wit8e")
+
+[node name="Enemigos" type="Node2D" parent="." unique_id=1431463175]
+
+[node name="EcoSombra" parent="Enemigos" unique_id=447287643 instance=ExtResource("8_ravl0")]
+position = Vector2(1777, 270)
+zona_plataforma_path = NodePath("../../ZonaPlataformaEco")
+
+[node name="VisualesPlataformas" type="Node2D" parent="." unique_id=837277020]
+
+[node name="Visual_PlataformaInicio" type="Sprite2D" parent="VisualesPlataformas" unique_id=977698025]
+z_index = -10
+position = Vector2(120.99999, 347)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("9_e1ois")
+
+[node name="Visual_Plataforma2" type="Sprite2D" parent="VisualesPlataformas" unique_id=803088949]
+z_index = -10
+position = Vector2(286, 402.00003)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma4" type="Sprite2D" parent="VisualesPlataformas" unique_id=1565935403]
+z_index = -10
+position = Vector2(512, 269)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma6" type="Sprite2D" parent="VisualesPlataformas" unique_id=856480764]
+z_index = -10
+position = Vector2(756, 321.00003)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma7" type="Sprite2D" parent="VisualesPlataformas" unique_id=542849339]
+z_index = -10
+position = Vector2(869, 187.00002)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma8" type="Sprite2D" parent="VisualesPlataformas" unique_id=971783570]
+z_index = -10
+position = Vector2(949.99994, 226.00002)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma12" type="Sprite2D" parent="VisualesPlataformas" unique_id=1973780439]
+z_index = -10
+position = Vector2(589.99994, 484)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma13" type="Sprite2D" parent="VisualesPlataformas" unique_id=1471747265]
+z_index = -10
+position = Vector2(731.99994, 489.00003)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma14" type="Sprite2D" parent="VisualesPlataformas" unique_id=128606951]
+z_index = -10
+position = Vector2(851, 433.00003)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma15" type="Sprite2D" parent="VisualesPlataformas" unique_id=1209130736]
+z_index = -10
+position = Vector2(1001, 481)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma10" type="Sprite2D" parent="VisualesPlataformas" unique_id=29602656]
+z_index = -10
+position = Vector2(1395.9999, 319.00003)
+scale = Vector2(0.07079744, 0.08874001)
+texture = ExtResource("10_mu7nq")
+
+[node name="Visual_Plataforma3" type="Sprite2D" parent="VisualesPlataformas" unique_id=774252024]
+z_index = -10
+position = Vector2(397.00003, 337.99997)
+scale = Vector2(0.10544716, 0.13091433)
+texture = ExtResource("9_e1ois")
+
+[node name="Visual_Plataforma5" type="Sprite2D" parent="VisualesPlataformas" unique_id=1305959208]
+z_index = -10
+position = Vector2(408, 480.99997)
+scale = Vector2(0.10544716, 0.13091433)
+texture = ExtResource("9_e1ois")
+
+[node name="Visual_Plataforma11" type="Sprite2D" parent="VisualesPlataformas" unique_id=382602240]
+z_index = -10
+position = Vector2(620.00006, 219)
+scale = Vector2(0.10544716, 0.13091433)
+texture = ExtResource("9_e1ois")
+
+[node name="Visual_Plataforma16" type="Sprite2D" parent="VisualesPlataformas" unique_id=887595537]
+z_index = -10
+position = Vector2(1160, 439.99997)
+scale = Vector2(0.10544716, 0.13091433)
+texture = ExtResource("9_e1ois")
+
+[node name="Visual_PlataformaEco" type="Sprite2D" parent="VisualesPlataformas" unique_id=124235947]
+z_index = -10
+position = Vector2(1800.0001, 329)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("11_o822s")
+
+[node name="Visual_Plataforma9" type="Sprite2D" parent="VisualesPlataformas" unique_id=1308089713]
+z_index = -10
+position = Vector2(1149.625, 267)
+scale = Vector2(0.2036132, 0.25)
+texture = ExtResource("12_oykkt")
+
+[node name="Cristal_Impulso" type="Sprite2D" parent="VisualesPlataformas" unique_id=962322045]
+z_index = -10
+position = Vector2(755, 285)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("13_hxfpd")
+
+[node name="Cristal_flotante" type="Sprite2D" parent="VisualesPlataformas" unique_id=1368034449]
+position = Vector2(1044, 366)
+scale = Vector2(0.07, 0.07)
+texture = SubResource("CompressedTexture2D_qyfnm")
+
+[node name="Cristal_flotante2" type="Sprite2D" parent="VisualesPlataformas" unique_id=1651016026]
+position = Vector2(251.00002, 167)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("CompressedTexture2D_qyfnm")
+
+[node name="Cristal_flotante3" type="Sprite2D" parent="VisualesPlataformas" unique_id=1170258449]
+position = Vector2(602, 86.00001)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("CompressedTexture2D_qyfnm")
+
+[node name="Cristal_flotante4" type="Sprite2D" parent="VisualesPlataformas" unique_id=223256480]
+position = Vector2(1021, 101)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("CompressedTexture2D_qyfnm")
+
+[node name="Cristal_flotante5" type="Sprite2D" parent="VisualesPlataformas" unique_id=1131382815]
+position = Vector2(601, 344)
+scale = Vector2(0.07, 0.07)
+texture = SubResource("CompressedTexture2D_k7i5o")
+
+[node name="Cristal_flotante7" type="Sprite2D" parent="VisualesPlataformas" unique_id=858853916]
+z_index = -10
+position = Vector2(181, 518)
+scale = Vector2(0.07, 0.07)
+texture = SubResource("CompressedTexture2D_u2b7w")
+
+[node name="Cristal_flotante8" type="Sprite2D" parent="VisualesPlataformas" unique_id=511828814]
+z_index = -10
+position = Vector2(1489, 92)
+scale = Vector2(0.07, 0.07)
+texture = SubResource("CompressedTexture2D_u2b7w")
+
+[node name="Cristal_flotante9" type="Sprite2D" parent="VisualesPlataformas" unique_id=733619679]
+z_index = -10
+position = Vector2(2028, 498)
+scale = Vector2(0.07, 0.07)
+texture = SubResource("CompressedTexture2D_u2b7w")
+
+[node name="Cristal_suelo" type="Sprite2D" parent="VisualesPlataformas" unique_id=1959541941]
+z_index = -10
+position = Vector2(882, 569)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo3" type="Sprite2D" parent="VisualesPlataformas" unique_id=369218049]
+z_index = -10
+position = Vector2(1184, 567)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo4" type="Sprite2D" parent="VisualesPlataformas" unique_id=1953459877]
+z_index = -10
+position = Vector2(1309, 567)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo5" type="Sprite2D" parent="VisualesPlataformas" unique_id=126951855]
+z_index = -10
+position = Vector2(1585, 568)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo6" type="Sprite2D" parent="VisualesPlataformas" unique_id=1263082259]
+z_index = -10
+position = Vector2(1462, 567)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo7" type="Sprite2D" parent="VisualesPlataformas" unique_id=150154846]
+z_index = -10
+position = Vector2(1830, 568)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo9" type="Sprite2D" parent="VisualesPlataformas" unique_id=274684704]
+z_index = -10
+position = Vector2(1056, 568)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo10" type="Sprite2D" parent="VisualesPlataformas" unique_id=85795802]
+z_index = -10
+position = Vector2(755, 569)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo11" type="Sprite2D" parent="VisualesPlataformas" unique_id=477419108]
+z_index = -10
+position = Vector2(270, 570)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo12" type="Sprite2D" parent="VisualesPlataformas" unique_id=189594521]
+z_index = -10
+position = Vector2(106, 569)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo8" type="Sprite2D" parent="VisualesPlataformas" unique_id=1759115218]
+z_index = -10
+position = Vector2(1712, 568)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Cristal_suelo2" type="Sprite2D" parent="VisualesPlataformas" unique_id=2021099231]
+z_index = -10
+position = Vector2(528, 570)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("14_o822s")
+
+[node name="Muro" type="Sprite2D" parent="VisualesPlataformas" unique_id=1146668974]
+z_index = -10
+position = Vector2(1185, 188)
+scale = Vector2(0.09212708, 0.12734808)
+texture = ExtResource("15_oykkt")
+
+[node name="FondoNivel3" type="Node2D" parent="." unique_id=1234816749]
+
+[node name="FondoAbismoCristal" type="Sprite2D" parent="FondoNivel3" unique_id=1469390345]
+z_index = -100
+position = Vector2(1056, 303)
+scale = Vector2(1.2610646, 0.6437301)
+texture = ExtResource("9_m7mcd")
+
+[node name="Rayos" type="Node2D" parent="." unique_id=1008009178]
+position = Vector2(1700, 250)
+
+[node name="Rayo" parent="Rayos" unique_id=1654518566 instance=ExtResource("18_botma")]
+position = Vector2(-1097, -267)
+
+[node name="Rayo3" parent="Rayos" unique_id=819994923 instance=ExtResource("18_botma")]
+position = Vector2(-680, -247)
+
+[node name="Rayo4" parent="Rayos" unique_id=621166442 instance=ExtResource("18_botma")]
+position = Vector2(-946, -76)
+
+[node name="Rayo5" parent="Rayos" unique_id=1329692794 instance=ExtResource("18_botma")]
+position = Vector2(-212, -248)
+
+[node name="Rayo2" parent="Rayos" unique_id=858835053 instance=ExtResource("18_botma")]
+position = Vector2(-1449, -165)
+
+[node name="DecoracionCristales" type="Node2D" parent="." unique_id=1686624897]
+
+[node name="VisualPortal" type="Node2D" parent="." unique_id=1109478876]
+
+[node name="PortalCristalAnimado" type="Node2D" parent="VisualPortal" unique_id=1224200770]
+position = Vector2(-59, 71)
+script = ExtResource("18_k7i5o")
+
+[node name="PortalBase" type="Sprite2D" parent="VisualPortal/PortalCristalAnimado" unique_id=316117045]
+z_index = -2
+position = Vector2(2081.2, 133.27501)
+scale = Vector2(0.14613254, 0.15971455)
+texture = ExtResource("18_qyfnm")
+
+[node name="PortalAura" type="Sprite2D" parent="VisualPortal/PortalCristalAnimado" unique_id=575489417]
+modulate = Color(0.16470589, 0.22745098, 1, 0)
+z_index = -1
+position = Vector2(2083, 120)
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("18_qyfnm")
+
+[node name="ParticulasPortal" type="CPUParticles2D" parent="VisualPortal/PortalCristalAnimado" unique_id=1312529842]
+z_index = 3
+amount = 30
+lifetime = 1.2
+direction = Vector2(1, -1)
+spread = 60.0
+initial_velocity_min = 15.0
+initial_velocity_max = 45.0
+scale_amount_min = 0.4
+color = Color(0.26666668, 0.16862746, 1, 1)
+
+[node name="ZonaPlataformaEco" type="Area2D" parent="." unique_id=1421275136]
+position = Vector2(-1, -1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaPlataformaEco" unique_id=871471633]
+position = Vector2(1799.5, 240.25)
+shape = SubResource("RectangleShape2D_yltux")
+
+[node name="CamaraNivel3" type="Camera2D" parent="." unique_id=1703855434]
+position = Vector2(240, 300)
+script = ExtResource("20_8taec")
+jugador_path = NodePath("../Leo")
+limite_derecha = 2111
+limite_arriba = 0
+limite_abajo = 600
+offset_camara = Vector2(0, 0)
+
+[connection signal="body_entered" from="Area2D" to="Leo" method="_on_area_2d_body_entered"]

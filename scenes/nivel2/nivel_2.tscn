@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cbbprrknkxgkn"]
+
+[ext_resource type="PackedScene" uid="uid://de2m646pxq6r3" path="res://scenes/nivel2/diseño.tscn" id="1_820m4"]
+[ext_resource type="Script" uid="uid://srigaehm1kn8" path="res://scripts/nivel2/n2.gd" id="1_x0kmm"]
+[ext_resource type="PackedScene" uid="uid://b8gql65exuhob" path="res://scenes/nivel2/gusano.tscn" id="2_t0uoq"]
+[ext_resource type="PackedScene" uid="uid://cbwdosul4nbbs" path="res://scenes/leo.tscn" id="3_t0uoq"]
+[ext_resource type="AudioStream" uid="uid://dfr0awlbm6hr4" path="res://ost/nivel2/ost nivel2.mp3" id="4_3bx76"]
+[ext_resource type="PackedScene" uid="uid://bsakjjb65po7" path="res://scenes/nivel2/trampa_fuego.tscn" id="5_yafgc"]
+[ext_resource type="PackedScene" uid="uid://caop0pvjy6tuu" path="res://scenes/HUD.tscn" id="6_hjh7k"]
+[ext_resource type="PackedScene" uid="uid://lnqtw0660j80" path="res://scenes/nivel2/enemigo_n2.tscn" id="7_dninf"]
+[ext_resource type="Script" uid="uid://ctibgskdo3oql" path="res://scripts/nivel2/pasar_a_nivel3.gd" id="8_waicc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_waicc"]
+size = Vector2(1968.25, 375.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dninf"]
+radius = 19.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_waicc"]
+radius = 17.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0kmm"]
+size = Vector2(53, 55)
+
+[node name="nivel2" type="Node2D" unique_id=1205736245]
+script = ExtResource("1_x0kmm")
+
+[node name="diseño_n2" parent="." unique_id=950018462 instance=ExtResource("1_820m4")]
+position = Vector2(-10, -4)
+
+[node name="Gusano" parent="." unique_id=1913021993 instance=ExtResource("2_t0uoq")]
+position = Vector2(490, 487)
+
+[node name="Leo" parent="." unique_id=492757546 instance=ExtResource("3_t0uoq")]
+position = Vector2(64, 311)
+
+[node name="Gusano2" parent="." unique_id=1382503529 instance=ExtResource("2_t0uoq")]
+position = Vector2(617, 441)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1173916664]
+stream = ExtResource("4_3bx76")
+volume_db = -0.98
+autoplay = true
+
+[node name="StaticBody2D" parent="." unique_id=1893322477 instance=ExtResource("5_yafgc")]
+position = Vector2(1182, 309)
+
+[node name="CanvasLayer" parent="." unique_id=710190410 instance=ExtResource("6_hjh7k")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1387119042]
+position = Vector2(1062, 753)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1262267601]
+position = Vector2(-79.125, -7)
+shape = SubResource("RectangleShape2D_waicc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=79571799]
+position = Vector2(-444, -316)
+shape = SubResource("CircleShape2D_dninf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" unique_id=751975472]
+position = Vector2(-572, -267)
+shape = SubResource("CircleShape2D_waicc")
+
+[node name="CharacterBody2D" parent="." unique_id=447287643 instance=ExtResource("7_dninf")]
+position = Vector2(2064, 417)
+max_vida = 100
+dano_espada = 15
+
+[node name="Puerta" type="Area2D" parent="." unique_id=755934452]
+script = ExtResource("8_waicc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puerta" unique_id=1570460648]
+position = Vector2(2372, 403)
+shape = SubResource("RectangleShape2D_x0kmm")
+
+[connection signal="body_entered" from="Area2D" to="Leo" method="_on_area_2d_body_entered"]

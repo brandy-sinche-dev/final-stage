@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://hhxnxmj85ob8"]
+
+[ext_resource type="Script" uid="uid://b2q62q3v76is1" path="res://scripts/nivel1/bullet_trampa_1.gd" id="1_cacyt"]
+[ext_resource type="Texture2D" uid="uid://b54ypvieroinv" path="res://assets/textures/Nivel1/Tiles.png" id="2_bukdl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qnd7"]
+size = Vector2(17, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbh07"]
+atlas = ExtResource("2_bukdl")
+region = Rect2(336, 254, 21, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1m8cc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbh07")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet_trampa_1" type="Area2D" unique_id=2047721310]
+rotation = -3.139025
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_cacyt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=554395515]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_0qnd7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=319690443]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=226990231]
+texture_filter = 1
+rotation = 1.5761671
+sprite_frames = SubResource("SpriteFrames_1m8cc")

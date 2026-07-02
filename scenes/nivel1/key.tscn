@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bdlqtvcln4m1a"]
+
+[ext_resource type="Script" uid="uid://cqfkkp770qcl1" path="res://scripts/nivel1/key.gd" id="1_dml3p"]
+[ext_resource type="Texture2D" uid="uid://b54ypvieroinv" path="res://assets/textures/Nivel1/Tiles.png" id="2_oodns"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxrsd"]
+atlas = ExtResource("2_oodns")
+region = Rect2(240, 319, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rkag"]
+size = Vector2(17, 12)
+
+[node name="key" type="Area2D" unique_id=1996432130]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_dml3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2057530292]
+scale = Vector2(1.4499216, 1.6868378)
+texture = SubResource("AtlasTexture_oxrsd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=94219983]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_0rkag")

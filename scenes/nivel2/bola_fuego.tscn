@@ -1,0 +1,274 @@
+[gd_scene format=3 uid="uid://be4l7mlm3ub5v"]
+
+[ext_resource type="Script" uid="uid://bw7xbbckk6nwk" path="res://scripts/nivel2/fuego.gd" id="1_eiwuq"]
+[ext_resource type="Texture2D" uid="uid://b3ogsywp2np43" path="res://assets/sprites/nivel2/lanzaFuegos/1_0.png" id="1_po886"]
+[ext_resource type="Texture2D" uid="uid://dmvk4n5ay8td6" path="res://assets/sprites/nivel2/lanzaFuegos/1_1.png" id="2_eiwuq"]
+[ext_resource type="Texture2D" uid="uid://bj0yoavkn5ra2" path="res://assets/sprites/nivel2/lanzaFuegos/1_2.png" id="3_d7jk4"]
+[ext_resource type="Texture2D" uid="uid://bngg1fsewmx5m" path="res://assets/sprites/nivel2/lanzaFuegos/1_3.png" id="4_dqt6t"]
+[ext_resource type="Texture2D" uid="uid://dynswp4byugbw" path="res://assets/sprites/nivel2/lanzaFuegos/1_4.png" id="5_1jq2c"]
+[ext_resource type="Texture2D" uid="uid://ddvwgddgjslrc" path="res://assets/sprites/nivel2/lanzaFuegos/1_5.png" id="6_swlld"]
+[ext_resource type="Texture2D" uid="uid://dmjqgma8p563p" path="res://assets/sprites/nivel2/lanzaFuegos/1_6.png" id="7_8qvro"]
+[ext_resource type="Texture2D" uid="uid://bpk6enheygedx" path="res://assets/sprites/nivel2/lanzaFuegos/1_7.png" id="8_q5b8j"]
+[ext_resource type="Texture2D" uid="uid://fexaubudv3ok" path="res://assets/sprites/nivel2/lanzaFuegos/1_8.png" id="9_ov8x6"]
+[ext_resource type="Texture2D" uid="uid://bg60yhmemo7wq" path="res://assets/sprites/nivel2/lanzaFuegos/1_9.png" id="10_cmjkp"]
+[ext_resource type="Texture2D" uid="uid://c8lmv76m76j7l" path="res://assets/sprites/nivel2/lanzaFuegos/1_10.png" id="11_diey0"]
+[ext_resource type="Texture2D" uid="uid://blo3w0iapluxv" path="res://assets/sprites/nivel2/lanzaFuegos/1_11.png" id="12_84ju0"]
+[ext_resource type="Texture2D" uid="uid://bbvbia35p12j" path="res://assets/sprites/nivel2/lanzaFuegos/1_12.png" id="13_oqpkf"]
+[ext_resource type="Texture2D" uid="uid://bve31ta4rupps" path="res://assets/sprites/nivel2/lanzaFuegos/1_13.png" id="14_wp4h4"]
+[ext_resource type="Texture2D" uid="uid://ba1htik54mm4e" path="res://assets/sprites/nivel2/lanzaFuegos/1_14.png" id="15_vaft2"]
+[ext_resource type="Texture2D" uid="uid://d18l7pqhbh25p" path="res://assets/sprites/nivel2/lanzaFuegos/1_15.png" id="16_fco6v"]
+[ext_resource type="Texture2D" uid="uid://bb47eqrdkhrpe" path="res://assets/sprites/nivel2/lanzaFuegos/1_16.png" id="17_4njrb"]
+[ext_resource type="Texture2D" uid="uid://bwsvw1bjr4mo" path="res://assets/sprites/nivel2/lanzaFuegos/1_17.png" id="18_6ri66"]
+[ext_resource type="Texture2D" uid="uid://bjrmucgul6c7n" path="res://assets/sprites/nivel2/lanzaFuegos/1_18.png" id="19_oeh7p"]
+[ext_resource type="Texture2D" uid="uid://x101gjxsqjrk" path="res://assets/sprites/nivel2/lanzaFuegos/1_19.png" id="20_fdqet"]
+[ext_resource type="Texture2D" uid="uid://bpamcfjggg72m" path="res://assets/sprites/nivel2/lanzaFuegos/1_20.png" id="21_r3gpf"]
+[ext_resource type="Texture2D" uid="uid://dk1o38su5y1a2" path="res://assets/sprites/nivel2/lanzaFuegos/1_21.png" id="22_g0wa7"]
+[ext_resource type="Texture2D" uid="uid://d2sjowgt62s1u" path="res://assets/sprites/nivel2/lanzaFuegos/1_22.png" id="23_njf1b"]
+[ext_resource type="Texture2D" uid="uid://bhdcdounxvab3" path="res://assets/sprites/nivel2/lanzaFuegos/1_23.png" id="24_867l7"]
+[ext_resource type="Texture2D" uid="uid://dnqhlfokjfvp3" path="res://assets/sprites/nivel2/lanzaFuegos/1_24.png" id="25_ssha2"]
+[ext_resource type="Texture2D" uid="uid://dlr21p573mihq" path="res://assets/sprites/nivel2/lanzaFuegos/1_25.png" id="26_g2vlx"]
+[ext_resource type="Texture2D" uid="uid://yyydffyxniu" path="res://assets/sprites/nivel2/lanzaFuegos/1_26.png" id="27_34mdv"]
+[ext_resource type="Texture2D" uid="uid://k2klwlpf6v54" path="res://assets/sprites/nivel2/lanzaFuegos/1_27.png" id="28_2rdha"]
+[ext_resource type="Texture2D" uid="uid://bcfehqn78t1tp" path="res://assets/sprites/nivel2/lanzaFuegos/1_28.png" id="29_tkhrb"]
+[ext_resource type="Texture2D" uid="uid://c083f7k7od2ef" path="res://assets/sprites/nivel2/lanzaFuegos/1_29.png" id="30_p6ajv"]
+[ext_resource type="Texture2D" uid="uid://h4lwb0g5062" path="res://assets/sprites/nivel2/lanzaFuegos/1_30.png" id="31_d2l56"]
+[ext_resource type="Texture2D" uid="uid://ciqq7rcr2svv0" path="res://assets/sprites/nivel2/lanzaFuegos/1_31.png" id="32_wryy8"]
+[ext_resource type="Texture2D" uid="uid://cuxvw211rw8p0" path="res://assets/sprites/nivel2/lanzaFuegos/1_32.png" id="33_gnpbt"]
+[ext_resource type="Texture2D" uid="uid://caerx11jkv61" path="res://assets/sprites/nivel2/lanzaFuegos/1_33.png" id="34_1c0c1"]
+[ext_resource type="Texture2D" uid="uid://lq8vwlsq8mc5" path="res://assets/sprites/nivel2/lanzaFuegos/1_34.png" id="35_sjruh"]
+[ext_resource type="Texture2D" uid="uid://bevomsvk2isul" path="res://assets/sprites/nivel2/lanzaFuegos/1_35.png" id="36_m30r0"]
+[ext_resource type="Texture2D" uid="uid://d1c1yak1mht3r" path="res://assets/sprites/nivel2/lanzaFuegos/1_36.png" id="37_t77ib"]
+[ext_resource type="Texture2D" uid="uid://ccvkupwkik7si" path="res://assets/sprites/nivel2/lanzaFuegos/1_37.png" id="38_v1yfx"]
+[ext_resource type="Texture2D" uid="uid://biwg38myj7hxl" path="res://assets/sprites/nivel2/lanzaFuegos/1_38.png" id="39_i0tah"]
+[ext_resource type="Texture2D" uid="uid://nitoqrh27fhi" path="res://assets/sprites/nivel2/lanzaFuegos/1_39.png" id="40_iq413"]
+[ext_resource type="Texture2D" uid="uid://co6t1feipdwb" path="res://assets/sprites/nivel2/lanzaFuegos/1_40.png" id="41_52umu"]
+[ext_resource type="Texture2D" uid="uid://dew1wamtq00ku" path="res://assets/sprites/nivel2/lanzaFuegos/1_41.png" id="42_8y75w"]
+[ext_resource type="Texture2D" uid="uid://cpkbxq3hcgphj" path="res://assets/sprites/nivel2/lanzaFuegos/1_42.png" id="43_ewm4e"]
+[ext_resource type="Texture2D" uid="uid://x6e008bgvjyc" path="res://assets/sprites/nivel2/lanzaFuegos/1_43.png" id="44_e01so"]
+[ext_resource type="Texture2D" uid="uid://c01qwoqwop2mn" path="res://assets/sprites/nivel2/lanzaFuegos/1_44.png" id="45_wuncl"]
+[ext_resource type="Texture2D" uid="uid://c3iaq5eoqo1vr" path="res://assets/sprites/nivel2/lanzaFuegos/1_45.png" id="46_nkiq8"]
+[ext_resource type="Texture2D" uid="uid://riqyb3c4kdca" path="res://assets/sprites/nivel2/lanzaFuegos/1_46.png" id="47_acs0d"]
+[ext_resource type="Texture2D" uid="uid://c5nbyy48ffq3c" path="res://assets/sprites/nivel2/lanzaFuegos/1_47.png" id="48_o8xt2"]
+[ext_resource type="Texture2D" uid="uid://bwk8rlgit500r" path="res://assets/sprites/nivel2/lanzaFuegos/1_48.png" id="49_wtkdn"]
+[ext_resource type="Texture2D" uid="uid://bl5t3reoqesks" path="res://assets/sprites/nivel2/lanzaFuegos/1_49.png" id="50_xe8t5"]
+[ext_resource type="Texture2D" uid="uid://crvjped40y6k6" path="res://assets/sprites/nivel2/lanzaFuegos/1_50.png" id="51_axt8m"]
+[ext_resource type="Texture2D" uid="uid://o5afj6tn744x" path="res://assets/sprites/nivel2/lanzaFuegos/1_51.png" id="52_bdrnd"]
+[ext_resource type="Texture2D" uid="uid://mxg707vt40nm" path="res://assets/sprites/nivel2/lanzaFuegos/1_52.png" id="53_caa0y"]
+[ext_resource type="Texture2D" uid="uid://bqireme4qwl40" path="res://assets/sprites/nivel2/lanzaFuegos/1_53.png" id="54_3ccwi"]
+[ext_resource type="Texture2D" uid="uid://b25xc2arrqc0i" path="res://assets/sprites/nivel2/lanzaFuegos/1_54.png" id="55_wfprg"]
+[ext_resource type="Texture2D" uid="uid://cafpmmvwuwj88" path="res://assets/sprites/nivel2/lanzaFuegos/1_55.png" id="56_i2huv"]
+[ext_resource type="Texture2D" uid="uid://5f50tb7b6ogr" path="res://assets/sprites/nivel2/lanzaFuegos/1_56.png" id="57_ioqwb"]
+[ext_resource type="Texture2D" uid="uid://cwgf4bn772ftq" path="res://assets/sprites/nivel2/lanzaFuegos/1_57.png" id="58_d1r5j"]
+[ext_resource type="Texture2D" uid="uid://cfqj40eb7bq36" path="res://assets/sprites/nivel2/lanzaFuegos/1_58.png" id="59_wfbq3"]
+[ext_resource type="Texture2D" uid="uid://cm2o2qfrxw60y" path="res://assets/sprites/nivel2/lanzaFuegos/1_59.png" id="60_n2lbf"]
+[ext_resource type="Texture2D" uid="uid://binkl71qs1fvm" path="res://assets/sprites/nivel2/lanzaFuegos/1_60.png" id="61_hr1lc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i26i2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_po886")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eiwuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d7jk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dqt6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1jq2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_swlld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8qvro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_q5b8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ov8x6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cmjkp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_diey0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_84ju0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_oqpkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_wp4h4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_vaft2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_fco6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_4njrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_6ri66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_oeh7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_fdqet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_r3gpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_g0wa7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_njf1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_867l7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ssha2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_g2vlx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_34mdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_2rdha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_tkhrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_p6ajv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_d2l56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_wryy8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_gnpbt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_1c0c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_sjruh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_m30r0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_t77ib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_v1yfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_i0tah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_iq413")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_52umu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_8y75w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_ewm4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_e01so")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_wuncl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_nkiq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_acs0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_o8xt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_wtkdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_xe8t5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_axt8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_bdrnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_caa0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_3ccwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_wfprg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_i2huv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_ioqwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_d1r5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_wfbq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_n2lbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_hr1lc")
+}],
+"loop": true,
+"name": &"fuego",
+"speed": 13.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3yptb"]
+radius = 14.035668
+
+[node name="bolaFuego" type="Area2D" unique_id=1831320926]
+collision_mask = 2
+script = ExtResource("1_eiwuq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1533689092]
+scale = Vector2(0.7337497, 0.67875016)
+sprite_frames = SubResource("SpriteFrames_i26i2")
+animation = &"fuego"
+frame_progress = 0.5432896
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2016920733]
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_3yptb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
