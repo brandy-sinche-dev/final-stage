@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b0iln8emyd5fw" path="res://scripts/nivel2/worm.gd" id="1_2ys1f"]
 [ext_resource type="Texture2D" uid="uid://don2jaid8ud6t" path="res://assets/sprites/nivel2/Sandworm1.png" id="1_tgmcs"]
+
 [ext_resource type="AudioStream" uid="uid://2nbkiq34mnup" path="res://ost/nivel2/worm.mp3" id="3_dpxeu"]
+
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ys1f"]
 atlas = ExtResource("1_tgmcs")
@@ -108,7 +111,9 @@ position = Vector2(-3, -20)
 scale = Vector2(1.3203124, 1.5234375)
 shape = SubResource("RectangleShape2D_aki8o")
 
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=481680135]
 stream = ExtResource("3_dpxeu")
 autoplay = true
 max_distance = 300.0
+

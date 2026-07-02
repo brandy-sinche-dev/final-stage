@@ -16,7 +16,7 @@ var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 enum Estados { PATRULLA, ATACANDO, HERIDO, MUERTO }
 var estado_actual = Estados.PATRULLA
 
-# Referencias a tus nodos (Sincronizados con la imagen de tu escena)
+# Referencias a tus nodos (Con soporte para los nuevos nodos de audio)
 @onready var sprite = $AnimatedSprite2D
 @onready var area_espada = $Area2D
 @onready var hitbox_espada = $Area2D/CollisionShape2D
