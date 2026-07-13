@@ -46,6 +46,8 @@ var esta_muerto = false
 @onready var sonido_dano: AudioStreamPlayer2D = $EffectsSounds/sound_hurt
 @onready var sonido_muerte: AudioStreamPlayer2D = $death
 
+# señal para el hud
+signal llave_recolectada(llave_id)
 
 func _enter_tree() -> void:
 	if multiplayer.multiplayer_peer != null:
@@ -308,6 +310,8 @@ func _on_sword_area_body_entered(body: Node2D) -> void:
 func agregar_llave(id_llave: String) -> void:
 	if not llaves_recolectadas.has(id_llave):
 		llaves_recolectadas.append(id_llave)
+		llave_recolectada.emit(id_llave)
+	
 
 func tiene_llave(id_llave: String) -> bool:
 	return llaves_recolectadas.has(id_llave)

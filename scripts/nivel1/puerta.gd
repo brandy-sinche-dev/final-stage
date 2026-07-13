@@ -14,6 +14,8 @@ func _ready() -> void:
 	sprite.animation_finished.connect(_on_animation_finished)
 
 func _on_body_entered(body: Node2D) -> void:
+	# DEBUG: ¿Quién está tocando la puerta?
+	print("Algo tocó la puerta: ", body.name)
 	if body.is_in_group("player"):
 		# Le preguntamos a Leo si tiene la llave exacta para ESTA puerta
 		if body.tiene_llave(llave_requerida_id):
