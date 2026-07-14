@@ -7,10 +7,6 @@ extends Control
 @onready var click_sound: AudioStreamPlayer = $ClickSound
 @onready var music_fondo: AudioStreamPlayer = $Musica_fondo # Ajustado a nombre correcto
 
-# 🌟 NUEVAS REFERENCIAS PARA EL FUNDIDO A NEGRO (Asegúrate de que se llamen así en tu escena)
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var fade_screen: ColorRect = $FadeScreen
-
 # El campo de texto para la IP
 @onready var input_ip: LineEdit = $ContenedorCooperativo/HBoxContainer/InputIP
 
@@ -19,9 +15,6 @@ const PORT = 1024
 var ip_automatica_host: String = "127.0.0.1"
 
 func _ready() -> void:
-	# 🌟 Forzamos a que el cuadro negro empiece invisible al cargar el menú
-	fade_screen.modulate.a = 0.0
-	
 	contenedor_principal.visible = true
 	contenedor_niveles.visible = false
 	contenedor_cooperativo.visible = false
@@ -49,20 +42,9 @@ func _conectar_botones(nodo: Node) -> void:
 			hijo.pressed.connect(_reproducir_click)
 		_conectar_botones(hijo)
 
-#🌟 NUEVA FUNCIÓN MAESTRA: Maneja la transición de forma limpia y suave
-func _cambiar_escena_con_fade(ruta_escena: String) -> void:
-	# Bloqueamos el mouse para que no se puedan presionar botones mientras se oscurece la pantalla
-	fade_screen.mouse_filter = Control.MOUSE_FILTER_STOP
-	# Reproduce la animación que creaste en el AnimationPlayer
-	animation_player.play("fade_out")
-	# Espera a que termine de ponerse negro antes de cambiar
-	await animation_player.animation_finished
-	# Realiza el cambio de escena
-	get_tree().change_scene_to_file(ruta_escena)
-
 #-----------CONFIGURACION DE BOTONES-----------------
 func _on_play_pressed():
-	_cambiar_escena_con_fade("res://scenes/nivel1/intro_historia.tscn")
+	get_tree().change_scene_to_file("res://scenes/nivel1/intro_historia.tscn")
 
 func _on_niveles_pressed() -> void:
 	contenedor_principal.visible = false
@@ -73,16 +55,16 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_nivel_1_pressed() -> void:
-	_cambiar_escena_con_fade("res://scenes/nivel1/nivel_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/nivel1/nivel_1.tscn")
 
 func _on_nivel_2_pressed() -> void:
-	_cambiar_escena_con_fade("res://scenes/nivel2/nivel_2.tscn")
+	get_tree().change_scene_to_file("res://scenes/nivel2/nivel_2.tscn")
 
 func _on_nivel_3_pressed() -> void:
-	_cambiar_escena_con_fade("res://scenes/nivel3/nivel_3.tscn")
+	get_tree().change_scene_to_file("res://scenes/nivel3/nivel_3.tscn")
 
 func _on_nivel_4_pressed() -> void:
-	_cambiar_escena_con_fade("res://scenes/nivel 4/nivel 4.tscn")
+	get_tree().change_scene_to_file("res://scenes/nivel 4/nivel 4.tscn")
 
 func _on_cooperativo_pressed() -> void:
 	contenedor_principal.visible = false
@@ -95,7 +77,7 @@ func _on_regresar_pressed() -> void:
 	contenedor_cooperativo.visible = false
 
 func _on_tutorial_pressed() -> void:
-	_cambiar_escena_con_fade("res://scenes/tutorial/tutorial.tscn")
+	get_tree().change_scene_to_file("res://scenes/tutorial/tutorial.tscn")
 
 #--------CONFIGURACION DE BOTONES DEL MULTIJUGADOR------------
 
@@ -151,4 +133,6 @@ func _on_player_disconnected(id: int) -> void:
 	print("Jugador desconectado: ", id)
 
 func _cambiar_a_mapa_multijugador() -> void:
-	_cambiar_escena_con_fade("res://scenes/cooperativo/mapa_cooperativo.tscn")
+	get_tree().change_scene_to_file("res://scenes/cooperativo/mapa_cooperativo.tscn")
+	
+	
