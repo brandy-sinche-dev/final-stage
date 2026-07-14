@@ -22,6 +22,8 @@ func _ready() -> void:
 	contenedor_cooperativo.visible = false
 	music_fondo.play()
 	
+	$AnimationPlayer2.play("intro")
+	
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	_conectar_botones(self)
@@ -62,6 +64,8 @@ func _on_niveles_pressed() -> void:
 	contenedor_principal.visible = false
 	contenedor_cooperativo.visible = false
 	contenedor_niveles.visible = true
+	
+	$AnimationPlayer2.play("intro_op")
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
@@ -82,11 +86,15 @@ func _on_cooperativo_pressed() -> void:
 	contenedor_principal.visible = false
 	contenedor_niveles.visible = false
 	contenedor_cooperativo.visible = true
+	
+	$AnimationPlayer2.play("intro_coop")
 
 func _on_regresar_pressed() -> void:
 	contenedor_principal.visible = true
 	contenedor_niveles.visible = false
 	contenedor_cooperativo.visible = false
+	
+	$AnimationPlayer2.play("intro")
 
 func _on_tutorial_pressed() -> void:
 	_cambiar_escena_con_fade("res://scenes/tutorial/tutorial.tscn")
@@ -154,4 +162,8 @@ func _hacer_fade_out():
 	# Animamos el canal alpha (a) del color del rect de 0 a 1
 	tween.tween_property(fade_screen, "modulate:a", 1.0, 0.5) 
 	await tween.finished
+	
+
+
+
 	
