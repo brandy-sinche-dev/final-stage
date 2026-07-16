@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cd2jrrwoauatc" path="res://assets/textures/Nivel2/fondo/Tiles 4.png" id="4_bos32"]
 [ext_resource type="Script" uid="uid://db7vonbdnp0r3" path="res://scripts/cooperativo/wave_manager.gd" id="6_bos32"]
 [ext_resource type="PackedScene" uid="uid://dpcrnuqxk5085" path="res://scenes/tutorial/parallax.tscn" id="6_mms3o"]
+[ext_resource type="FontFile" uid="uid://dfwv3tjbnhrf4" path="res://assets/fonts/pixelfont/PressStart2P-Regular.ttf" id="7_2ejji"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ejji"]
 texture = ExtResource("2_cyqtt")
@@ -910,9 +911,18 @@ sources/2 = SubResource("TileSetAtlasSource_s7dgs")
 load_path = "res://.godot/imported/BG_Bush.png-d7a8aeaa33e7b2492ff09d8c3955a50d.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_bos32"]
+font = ExtResource("7_2ejji")
+font_size = 10
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ejji"]
+font = ExtResource("7_2ejji")
+font_size = 10
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jqoeg"]
+font = ExtResource("7_2ejji")
+font_size = 8
 font_color = Color(0, 0, 0, 1)
 
 [node name="mapa_cooperativo" type="Node2D" unique_id=1233628577]
@@ -967,19 +977,30 @@ offset_bottom = 40.0
 
 [node name="Label_Ola" type="Label" parent="CanvasLayer_HUD/Control_Olas" unique_id=1235966808]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 54.0
-offset_right = 424.0
-offset_bottom = 77.0
+offset_left = 413.0
+offset_top = 31.0
+offset_right = 509.0
+offset_bottom = 54.0
+text = "ola: 1"
 label_settings = SubResource("LabelSettings_bos32")
 
 [node name="Label_Enemigos" type="Label" parent="CanvasLayer_HUD/Control_Olas" unique_id=2071153793]
 layout_mode = 0
-offset_left = 375.0
-offset_top = 10.0
-offset_right = 415.0
-offset_bottom = 33.0
+offset_left = 364.0
+offset_top = 15.0
+offset_right = 474.0
+offset_bottom = 38.0
+text = "enemigos: 3"
 label_settings = SubResource("LabelSettings_2ejji")
+
+[node name="Label_ip" type="Label" parent="CanvasLayer_HUD/Control_Olas" unique_id=437935133]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 9.0
+offset_right = 320.0
+offset_bottom = 32.0
+text = "ip: 192.168.18.57"
+label_settings = SubResource("LabelSettings_jqoeg")
 
 [node name="Jugadores" type="Node2D" parent="." unique_id=1617560656]
 position = Vector2(65, 201)

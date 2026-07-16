@@ -676,6 +676,16 @@ position = Vector2(238, 136)
 scale = Vector2(1.4937499, 1.4565216)
 texture = SubResource("CompressedTexture2D_kut3r")
 
+[node name="Bg2" type="Sprite2D" parent="Bg3" unique_id=1482111841]
+position = Vector2(1156, -134)
+scale = Vector2(1.4468749, 1.4565216)
+texture = ExtResource("2_kut3r")
+
+[node name="Bg1" type="Sprite2D" parent="Bg3" unique_id=1227693640]
+position = Vector2(1154.75, -134.75)
+scale = Vector2(1.4734373, 1.4864129)
+texture = ExtResource("5_cf2qy")
+
 [node name="Murcielago" parent="." unique_id=1277977672 instance=ExtResource("7_kut3r")]
 
 [node name="Obelisco2" parent="." unique_id=1005869666 instance=ExtResource("8_d0ulg")]
@@ -752,16 +762,6 @@ stretch_mode = 1
 [node name="Killzone" parent="." unique_id=938229154 instance=ExtResource("13_pfr7q")]
 position = Vector2(930.99994, 325)
 scale = Vector2(95.35505, -7.402718)
-
-[node name="Bg2" type="Sprite2D" parent="." unique_id=1482111841]
-position = Vector2(1156, -134)
-scale = Vector2(1.4468749, 1.4565216)
-texture = ExtResource("2_kut3r")
-
-[node name="Bg1" type="Sprite2D" parent="." unique_id=1227693640]
-position = Vector2(1154.75, -134.75)
-scale = Vector2(1.4734373, 1.4864129)
-texture = ExtResource("5_cf2qy")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2138320984]
 stream = ExtResource("16_3hjxy")

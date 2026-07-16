@@ -3,6 +3,7 @@ extends Node2D
 @export var escena_hud: PackedScene 
 
 @onready var contenedor_jugadores = $Jugadores
+@onready var label_ip: Label = $CanvasLayer_HUD/Control_Olas/Label_ip
 
 func _ready() -> void:
 	# CONEXIÓN PARA EL HUD LOCAL:
@@ -15,11 +16,22 @@ func _ready() -> void:
 	# Tu lógica original del Servidor se queda exactamente igual:
 	if not multiplayer.is_server():
 		return
+	if multiplayer.is_server():
+		label_ip.text = "IP: " + _obtener_ip_local_actual()
+	else:
+		# Si es el cliente, podemos ocultarlo o poner un mensaje
+		label_ip.text = "Esperando al Host..."
 		
 	multiplayer.peer_connected.connect(_crear_jugador_en_servidor)
 	_crear_jugador_en_servidor(1)
 
-
+func _obtener_ip_local_actual() -> String:
+	var direcciones = IP.get_local_addresses()
+	for ip in direcciones:
+		if not ":" in ip and (ip.begins_with("192.168.") or ip.begins_with("10.") or ip.begins_with("172.")):
+			return ip
+	return "127.0.0.1"
+	
 func _crear_jugador_en_servidor(id: int) -> void:
 	var contenedor = get_node_or_null("Jugadores")
 	if not contenedor or contenedor.has_node(str(id)):

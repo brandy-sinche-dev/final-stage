@@ -10,6 +10,9 @@ var llaves_recolectadas: Array[String] = []
 
 # Estadísticas de Vida y Combate
 @export var max_vida: int = 100
+
+
+
 var vida_actual: int = max_vida:
 	set(valor):
 		# 🌟 Usamos el operador directo para guardar el valor sin activar el 'set' otra vez
