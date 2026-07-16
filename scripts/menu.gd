@@ -103,6 +103,7 @@ func _on_tutorial_pressed() -> void:
 
 # Al presionar HOST: Creamos el servidor
 func _on_crear_servidor_pressed() -> void:
+	PlayerData.es_partida_local = false
 	await _hacer_fade_out()
 	# Detectamos la IP automáticamente antes de abrir el server
 	ip_automatica_host = _obtener_ip_local_actual()
@@ -125,6 +126,7 @@ func _on_crear_servidor_pressed() -> void:
 
 # 🌟 MODIFICADO: Al presionar JOIN/BUSCAR, lee lo que escribió el usuario
 func _on_buscar_servidor_pressed() -> void:
+	PlayerData.es_partida_local = false
 	# .strip_edges() elimina espacios en blanco accidentales al inicio o final
 	var ip_destino: String = input_ip.text.strip_edges()
 	
