@@ -155,7 +155,7 @@ layout_mode = 0
 offset_right = 480.0
 offset_bottom = 269.0
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1058594583]
+[node name="Fondo" type="TextureRect" parent="." unique_id=1058594583]
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
