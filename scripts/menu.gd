@@ -10,6 +10,7 @@ extends Control
 # El campo de texto para la IP
 @onready var input_ip: LineEdit = $ContenedorCooperativo/HBoxContainer/InputIP
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var fondo = $Fondo
 
 # Configuracion para multijugador
 const PORT = 1024
@@ -24,9 +25,26 @@ func _ready() -> void:
 	
 	$AnimationPlayer2.play("intro")
 	
+	cambiar_fondo_por_fecha()
+	
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	_conectar_botones(self)
+	
+
+# Cambiar fondo del menu por fecha
+
+func cambiar_fondo_por_fecha() -> void:
+	var fecha = Time.get_datetime_dict_from_system()
+	
+	if fecha.month == 12:
+		fondo.texture = load("res://assets/textures/HUD/menu_navidad.png")
+	elif fecha.month == 10:
+		fondo.texture = load("res://assets/textures/HUD/menu_halloween.png")
+	elif fecha.month == 2:
+		fondo.texture = load("res://assets/textures/HUD/menu_san_valentin.png")
+	else:
+		fondo.texture = load("res://assets/textures/HUD/menu.png")
 
 # Detecta la IP real de tu máquina en la red local (Mantenemos tu lógica maestra)
 func _obtener_ip_local_actual() -> String:
@@ -164,7 +182,8 @@ func _hacer_fade_out():
 	# Animamos el canal alpha (a) del color del rect de 0 a 1
 	tween.tween_property(fade_screen, "modulate:a", 1.0, 0.5) 
 	await tween.finished
-	
+
+
 
 
 
