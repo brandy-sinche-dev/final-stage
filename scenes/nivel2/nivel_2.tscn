@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://caop0pvjy6tuu" path="res://scenes/HUD.tscn" id="6_hjh7k"]
 [ext_resource type="PackedScene" uid="uid://lnqtw0660j80" path="res://scenes/nivel2/enemigo_n2.tscn" id="7_dninf"]
 [ext_resource type="PackedScene" uid="uid://ckb8ofdnx4efj" path="res://scenes/nivel1/puerta.tscn" id="9_x0kmm"]
+[ext_resource type="PackedScene" uid="uid://s4kh0rn583kw" path="res://scenes/menu_pausa.tscn" id="10_0a3fg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waicc"]
 size = Vector2(1968.25, 375.5)
@@ -70,5 +71,8 @@ shape = SubResource("CircleShape2D_waicc")
 position = Vector2(2064, 417)
 max_vida = 100
 dano_espada = 15
+
+[node name="menu_pausa" parent="." unique_id=1078267119 instance=ExtResource("10_0a3fg")]
+visible = false
 
 [connection signal="body_entered" from="Area2D" to="Leo" method="_on_area_2d_body_entered"]

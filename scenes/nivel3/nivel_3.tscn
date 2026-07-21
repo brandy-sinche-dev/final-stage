@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://dhvm1thqbihl2" path="res://scripts/nivel3/portal_cristal_animado.gd.gd" id="18_k7i5o"]
 [ext_resource type="Texture2D" uid="uid://dssfrogol3vct" path="res://assets/textures/Nivel3/portal/portal_cristal (1).png" id="18_qyfnm"]
 [ext_resource type="Script" uid="uid://c48d6gjw8s82f" path="res://scripts/nivel3/camara_nivel3.gd" id="20_8taec"]
+[ext_resource type="PackedScene" uid="uid://s4kh0rn583kw" path="res://scenes/menu_pausa.tscn" id="23_fbnhh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbfyf"]
 atlas = ExtResource("5_fbnhh")
@@ -704,12 +705,6 @@ texture = ExtResource("15_oykkt")
 
 [node name="FondoNivel3" type="Node2D" parent="." unique_id=1234816749]
 
-[node name="FondoAbismoCristal3" type="Sprite2D" parent="FondoNivel3" unique_id=1899724093]
-z_index = -100
-position = Vector2(1056, 362.99997)
-scale = Vector2(1.2610646, 0.6437301)
-texture = ExtResource("9_m7mcd")
-
 [node name="FondoAbismoCristal" type="Sprite2D" parent="FondoNivel3" unique_id=1469390345]
 z_index = -100
 position = Vector2(1056, 303)
@@ -721,6 +716,14 @@ z_index = -100
 position = Vector2(1048.0001, -302.99997)
 scale = Vector2(1.2610646, 0.6437301)
 texture = ExtResource("9_m7mcd")
+
+[node name="ColorRect" type="ColorRect" parent="FondoNivel3" unique_id=1953232946]
+offset_left = -7.0
+offset_top = 605.00006
+offset_right = 33.0
+offset_bottom = 645.00006
+scale = Vector2(53.087692, 15.903534)
+color = Color(0, 0, 0, 1)
 
 [node name="Rayos" type="Node2D" parent="." unique_id=1008009178]
 position = Vector2(1700, 250)
@@ -792,6 +795,8 @@ limite_derecha = 2111
 limite_arriba = 0
 limite_abajo = 600
 offset_camara = Vector2(0, 0)
+
+[node name="menu_pausa" parent="." unique_id=1078267119 instance=ExtResource("23_fbnhh")]
 
 [connection signal="body_entered" from="Area2D" to="Leo" method="_on_area_2d_body_entered"]
 
