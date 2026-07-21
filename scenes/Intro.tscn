@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cnabc0k4bf8q"]
+
+[ext_resource type="VideoStream" uid="uid://diif63ejvjfep" path="res://Video_ogv/final_stage.ogv" id="1_aqbct"]
+[ext_resource type="Script" uid="uid://cu6065hkxm1as" path="res://scripts/video_stream_player.gd" id="2_ywiat"]
+[ext_resource type="PackedScene" uid="uid://dtaovruticpth" path="res://scenes/menu.tscn" id="3_mkji7"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" unique_id=311398261]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_aqbct")
+autoplay = true
+expand = true
+script = ExtResource("2_ywiat")
+escena_menu = ExtResource("3_mkji7")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
