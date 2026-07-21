@@ -720,6 +720,7 @@ sprite_frames = SubResource("SpriteFrames_7os27")
 
 [node name="JefeFinal" parent="." unique_id=1637908085 instance=ExtResource("2_b76np")]
 position = Vector2(1341, 136)
+max_vida = 180
 
 [node name="Leo" parent="." unique_id=492757546 instance=ExtResource("3_hipqy")]
 position = Vector2(74, 198)

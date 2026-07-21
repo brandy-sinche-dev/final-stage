@@ -9,7 +9,7 @@ func _process(delta: float) -> void:
 	position += direction * speed * delta
 func _on_body_entered(body: Node) -> void:
 	if body.has_method("recibir_danio"):
-		body.recibir_danio(1,global_position.x)
+		body.recibir_danio(10,global_position.x)
 	queue_free()
 func _on_screen_exited() -> void:
 	queue_free()
