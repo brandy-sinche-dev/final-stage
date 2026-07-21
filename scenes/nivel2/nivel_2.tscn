@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bsakjjb65po7" path="res://scenes/nivel2/trampa_fuego.tscn" id="5_yafgc"]
 [ext_resource type="PackedScene" uid="uid://caop0pvjy6tuu" path="res://scenes/HUD.tscn" id="6_hjh7k"]
 [ext_resource type="PackedScene" uid="uid://lnqtw0660j80" path="res://scenes/nivel2/enemigo_n2.tscn" id="7_dninf"]
-[ext_resource type="Script" uid="uid://ctibgskdo3oql" path="res://scripts/nivel2/pasar_a_nivel3.gd" id="8_waicc"]
+[ext_resource type="PackedScene" uid="uid://ckb8ofdnx4efj" path="res://scenes/nivel1/puerta.tscn" id="9_x0kmm"]
+[ext_resource type="PackedScene" uid="uid://s4kh0rn583kw" path="res://scenes/menu_pausa.tscn" id="10_0a3fg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waicc"]
 size = Vector2(1968.25, 375.5)
@@ -19,9 +20,6 @@ radius = 19.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_waicc"]
 radius = 17.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0kmm"]
-size = Vector2(53, 55)
-
 [node name="nivel2" type="Node2D" unique_id=1205736245]
 script = ExtResource("1_x0kmm")
 
@@ -30,6 +28,11 @@ position = Vector2(-10, -4)
 
 [node name="Gusano" parent="." unique_id=1913021993 instance=ExtResource("2_t0uoq")]
 position = Vector2(490, 487)
+
+[node name="puerta" parent="." unique_id=1275712376 instance=ExtResource("9_x0kmm")]
+position = Vector2(2373.9998, 406)
+scale = Vector2(0.985077, 0.92220974)
+siguiente_nivel_ruta = "uid://b44u1pdo1yp8w"
 
 [node name="Leo" parent="." unique_id=492757546 instance=ExtResource("3_t0uoq")]
 position = Vector2(64, 311)
@@ -69,11 +72,7 @@ position = Vector2(2064, 417)
 max_vida = 100
 dano_espada = 15
 
-[node name="Puerta" type="Area2D" parent="." unique_id=755934452]
-script = ExtResource("8_waicc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Puerta" unique_id=1570460648]
-position = Vector2(2372, 403)
-shape = SubResource("RectangleShape2D_x0kmm")
+[node name="menu_pausa" parent="." unique_id=1078267119 instance=ExtResource("10_0a3fg")]
+visible = false
 
 [connection signal="body_entered" from="Area2D" to="Leo" method="_on_area_2d_body_entered"]

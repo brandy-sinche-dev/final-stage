@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dtaovruticpth"]
 
+[ext_resource type="Theme" uid="uid://dqjab8d2loh3h" path="res://assets/textures/themes/theme_buttons.tres" id="1_g3eks"]
 [ext_resource type="Script" uid="uid://drqxcqvqxkims" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://b4aibrfio4oy2" path="res://assets/textures/HUD/menu.png" id="1_yqeox"]
 [ext_resource type="Texture2D" uid="uid://kxffgmtpitl5" path="res://assets/sprites/individual_sheets/male_hero-design.png" id="3_con2f"]
@@ -10,6 +11,137 @@
 atlas = ExtResource("3_con2f")
 region = Rect2(45, 41, 35, 46)
 
+[sub_resource type="Animation" id="Animation_4ytvr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Transicion:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g3eks"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Transicion:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v86rl"]
+_data = {
+&"RESET": SubResource("Animation_4ytvr"),
+&"fade_out": SubResource("Animation_g3eks")
+}
+
+[sub_resource type="Animation" id="Animation_v86rl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContenedorPrincipal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-500, 81)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContenedorNiveles:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-500, 64)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ContenedorCooperativo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-500, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_13sgg"]
+resource_name = "intro"
+length = 1.2333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContenedorPrincipal:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-500, 81), Vector2(175, 83)]
+}
+
+[sub_resource type="Animation" id="Animation_i6lef"]
+resource_name = "intro_coop"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContenedorCooperativo:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-500, 64), Vector2(177, 86)]
+}
+
+[sub_resource type="Animation" id="Animation_70i5f"]
+resource_name = "intro_op"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContenedorNiveles:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-500, 64), Vector2(170, 65)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6lef"]
+_data = {
+&"RESET": SubResource("Animation_v86rl"),
+&"intro": SubResource("Animation_13sgg"),
+&"intro_coop": SubResource("Animation_i6lef"),
+&"intro_op": SubResource("Animation_70i5f")
+}
+
 [node name="Menu" type="Control" unique_id=30599817]
 layout_mode = 3
 anchors_preset = 15
@@ -17,6 +149,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_g3eks")
 script = ExtResource("1_vjb58")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1095190208]
@@ -24,7 +157,7 @@ layout_mode = 0
 offset_right = 480.0
 offset_bottom = 269.0
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1058594583]
+[node name="Fondo" type="TextureRect" parent="." unique_id=1058594583]
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -32,12 +165,13 @@ texture = ExtResource("1_yqeox")
 expand_mode = 1
 
 [node name="ContenedorPrincipal" type="VBoxContainer" parent="." unique_id=683721167]
-visible = false
 layout_mode = 0
-offset_left = 175.0
+offset_left = -500.0
 offset_top = 81.0
-offset_right = 317.0
-offset_bottom = 188.0
+offset_right = -320.0
+offset_bottom = 217.0
+scale = Vector2(0.6878981, 0.9693245)
+theme_override_constants/separation = 20
 
 [node name="play" type="Button" parent="ContenedorPrincipal" unique_id=1976361688]
 layout_mode = 2
@@ -58,10 +192,12 @@ text = "EXIT"
 [node name="ContenedorNiveles" type="VBoxContainer" parent="." unique_id=1377971896]
 visible = false
 layout_mode = 0
-offset_left = 175.0
+offset_left = -500.0
 offset_top = 64.0
-offset_right = 317.0
-offset_bottom = 186.0
+offset_right = -208.0
+offset_bottom = 235.0
+scale = Vector2(0.46730527, 0.9558991)
+theme_override_constants/separation = 23
 
 [node name="nivel1" type="Button" parent="ContenedorNiveles" unique_id=1254856493]
 layout_mode = 2
@@ -85,25 +221,32 @@ text = "< Regresar al menu"
 
 [node name="ContenedorCooperativo" type="VBoxContainer" parent="." unique_id=290158250]
 layout_mode = 0
-offset_left = 175.0
+offset_left = -500.0
 offset_top = 64.0
-offset_right = 317.0
+offset_right = -208.0
 offset_bottom = 186.0
+scale = Vector2(0.43937367, 0.8999952)
+theme_override_constants/separation = 15
 
 [node name="crear Servidor" type="Button" parent="ContenedorCooperativo" unique_id=1737148316]
 layout_mode = 2
 text = "Crear Servidor"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContenedorCooperativo" unique_id=1386360865]
+layout_direction = 2
 layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 8
 
 [node name="InputIP" type="LineEdit" parent="ContenedorCooperativo/HBoxContainer" unique_id=900977762]
 layout_mode = 2
-placeholder_text = "Ingresar IP"
+placeholder_text = "Ingresar IP                              "
 expand_to_text_length = true
 
 [node name="buscar Servidor" type="Button" parent="ContenedorCooperativo/HBoxContainer" unique_id=1319713641]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 text = "Buscar"
 
 [node name="Regresar" type="Button" parent="ContenedorCooperativo" unique_id=1288466487]
@@ -116,11 +259,11 @@ offset_left = 15.0
 offset_top = 233.00002
 offset_right = 123.0
 offset_bottom = 287.0
-scale = Vector2(0.6049949, 0.57227796)
+scale = Vector2(0.47577977, 0.44938746)
 
 [node name="tutorial" type="Button" parent="ContenedorTutorial" unique_id=355022841]
 layout_mode = 2
-text = "Tutorial"
+text = "TUTORIAL"
 icon = SubResource("AtlasTexture_mhnvy")
 
 [node name="Musica_fondo" type="AudioStreamPlayer" parent="." unique_id=1198354322]
@@ -131,6 +274,24 @@ autoplay = true
 [node name="ClickSound" type="AudioStreamPlayer" parent="." unique_id=723951870]
 stream = ExtResource("5_4ytvr")
 volume_db = 8.211
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=221636696]
+libraries/ = SubResource("AnimationLibrary_v86rl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=650164210]
+
+[node name="Transicion" type="ColorRect" parent="CanvasLayer" unique_id=50781210]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=1156067636]
+libraries/ = SubResource("AnimationLibrary_i6lef")
 
 [connection signal="pressed" from="ContenedorPrincipal/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ContenedorPrincipal/niveles" to="." method="_on_niveles_pressed"]

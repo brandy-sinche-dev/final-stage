@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 CombateManager="*uid://ctw4rrxqapmgd"
 SoundManager="*uid://b0uj5pxqqqxf5"
+PlayerData="*uid://dl6ql7hr4boo4"
+GameOverManager="*uid://csv5eltbor56y"
 
 [display]
 
@@ -32,6 +34,7 @@ window/stretch/mode="canvas_items"
 
 player=""
 hud=""
+game_over=""
 
 [input]
 

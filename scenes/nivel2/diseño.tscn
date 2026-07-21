@@ -2705,11 +2705,6 @@ position = Vector2(68, 310)
 scale = Vector2(0.37291855, 0.390625)
 sprite_frames = SubResource("SpriteFrames_0ftl8")
 
-[node name="Puerta2" type="AnimatedSprite2D" parent="." unique_id=17127548]
-position = Vector2(2382, 422.99997)
-scale = Vector2(0.37291855, 0.390625)
-sprite_frames = SubResource("SpriteFrames_0ftl8")
-
 [node name="Antorcha" type="AnimatedSprite2D" parent="." unique_id=1969146701]
 position = Vector2(131, 252)
 sprite_frames = SubResource("SpriteFrames_pojhv")

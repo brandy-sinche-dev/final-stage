@@ -2,11 +2,12 @@
 
 [ext_resource type="AudioStream" uid="uid://clhbtmxkyu8cx" path="res://ost/nivel3/nivel3_abismo_cristal.ogg" id="2_k7i5o"]
 [ext_resource type="PackedScene" uid="uid://cbwdosul4nbbs" path="res://scenes/leo.tscn" id="3_m7mcd"]
+[ext_resource type="PackedScene" uid="uid://ckb8ofdnx4efj" path="res://scenes/nivel1/puerta.tscn" id="4_u2b7w"]
 [ext_resource type="Script" uid="uid://chi4y73s8rry7" path="res://scripts/nivel3/cristas_impulso.gd" id="5_2t0ee"]
 [ext_resource type="Script" uid="uid://e2wl6twohn8d" path="res://scripts/nivel3/plataforma_cristal.gd" id="5_854ck"]
+[ext_resource type="Texture2D" uid="uid://bsdpm4ukv6ss" path="res://assets/sprites/!Demon Door.png" id="5_fbnhh"]
 [ext_resource type="Script" uid="uid://lwyketb1sy3c" path="res://scripts/nivel3/plataforma_desaparece.gd" id="5_hxfpd"]
 [ext_resource type="PackedScene" uid="uid://caop0pvjy6tuu" path="res://scenes/HUD.tscn" id="6_3tw7r"]
-[ext_resource type="Script" uid="uid://cjpmfvrliw124" path="res://scripts/nivel3/salida_nivel3.gd" id="6_wit8e"]
 [ext_resource type="Script" uid="uid://bjr5vaaxav0o1" path="res://scripts/nivel3/cristal_muro_rompible.gd" id="7_hxfpd"]
 [ext_resource type="PackedScene" uid="uid://cge38x8f73vui" path="res://scenes/nivel3/eco_sombra.tscn" id="8_ravl0"]
 [ext_resource type="Texture2D" uid="uid://b88e00b8h86e4" path="res://assets/textures/Nivel3/platforms/plataforma_mediana (1).png" id="9_e1ois"]
@@ -21,6 +22,99 @@
 [ext_resource type="Script" uid="uid://dhvm1thqbihl2" path="res://scripts/nivel3/portal_cristal_animado.gd.gd" id="18_k7i5o"]
 [ext_resource type="Texture2D" uid="uid://dssfrogol3vct" path="res://assets/textures/Nivel3/portal/portal_cristal (1).png" id="18_qyfnm"]
 [ext_resource type="Script" uid="uid://c48d6gjw8s82f" path="res://scripts/nivel3/camara_nivel3.gd" id="20_8taec"]
+[ext_resource type="PackedScene" uid="uid://s4kh0rn583kw" path="res://scenes/menu_pausa.tscn" id="23_fbnhh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbfyf"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(720, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbbpc"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(960, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0emmd"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(1200, 0, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkxpl"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(720, 240, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8csu8"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(960, 240, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40yc8"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(1200, 240, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3w4j"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(720, 480, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dqsm"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(960, 480, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdoya"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(1200, 480, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic1d4"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(720, 720, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3grl"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(960, 720, 240, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb7bi"]
+atlas = ExtResource("5_fbnhh")
+region = Rect2(1200, 720, 240, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iepkm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbfyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbbpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0emmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkxpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8csu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40yc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3w4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dqsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdoya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic1d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3grl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb7bi")
+}],
+"loop": false,
+"name": &"open",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waicc"]
 size = Vector2(2380.125, 35)
@@ -30,9 +124,6 @@ size = Vector2(117.25, 57.375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxfpd"]
 size = Vector2(130, 56.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_854ck"]
-size = Vector2(44.5, 137.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6732b"]
 size = Vector2(220, 24)
@@ -118,6 +209,18 @@ autoplay = true
 
 [node name="CanvasLayer" parent="." unique_id=710190410 instance=ExtResource("6_3tw7r")]
 
+[node name="puerta" parent="." unique_id=1275712376 instance=ExtResource("4_u2b7w")]
+position = Vector2(2023, 209)
+scale = Vector2(1.394981, 2.8233387)
+siguiente_nivel_ruta = "uid://bg856w3hbqf4w"
+
+[node name="Sprite2D" parent="puerta" index="1" unique_id=742298035]
+texture = null
+
+[node name="AnimatedSprite2D" parent="puerta" index="2" unique_id=1465223796]
+visible = false
+sprite_frames = SubResource("SpriteFrames_iepkm")
+
 [node name="Area2D" type="Area2D" parent="." unique_id=1387119042]
 position = Vector2(900, 650)
 collision_layer = 0
@@ -138,15 +241,6 @@ shape = SubResource("RectangleShape2D_oykkt")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" unique_id=751975472]
 position = Vector2(-371, -73)
 shape = SubResource("RectangleShape2D_hxfpd")
-
-[node name="SalidaNivel3" type="Area2D" parent="." unique_id=89463566]
-position = Vector2(1700, 250)
-script = ExtResource("6_wit8e")
-siguiente_escena = "uid://bg856w3hbqf4w"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SalidaNivel3" unique_id=22808681]
-position = Vector2(322.75, -46.25)
-shape = SubResource("RectangleShape2D_854ck")
 
 [node name="Plataformas" type="Node2D" parent="." unique_id=296697265]
 
@@ -617,6 +711,20 @@ position = Vector2(1056, 303)
 scale = Vector2(1.2610646, 0.6437301)
 texture = ExtResource("9_m7mcd")
 
+[node name="FondoAbismoCristal2" type="Sprite2D" parent="FondoNivel3" unique_id=2061716557]
+z_index = -100
+position = Vector2(1048.0001, -302.99997)
+scale = Vector2(1.2610646, 0.6437301)
+texture = ExtResource("9_m7mcd")
+
+[node name="ColorRect" type="ColorRect" parent="FondoNivel3" unique_id=1953232946]
+offset_left = -7.0
+offset_top = 605.00006
+offset_right = 33.0
+offset_bottom = 645.00006
+scale = Vector2(53.087692, 15.903534)
+color = Color(0, 0, 0, 1)
+
 [node name="Rayos" type="Node2D" parent="." unique_id=1008009178]
 position = Vector2(1700, 250)
 
@@ -633,6 +741,9 @@ position = Vector2(-946, -76)
 position = Vector2(-212, -248)
 
 [node name="Rayo2" parent="Rayos" unique_id=858835053 instance=ExtResource("18_botma")]
+position = Vector2(-1449, -165)
+
+[node name="Rayo6" parent="Rayos" unique_id=1818914217 instance=ExtResource("18_botma")]
 position = Vector2(-1449, -165)
 
 [node name="DecoracionCristales" type="Node2D" parent="." unique_id=1686624897]
@@ -685,4 +796,8 @@ limite_arriba = 0
 limite_abajo = 600
 offset_camara = Vector2(0, 0)
 
+[node name="menu_pausa" parent="." unique_id=1078267119 instance=ExtResource("23_fbnhh")]
+
 [connection signal="body_entered" from="Area2D" to="Leo" method="_on_area_2d_body_entered"]
+
+[editable path="puerta"]

@@ -37,6 +37,8 @@ var tiempo_estela: float = 0.0
 var puede_atacar: bool = true
 var area_ataque_x_base: float = 45.0
 
+# Define qué llave suelta este enemigo en el Inspector
+@export var llave_a_soltar: String = "key_1"
 # Variable para recordar a quién estamos imitando actualmente
 var jugador_objetivo: CharacterBody2D = null
 
@@ -296,6 +298,36 @@ func _morir() -> void:
 		hitbox_ataque.set_deferred("disabled", true)
 	velocity = Vector2.ZERO
 	_reproducir("death")
+		# Entregamos la llave si es servidor O si no hay red (solitario)
+	if llave_a_soltar != "":
+		if multiplayer.multiplayer_peer == null or multiplayer.is_server():
+			print("Entregando llave en entorno seguro...")
+			_entregar_llave_al_asesino()
+		else:
+			print("Soy cliente, no tengo autoridad para dar llaves.")
+
+
+
+
+func _entregar_llave_al_asesino() -> void:
+	var jugadores = get_tree().get_nodes_in_group("player")
+	var entregada = false
+	
+	for j in jugadores:
+		# Aumentamos a 250px para ser más flexibles
+		var distancia = global_position.distance_to(j.global_position)
+		print("Distancia al jugador: ", distancia) # DEBUG: Mira esto en la consola
+		if distancia < 250.0:
+			if j.has_method("agregar_llave"):
+				j.agregar_llave(llave_a_soltar)
+				print("¡LLAVE ENTREGADA CON ÉXITO!")
+				entregada = true
+				break
+	if not entregada:
+		print("No se encontró jugador cerca para entregar la llave.")
+
+	
+	
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if estado_actual == Estados.MUERTO and sprite.animation == "death":

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://s4kh0rn583kw"]
+
+[ext_resource type="Script" uid="uid://kfahveup3m4j" path="res://scripts/menu_pausa.gd" id="1_v2jgs"]
+[ext_resource type="Theme" uid="uid://dqjab8d2loh3h" path="res://assets/textures/themes/theme_buttons.tres" id="2_1cdjc"]
+
+[node name="menu_pausa" type="Control" unique_id=1078267119]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_v2jgs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1267842352]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1150068493]
+anchors_preset = -1
+anchor_right = 12.000001
+anchor_bottom = 6.7500005
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3529412)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1796605174]
+offset_left = 179.00002
+offset_top = 102.0
+offset_right = 409.0
+offset_bottom = 261.0
+scale = Vector2(0.50471044, 0.76993185)
+theme = ExtResource("2_1cdjc")
+theme_override_constants/separation = 20
+
+[node name="reanudar" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=145880049]
+layout_mode = 2
+text = "Reanudar"
+
+[node name="reiniciar" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=743396265]
+layout_mode = 2
+text = "Reiniciar Nivel"
+
+[node name="salir" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1766244444]
+layout_mode = 2
+text = "Salir"

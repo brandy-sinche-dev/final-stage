@@ -10,10 +10,14 @@ var llaves_recolectadas: Array[String] = []
 
 # Estadísticas de Vida y Combate
 @export var max_vida: int = 100
+var corazones_restantes: int
+
+
 var vida_actual: int = max_vida:
 	set(valor):
 		# 🌟 Usamos el operador directo para guardar el valor sin activar el 'set' otra vez
 		vida_actual = valor 
+		PlayerData.vida_actual = valor
 		
 		# Evitamos procesar el HUD si la red aún no se inicializa
 		if not is_inside_tree(): 
@@ -46,6 +50,8 @@ var esta_muerto = false
 @onready var sonido_dano: AudioStreamPlayer2D = $EffectsSounds/sound_hurt
 @onready var sonido_muerte: AudioStreamPlayer2D = $death
 
+# señal para el hud
+signal llave_recolectada(llave_id)
 
 func _enter_tree() -> void:
 	if multiplayer.multiplayer_peer != null:
@@ -59,6 +65,22 @@ func _enter_tree() -> void:
 				$MultiplayerSynchronizer.set_multiplayer_authority(id_del_dueno)
 
 
+func perder_corazon() -> void:
+	if PlayerData.es_partida_local:
+		corazones_restantes -= 1
+		PlayerData.corazones_restantes = corazones_restantes
+		
+		if corazones_restantes > 0:
+			vida_actual = max_vida 
+			PlayerData.vida_actual = max_vida
+			
+			# Actualizar HUD
+			var interfaz = get_tree().get_first_node_in_group("hud")
+			if interfaz: 
+				interfaz.actualizar_vida(vida_actual)
+				interfaz.actualizar_corazones_visual(corazones_restantes)
+	
+	
 func _ready() -> void:
 	floor_constant_speed = true
 	floor_snap_length = 4.0
@@ -81,6 +103,22 @@ func _ready() -> void:
 			$Camera2D.make_current()
 		if label_flotante:
 			label_flotante.text = "Player 1"
+	# Sincronizamos con los datos persistentes al entrar
+	if PlayerData.es_partida_local:
+		# NO sobrescribas si ya tenemos datos guardados en PlayerData.
+		# Solo aplicamos los valores si son diferentes a los actuales
+		if corazones_restantes != PlayerData.corazones_restantes:
+			corazones_restantes = PlayerData.corazones_restantes
+			vida_actual = PlayerData.vida_actual
+	else:
+		# En multijugador, reset total
+		vida_actual = max_vida
+		corazones_restantes = 3
+	# Refrescamos el HUD inmediatamente después de cargar
+	var interfaz = get_tree().get_first_node_in_group("hud")
+	if interfaz:
+		interfaz.actualizar_vida(vida_actual)
+		interfaz.actualizar_corazones_visual(corazones_restantes)
 
 func _physics_process(delta: float) -> void:
 	if multiplayer.multiplayer_peer != null:
@@ -243,6 +281,16 @@ func morir() -> void:
 	if esta_muerto: return # Evita que se ejecute más de una vez si cae en dos trampas juntas
 	
 	esta_muerto = true
+	# REVISIÓN: ¿Es una muerte definitiva (sin corazones) o solo una caída al vacío?
+	
+	# Si NO es local (Multijugador) O ya no quedan corazones, es Game Over definitivo
+	# 1. Lógica de Corazones (Si es local)
+	if PlayerData.es_partida_local and corazones_restantes > 0:
+		perder_corazon()
+	
+	if corazones_restantes <= 0:
+		GameOverManager.activar_game_over()
+	
 	velocity = Vector2.ZERO
 	# 1. Efectos Visuales y Sonoros (Estética)
 	if sprite:
@@ -308,6 +356,8 @@ func _on_sword_area_body_entered(body: Node2D) -> void:
 func agregar_llave(id_llave: String) -> void:
 	if not llaves_recolectadas.has(id_llave):
 		llaves_recolectadas.append(id_llave)
+		llave_recolectada.emit(id_llave)
+	
 
 func tiene_llave(id_llave: String) -> bool:
 	return llaves_recolectadas.has(id_llave)

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bdlqtvcln4m1a" path="res://scenes/nivel1/key.tscn" id="10_ychu3"]
 [ext_resource type="PackedScene" uid="uid://ckb8ofdnx4efj" path="res://scenes/nivel1/puerta.tscn" id="11_ychu3"]
 [ext_resource type="Texture2D" uid="uid://cy0wb35knhij3" path="res://assets/sprites/nivel2/lava/_0001_Layer-2.png" id="12_3elcd"]
+[ext_resource type="PackedScene" uid="uid://s4kh0rn583kw" path="res://scenes/menu_pausa.tscn" id="14_4jvih"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lkhdl"]
 texture = ExtResource("2_fuatb")
@@ -3713,6 +3714,8 @@ shape = SubResource("RectangleShape2D_xltc0")
 stream = SubResource("AudioStreamMP3_ychu3")
 volume_db = -17.333
 autoplay = true
+
+[node name="menu_pausa" parent="." unique_id=1078267119 instance=ExtResource("14_4jvih")]
 
 [editable path="KillsZones/Killzone"]
 [editable path="KillsZones/Killzone2"]

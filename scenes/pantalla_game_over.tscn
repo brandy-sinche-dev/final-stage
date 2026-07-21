@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://csv5eltbor56y"]
+
+[ext_resource type="Script" uid="uid://udhw1lcx0flb" path="res://scripts/pantalla_game_over.gd" id="1_nsbtl"]
+[ext_resource type="FontFile" uid="uid://dfwv3tjbnhrf4" path="res://assets/fonts/pixelfont/PressStart2P-Regular.ttf" id="2_x4wqn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vb0id"]
+font = ExtResource("2_x4wqn")
+font_size = 19
+font_color = Color(1, 0.14117648, 0.3137255, 1)
+
+[node name="PantallaGameOver" type="CanvasLayer" unique_id=1440373826 groups=["game_over"]]
+layer = 10
+script = ExtResource("1_nsbtl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1741366244]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1517648339]
+offset_left = 159.0
+offset_top = 109.0
+offset_right = 330.0
+offset_bottom = 132.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_vb0id")

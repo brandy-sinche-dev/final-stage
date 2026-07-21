@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://da502adkwnafg" path="res://scenes/killzone.tscn" id="13_pfr7q"]
 [ext_resource type="Script" uid="uid://c4gef8tuq6a57" path="res://scripts/nivel 4/nivel4_ambientacion.gd" id="14_ambiente"]
 [ext_resource type="AudioStream" uid="uid://bs2lo305p1ohb" path="res://ost/nivel4/musicadefondo_n4.mp3" id="16_3hjxy"]
+[ext_resource type="PackedScene" uid="uid://s4kh0rn583kw" path="res://scenes/menu_pausa.tscn" id="17_7tpik"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cf2qy"]
 
@@ -676,6 +677,16 @@ position = Vector2(238, 136)
 scale = Vector2(1.4937499, 1.4565216)
 texture = SubResource("CompressedTexture2D_kut3r")
 
+[node name="Bg2" type="Sprite2D" parent="Bg3" unique_id=1482111841]
+position = Vector2(1156, -134)
+scale = Vector2(1.4468749, 1.4565216)
+texture = ExtResource("2_kut3r")
+
+[node name="Bg1" type="Sprite2D" parent="Bg3" unique_id=1227693640]
+position = Vector2(1154.75, -134.75)
+scale = Vector2(1.4734373, 1.4864129)
+texture = ExtResource("5_cf2qy")
+
 [node name="Murcielago" parent="." unique_id=1277977672 instance=ExtResource("7_kut3r")]
 
 [node name="Obelisco2" parent="." unique_id=1005869666 instance=ExtResource("8_d0ulg")]
@@ -753,16 +764,8 @@ stretch_mode = 1
 position = Vector2(930.99994, 325)
 scale = Vector2(95.35505, -7.402718)
 
-[node name="Bg2" type="Sprite2D" parent="." unique_id=1482111841]
-position = Vector2(1156, -134)
-scale = Vector2(1.4468749, 1.4565216)
-texture = ExtResource("2_kut3r")
-
-[node name="Bg1" type="Sprite2D" parent="." unique_id=1227693640]
-position = Vector2(1154.75, -134.75)
-scale = Vector2(1.4734373, 1.4864129)
-texture = ExtResource("5_cf2qy")
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2138320984]
 stream = ExtResource("16_3hjxy")
 autoplay = true
+
+[node name="menu_pausa" parent="." unique_id=1078267119 instance=ExtResource("17_7tpik")]

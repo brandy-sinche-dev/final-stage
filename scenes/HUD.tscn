@@ -45,6 +45,14 @@ font_size = 5
 atlas = ExtResource("6_f6qnu")
 region = Rect2(297, 30, 36, 49)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf6ij"]
+atlas = ExtResource("4_nysna")
+region = Rect2(238, 320, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_meimr"]
+atlas = ExtResource("2_7hsmw")
+region = Rect2(0, 127.5, 38, 36.5)
+
 [node name="CanvasLayer" type="CanvasLayer" unique_id=710190410 groups=["hud"]]
 script = ExtResource("1_1etfg")
 
@@ -196,3 +204,52 @@ offset_bottom = 8.932327
 scale = Vector2(0.5257814, 0.7586713)
 text = "Space"
 label_settings = SubResource("LabelSettings_8cuoo")
+
+[node name="ContenedorLlave" type="Control" parent="HUD" unique_id=746554644]
+anchors_preset = 0
+offset_top = 6.0
+offset_right = 40.0
+offset_bottom = 46.0
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/ContenedorLlave" unique_id=1418298258]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 46.00003
+offset_top = 224.0
+offset_right = 86.00003
+offset_bottom = 264.0
+scale = Vector2(0.73086023, 0.52201414)
+texture = SubResource("AtlasTexture_cf6ij")
+
+[node name="ContenedorCorazones" type="Control" parent="HUD" unique_id=513920426]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/ContenedorCorazones" unique_id=1390716035]
+layout_mode = 0
+offset_left = 126.000015
+offset_top = 23.0
+offset_right = 164.00002
+offset_bottom = 59.0
+scale = Vector2(0.30108672, 0.34760886)
+texture = SubResource("AtlasTexture_meimr")
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/ContenedorCorazones" unique_id=323521719]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 23.0
+offset_right = 177.0
+offset_bottom = 59.0
+scale = Vector2(0.30108672, 0.34760886)
+texture = SubResource("AtlasTexture_meimr")
+
+[node name="TextureRect3" type="TextureRect" parent="HUD/ContenedorCorazones" unique_id=1535271751]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 23.0
+offset_right = 190.0
+offset_bottom = 59.0
+scale = Vector2(0.30108672, 0.34760886)
+texture = SubResource("AtlasTexture_meimr")
