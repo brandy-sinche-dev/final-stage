@@ -16,12 +16,14 @@ var estado_actual = Estados.IDLE
 var puede_atacar := true
 var gravedad: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var posicion_ataque_base := 54.0
+var esta_muriendo:bool = false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area_ataque: Area2D = $AreaAtaque
 @onready var hitbox_ataque: CollisionShape2D = $AreaAtaque/CollisionShape2D
 @onready var barra_vida: ProgressBar = get_node_or_null("BarraVida")
 @onready var sonido_ataque = $AudioStreamPlayer
+@onready var timer_espera: Timer = $Timer
 
 func _ready() -> void:
 	vida_actual = max_vida
@@ -168,11 +170,45 @@ func _morir() -> void:
 		return
 	estado_actual = Estados.MUERTO
 	velocity = Vector2.ZERO
+	
 	if hitbox_ataque:
 		hitbox_ataque.set_deferred("disabled", true)
 	if barra_vida:
 		barra_vida.visible = false
+		
 	_reproducir("death")
+	
+	# 1. Esperamos a que termine la animación de muerte
+	if $AnimatedSprite2D.has_signal("animation_finished"):
+		await $AnimatedSprite2D.animation_finished
+	else:
+		await get_tree().create_timer(2.0).timeout
+	
+	# 2. Pausa dramática viendo al jefe derrotado
+	timer_espera.start()
+	await timer_espera.timeout 
+	
+	# 3. FUNDIDO A NEGRO AUTOMÁTICO E INFALIBLE
+	var canvas_transicion = CanvasLayer.new()
+	canvas_transicion.layer = 128 
+	get_tree().root.add_child(canvas_transicion)
+	
+	var rect_negro = ColorRect.new()
+	rect_negro.color = Color.BLACK
+	rect_negro.modulate.a = 0.0 
+	rect_negro.set_anchors_preset(Control.PRESET_FULL_RECT)
+	canvas_transicion.add_child(rect_negro)
+	
+	# Animamos el fundido a negro en 1.5 segundos
+	var tween = create_tween()
+	tween.tween_property(rect_negro, "modulate:a", 1.0, 1.5)
+	await tween.finished
+	
+	# 4. Limpiamos el nodo negro ANTES de cambiar de escena para que el menú no nazca oscuro
+	canvas_transicion.queue_free()
+	
+	# 5. Cambiamos al menú principal
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "attack":
@@ -185,7 +221,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		if estado_actual == Estados.HERIDO:
 			estado_actual = Estados.IDLE
 	elif sprite.animation == "death":
-		_borrar_jefe_red()
+		#_borrar_jefe_red()
+		pass
 
 func _iniciar_cooldown() -> void:
 	await get_tree().create_timer(cooldown_ataque).timeout

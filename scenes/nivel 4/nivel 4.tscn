@@ -760,6 +760,22 @@ offset_bottom = 345.0
 texture = ExtResource("9_rn5pv")
 stretch_mode = 1
 
+[node name="TextureRect6" type="TextureRect" parent="." unique_id=1675733814]
+offset_left = 2.0
+offset_top = 332.0
+offset_right = 2437.0
+offset_bottom = 396.0
+texture = ExtResource("9_rn5pv")
+stretch_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="." unique_id=1870437942]
+offset_left = 1.0
+offset_top = 355.0
+offset_right = 2436.0
+offset_bottom = 419.0
+texture = ExtResource("9_rn5pv")
+stretch_mode = 1
+
 [node name="Killzone" parent="." unique_id=938229154 instance=ExtResource("13_pfr7q")]
 position = Vector2(930.99994, 325)
 scale = Vector2(95.35505, -7.402718)

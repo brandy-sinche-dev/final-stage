@@ -214,16 +214,19 @@ size = Vector2(62, 36)
 [node name="JefeFinal" type="CharacterBody2D" unique_id=468650041 groups=["enemigos"]]
 collision_layer = 4
 script = ExtResource("1_jefe")
+max_vida = 10
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=188259037]
 replication_config = SubResource("SceneReplicationConfig_jefe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=653561413]
-position = Vector2(0, -39.999996)
-scale = Vector2(0.85, 0.85)
+position = Vector2(-3.7500012, -39.999996)
+scale = Vector2(0.9035715, 0.85)
 sprite_frames = SubResource("SpriteFrames_jefe")
 animation = &"attack"
 autoplay = "idle"
+frame = 9
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=885522265]
 position = Vector2(0, -24)
@@ -245,6 +248,10 @@ parameters/looping = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1569635446]
 stream = ExtResource("42_h1urf")
+
+[node name="Timer" type="Timer" parent="." unique_id=727622734]
+wait_time = 1.2999999999999998
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="AreaAtaque" to="." method="_on_area_ataque_body_entered"]
