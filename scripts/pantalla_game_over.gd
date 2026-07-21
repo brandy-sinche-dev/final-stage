@@ -21,3 +21,5 @@ func activar_game_over() -> void:
 	
 	# Regresa al menú principal
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	
+	PlayerData.resetear_datos()
